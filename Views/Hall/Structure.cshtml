@@ -1,0 +1,55 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@section Css{
+    <link rel="stylesheet" href="~/css/Screening.css" asp-append-version="true">
+}
+<h1>Structura salii de cinema </h1>
+<h3>@Model.name</h3>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+}
+
+@if (Model != null)
+{
+
+    <div class="container bg-dark pt-4 pb-3 pl-5 pr-5" style="border-radius:10px;">
+
+        <div class="screen">Ecran</div>
+
+        @{ int s = 1;
+            float width1 = (float)100 / (float)Model.cols;
+            string width = width1.ToString("0.00") + "%";
+
+        }
+        @for (int i = 0; i < Model.rows; i++)
+        {
+            @Html.Raw("<div class='row mt-2 mb-2' >");
+            for (int j = 0; j < Model.cols; j++)
+            {
+                int elem = j + i * Model.cols + 1;
+                if (Model.paths.Contains(elem))
+                {
+                    <div class="path" style="width:@width;"></div>
+
+                    continue;
+                }
+
+                else
+                {
+                    <div class="seat free" style="width:@width;">@s</div>
+                    s++;
+                }
+
+            }
+            @Html.Raw("</div>");
+
+
+        }
+
+    </div>
+}

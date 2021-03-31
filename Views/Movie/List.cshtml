@@ -1,0 +1,130 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@section Css{
+    <link rel="stylesheet" href="~/css/MovieList.css" asp-append-version="true">
+}
+
+@model List<Licenta.ViewModels.MovieListViewModel>
+
+
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+}
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-info">@ViewBag.Message</div>
+}
+
+
+@if (ViewBag.SuccesMessage != null)
+{
+    <div class="alert alert-success">@ViewBag.SuccesMessage</div>
+}
+
+
+
+<div class="row">
+    <form action="/Movie/List" method="get" class="col-sm-6 " id="filterform">
+        Filtrati filmele:
+        <br />
+        <br />
+        <select name="f" id="filter" class="form-control w-50">
+            <option value="toate">Toate filmele</option>
+            <option value="prezent">Filme care ruleaza</option>
+            <option value="trecut">Filme care au rulat</option>
+            <option value="viitor">Filme care vor rula</option>
+        </select>
+    </form>
+
+    <form action="/Movie/List" method="get" class="col-sm-6 ">
+        Cautati un film dupa titlu:
+        <br />
+        <br />
+        <input name="q" type="text" class="form-control" style="width:30%;display:inline-block; border-top-right-radius:0px;border-bottom-right-radius:0px;" /><button class="btn btn-danger" style="display:inline-block; border-bottom-left-radius:0px;border-top-left-radius:0px;vertical-align:baseline;"><i class="fa fa-search"></i></button>
+
+    </form>
+
+</div>
+
+<a class="btn btn-danger float-right" href="/Movie/Create">Adaugati un film nou</a>
+
+@if (Model != null)
+{
+    @if (Model.Count != 0)
+    {
+
+        <br />
+        <br />
+        <div class="result"></div>
+
+
+
+
+
+        <table class="table table-dark table-bordered">
+            <thead><tr><th scope="col">Imagine</th><th class="text-center" scope="col">Titlu</th><th class="text-center" scope="col">Data adaugarii</th><th class="text-center" scope="col">Data lansarii</th><th class="text-center" scope="col">Ruleaza</th><th class="text-center" scope="col">Actiune</th></tr></thead>
+
+            @foreach (var movie in Model)
+            {
+
+                <tr>
+                    <td>
+                        <a href="/Movie/@movie.id">
+                            <div class="col-md-5 col-sm-6 ">
+
+                                <img src="~/@movie.img" height="150" width="90" class="img" />
+
+                            </div>
+                        </a>
+                    </td>
+                    <td class="bw">@movie.title</td>
+                    <td class="bw">
+                        @movie.date_added.ToString("yyyy-MMM-dd")
+                    </td>
+                    <td class="bw">
+                        @movie.release_date.ToString("yyyy-MMM-dd")
+
+
+                    </td>
+                    <td class="bw">
+                        @if (movie.active == 1)
+                        {<select name="active" class="isactive">
+                                <option value="@movie.id" selected>Da</option>
+                                <option value="@movie.id">Nu</option>
+                            </select>
+                        }
+                        else
+                        {
+                            <select name="active" class="isactive">
+                                <option value="@movie.id">Da</option>
+                                <option value="@movie.id" selected>Nu</option>
+                            </select>
+
+                        }
+                    </td>
+                    <td style="text-align: center; vertical-align: middle;">
+                        <a class="btn btn-danger " href="/Movie/Update/@movie.id">Actualizati</a>
+                        <br />
+                        <br />
+                        <a class="btn btn-info " href="/Movie/@movie.id">Detalii</a>
+                    </td>
+
+                </tr>
+            }
+        </table>
+
+
+    }
+}
+
+
+
+@section Scripts{
+    <script type="text/javascript" src="~/js/MovieList.js" asp-append-version="true"></script>
+}

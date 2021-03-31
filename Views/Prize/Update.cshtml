@@ -1,0 +1,22 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+}
+
+
+<div class="container col-7 p-5 form" >
+    <form asp-action="Update" asp-controller="Prize" method="post">
+        <input type="hidden" name="id" value="@Model.Id" />
+        <label for="name">Numele premiului:</label>
+        <input type="text" class="form-control" name="name" value="@Model.name" />
+        <br />
+        <br />
+        <button type="submit" class="btn btn-danger">Actualizeaza</button>
+    </form>
+</div>

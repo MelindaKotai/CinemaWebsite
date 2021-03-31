@@ -1,0 +1,50 @@
+﻿
+.canvasContainer {
+    background: url(/basic_wheel_background.png) 50% 50% no-repeat;
+    height: 400px;
+    width: 400px;
+    background-size: contain;
+}
+
+
+
+.the_wheel {
+    background-image: url(/wheel_back.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+div.power_controls {
+    margin-right: 70px;
+}
+
+
+table.power {
+    background-color: dimgrey;
+    cursor: pointer;
+    border: 1px solid #333333;
+}
+
+
+
+    table.power th {
+        background-color: black;
+        cursor: default;
+    }
+
+td.pw1 {
+    background-color: #6fe8f0;
+}
+
+
+td.pw2 {
+    background-color: #86ef6f;
+}
+
+
+td.pw3 {
+    background-color: #ef6f6f;
+}
+

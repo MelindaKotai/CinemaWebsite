@@ -1,0 +1,77 @@
+﻿.screen {
+    width: 70%;
+    text-align: center;
+    margin: 0 auto;
+    background-color: black;
+    border-radius: 10px;
+    margin-bottom: 50px;
+}
+
+.path {
+    height: 43px;
+    display: inline-block;
+    padding: 0px;
+}
+
+.reserved {
+    height: 43px;
+    background-color: red;
+    display: inline-block;
+    font-size: 1vw;
+    text-align: center;
+    vertical-align: middle;
+    border: 1.5px solid #343a40;
+    padding: 0px;
+}
+
+.free {
+    height: 43px;
+    background-color: green;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1vw;
+    border: 1.5px solid #343a40;
+    padding: 0px;
+    transition: 0.3s;
+    border-radius: 3px;
+}
+
+
+.selected {
+    height: 43px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1vw;
+    border: 1.5px solid #343a40;
+    padding: 0px;
+    background-color: yellow;
+    transition: 0.3s;
+    border-radius: 3px;
+}
+
+
+.free:hover {
+    transform: scale(1.1);
+    background-color: darkgreen;
+}
+
+.selected:hover {
+    transform: scale(1.1);
+    background-color: #ccff33;
+}
+
+@media only screen and (max-width: 1200px) {
+
+    .free, .reserved, .path, .selected {
+        height: 35px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+
+    .free, .reserved, .path, .selected {
+        height: 20px;
+    }
+}

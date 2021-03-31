@@ -1,0 +1,39 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+<div class="alert alert-dancer">@ViewBag.ErrorMessage</div>
+}
+<div class="container bg-dark p-5 form" >
+
+    <h5 class="text-center">Detalii utilizator</h5>
+    Nume:@Model.FirstName
+    <br />
+    Prenume:@Model.LastName
+    <br />
+    Email:@Model.email
+    <br />
+    <b>Rol curent: @Model.userRole</b>
+
+   
+
+
+<form asp-action="EditRole" asp-controller="User" method="post"  class="m-5">
+    Selectati noul rol :
+    <br />
+    @foreach (var role in Model.roles)
+    {
+
+        <input type="radio" name="role" value="@role" />@role
+        <br />
+    }
+    <input type="hidden" name="id" value="@Model.userId" />
+    <br />
+    <button type="submit" class="btn btn-danger">Modificati rolul</button>
+</form>
+
+</div>

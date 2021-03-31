@@ -1,0 +1,115 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+}
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-info">@ViewBag.Message</div>
+}
+
+@if (Model != null)
+{
+
+
+    <h2 style="display:inline-block">@Model.title</h2>
+
+    <div class="bg-danger p-2" style="border-radius:15px;display:inline-block"> @Model.s_hour.ToString("HH:mm") -  @Model.f_hour.ToString("HH:mm") </div>
+
+    <br />
+    <br />
+    <div class="result"></div>
+    @if (ViewBag.SuccesMessage != null)
+    {
+        <div class="alert alert-success">@ViewBag.SuccesMessage</div>
+    }
+
+
+    <form action="/Screening/Reservations/@Model.screeningid" methor="get" class="m-3">
+        Cautati o rezervare dupa nume:
+        <input name="q" type="text" class="form-control" style="width:30%;display:inline-block; border-top-right-radius:0px;border-bottom-right-radius:0px;" /><button class="btn btn-danger" style="display:inline-block; border-bottom-left-radius:0px;border-top-left-radius:0px;vertical-align:baseline;"><i class="fa fa-search"></i></button>
+
+    </form>
+    @if (Model.reservations != null)
+    {
+        <table class="table table-dark table-bordered">
+            <thead><tr><th scope="col">Nume</th><th class="text-center" scope="col">Email</th><th class="text-center" scope="col">Bilete</th><th class="text-center" scope="col">Locuri</th><th class="text-center" scope="col">Total</th><th class="text-center" scope="col">Stare</th><th class="text-center" scope="col">Actiune</th></tr></thead>
+
+            @foreach (var reservation in Model.reservations)
+            {
+
+                <tr>
+                    <td>
+                        <span>@reservation.FirstName </span> @reservation.LastName
+                    </td>
+                    <td class="bw">@reservation.email</td>
+                    <td>
+                        @foreach (var ticket in reservation.tickets)
+                        {
+                            <span>@ticket.typeOfTicket: </span>@ticket.noOfTickets
+                            <br />
+                        }
+                    </td>
+                    <td>
+                        @foreach (var seat in reservation.seats)
+                        {
+
+
+                            <span>Rand @seat.Key, Locuri: </span>
+
+                            @foreach (var s in seat.Value)
+                            {
+                                <span>@s,</span>
+                            }
+                            <br />
+
+                        }
+                    </td>
+                    <td>@reservation.total</td>
+                    <td>
+                        @if (reservation.payed == 0)
+                        {
+                            <select name="state" class="state">
+
+                                <option value="@reservation.id">Platit</option>
+
+                                <option value="@reservation.id" selected>Neplatit</option>
+                            </select>
+                        }
+                        else
+                        {
+                            <select name="state" class="state">
+                                <option value="@reservation.id" selected>Platit</option>
+                                <option value="@reservation.id">Neplatit</option>
+                            </select>
+                        }
+                    </td>
+                    <td><a class="btn btn-danger deletebtn" href="/Reservation/Delete/@reservation.id">Sterge Rezervare</a></td>
+
+
+
+
+
+
+
+
+
+                </tr>
+            }
+        </table>
+    }
+    <a class="btn btn-danger" href="/Screening/ChooseTickets/@Model.screeningid">Creati rezervare noua</a>
+    <a class="btn btn-danger" href="/Screening/DeleteConfirmation/@Model.screeningid">Stergeti ecranizarea</a>
+
+    @section Scripts{
+        <script type="text/javascript" src="~/js/ScreeningReservations.js" asp-append-version="true"></script>
+    }
+}
+

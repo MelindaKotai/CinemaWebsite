@@ -1,0 +1,178 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: right;
+  word-break: break-all;
+}
+
+.efect {
+    animation-duration: 4s;
+    animation-name: slidein;
+}
+
+@keyframes slidein {
+    0% {
+        opacity:0;
+    }
+
+    100% {
+        opacity:1;
+    }
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: white;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+
+#content{
+    margin-top:100px;
+}
+
+.active {
+    border-bottom: 3px solid red;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+  position: relative;
+  min-height: 100%;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px; 
+   
+  }
+}
+
+.border-top-f {
+    border-top: 1px solid rgb(101, 76, 76,0.6);
+}
+
+.border-bottom-h {
+    border-bottom: 1px solid rgb(101, 76, 76,0.6);
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+
+
+body {
+    
+    background: url("../Blue-Background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    font-family: Verdana, sans-serif;
+    color:white;
+}
+
+
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  clear:both;
+  white-space: nowrap;
+  display:block;
+  margin-top:100px;
+  line-height: 60px; 
+}
+
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+    .prev, .next, .text {
+        font-size: 11px
+    }
+}
+
+.form {
+    background-color: rgba(52,58,64,0.5);
+    border-radius: 15px;
+}
+
+
+.bw {
+    word-break: break-all;
+}
+
+
+/* screening css*/
+.hide{
+    display:none;
+}
+
+
+
+/* sidebar menu for admin */
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #343a40;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 100px;
+}
+
+.sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+
+.sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+.sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+}
+
+.sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+}
+
+

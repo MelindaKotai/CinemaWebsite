@@ -1,0 +1,25 @@
+﻿@page
+@model PersonalDataModel
+@{
+    ViewData["Title"] = "Date personale";
+    ViewData["ActivePage"] = ManageNavPages.PersonalData;
+}
+
+<h4>@ViewData["Title"]</h4>
+
+<div class="row">
+    <div class="col-md-6">
+        <p>Contul dumneavoastra contine datele personale care ni le-ati oferit.</p>
+        <p>
+            <strong>Stergerea contului va determina stergerea tuturor datelor dumneavoastra.</strong>
+        </p>
+     
+        <p>
+            <a id="delete" asp-page="DeletePersonalData" class="btn btn-danger">Stergeti</a>
+        </p>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

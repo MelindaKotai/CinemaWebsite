@@ -1,0 +1,91 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+    ViewData["Title"] = "Program";
+}
+@section Css{
+    <link rel="stylesheet" href="~/css/Program.css" asp-append-version="true">
+}
+@using System.Globalization
+
+@{
+    CultureInfo culture = CultureInfo.CreateSpecificCulture("ro-RO");
+}
+
+
+
+
+
+
+@if (ViewBag.ErrorMessage != null)
+{<div class="alert alert-info">@ViewBag.ErrorMessage</div>}
+
+@if (ViewBag.UserMessage != null)
+{
+    <div class="alert alert-danger mt-3">@ViewBag.UserMessage</div>
+}
+
+<div class="bg-danger p-2 mb-5 ml-5" style="border-radius:15px;display:inline-block"> Alegeti o ora si faceti o rezervare!</div>
+
+
+
+<div class="row border-top-f border-bottom-h s-nav">
+    <a class="nav-link text-light screening-nav " href="/Screening?date=@DateTime.Now.ToString("yyyy-MM-dd")"><div class="col">Astazi</div></a>
+    <a class="nav-link text-light screening-nav" href="/Screening?date=@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")"><div class="col">@DateTime.Now.AddDays(1).ToString("ddd", culture)</div></a>
+    <a class="nav-link text-light screening-nav" href="/Screening?date=@DateTime.Now.AddDays(2).ToString("yyyy-MM-dd")"><div class="col">@DateTime.Now.AddDays(2).ToString("ddd", culture)</div></a>
+    <a class="nav-link text-light screening-nav" href="/Screening?date=@DateTime.Now.AddDays(3).ToString("yyyy-MM-dd")"><div class="col">@DateTime.Now.AddDays(3).ToString("ddd", culture)</div></a>
+    <a class="nav-link text-light screening-nav" href="/Screening?date=@DateTime.Now.AddDays(4).ToString("yyyy-MM-dd")"><div class="col">@DateTime.Now.AddDays(4).ToString("ddd", culture)</div></a>
+    <a class="nav-link text-light screening-nav" href="/Screening?date=@DateTime.Now.AddDays(5).ToString("yyyy-MM-dd")"><div class="col">@DateTime.Now.AddDays(5).ToString("ddd", culture)</div></a>
+    <a class="nav-link text-light screening-nav" href="/Screening?date=@DateTime.Now.AddDays(6).ToString("yyyy-MM-dd")"><div class="col">@DateTime.Now.AddDays(6).ToString("ddd", culture)</div></a>
+    <a class="nav-link text-light screening-nav" href="/Screening/Movies"><div class="col">Toate filmele</div></a>
+    <a class="nav-link text-light screening-nav" href="/Screening/ComingSoon"><div class="col">In curand!</div></a>
+</div>
+
+@if (Model != null)
+{
+    <div class="container mt-5 mb-5">
+        @foreach (var movie in Model)
+        {
+
+            <div class="row mt-5 pb-5 box-shadow border-bottom-h">
+                <a href="/Movie/@movie.id" class="notlink">
+                    <div class="col-md-5 col-sm-6 ">
+                        <div class="img__wrap">
+                            <img src="@movie.img" height="250" width="166" class="img"/>
+                            <p class="img__description">Vezi mai multe detalii.</p>
+                        </div>
+                    </div>
+                </a>
+                <div class="col-md-7 col-sm-6 pl-5 ">
+
+                    <a href="/Movie?id=@movie.id&date=@movie.date" class="nolink">
+                        <h4>@movie.title</h4>
+                    </a>
+                    <h6>Ore de ecranizare:</h6>
+                    <br />
+                    @foreach (var screening in movie.screenings)
+                    {
+                        <a class="nolink" href="/Screening/ChooseTickets/@screening.screeningId">
+                            <div class="bg-danger p-2 hour-link">
+                                @screening.hour.ToString("HH:mm", culture) @if (screening.is3D != 0)
+                                {<span>3D</span>}
+                            </div>
+                        </a>
+                    }
+
+                </div>
+            </div>
+
+        }
+
+    </div>
+}
+
+
+
+
+
+
+

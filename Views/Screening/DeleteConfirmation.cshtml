@@ -1,0 +1,27 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<div class="container bg-dark p-5 text-center" style="border-radius:15px;">
+
+
+    <h2>Sunteti sigur ca doriti sa stergeti aceasta ecranizare?</h2>
+    <h5>
+        Daca stergeti aceasta ecranizare atunci toate rezervarile asociate ei vor fi si ele sterse si nu se vor mai putea recupera. Daca din motive exceptionale aceasta rezervare a fost anulata atunci anuntati-va clientii care au facut deja rezervare.
+    </h5>
+    <br />
+    <br />
+
+
+    <h5>Stergeti?</h5>
+    <form action="/Screening/Delete/@Model" method="post">
+    <button type="submit" class="btn btn-danger">Da</button>
+    </form>
+    <br />
+    
+    <a class="btn btn-danger" href="/Screening/Reservations/@Model">Nu</a>
+
+</div>

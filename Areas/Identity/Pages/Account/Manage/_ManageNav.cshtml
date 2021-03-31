@@ -1,0 +1,11 @@
+﻿@using Licenta.Models
+@inject SignInManager<User> SignInManager
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+<ul class="nav nav-pills flex-column bg-dark" style="border-radius:10px;">
+    <li class="nav-item"><a class="nav-link text-light" id="profile" asp-page="./Index">Profil</a></li>
+    <li class="nav-item"><a class="nav-link text-light" id="email" asp-page="./Email">Email</a></li>
+    <li class="nav-item"><a class="nav-link text-light" id="change-password" asp-page="./ChangePassword">Parola</a></li>
+    <li class="nav-item"><a class="nav-link  text-light" id="personal-data" asp-page="./PersonalData">Sterge cont</a></li>
+</ul>

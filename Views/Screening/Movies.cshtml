@@ -1,0 +1,46 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+    ViewData["Title"] = "Program";
+}
+@section Css{
+    <link rel="stylesheet" href="~/css/Program.css" asp-append-version="true">
+}
+@using System.Globalization
+
+@{
+    CultureInfo culture = CultureInfo.CreateSpecificCulture("ro-RO");
+}
+<div class="row border-top-f border-bottom-h s-nav">
+    <a class="nav-link text-light screening-nav " href="/Screening?date=@DateTime.Now.ToString("yyyy-MM-dd")"><div class="col">Astazi</div></a>
+    <a class="nav-link text-light screening-nav" href="/Screening?date=@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")"><div class="col">@DateTime.Now.AddDays(1).ToString("ddd", culture)</div></a>
+    <a class="nav-link text-light screening-nav" href="/Screening?date=@DateTime.Now.AddDays(2).ToString("yyyy-MM-dd")"><div class="col">@DateTime.Now.AddDays(2).ToString("ddd", culture)</div></a>
+    <a class="nav-link text-light screening-nav" href="/Screening?date=@DateTime.Now.AddDays(3).ToString("yyyy-MM-dd")"><div class="col">@DateTime.Now.AddDays(3).ToString("ddd", culture)</div></a>
+    <a class="nav-link text-light screening-nav" href="/Screening?date=@DateTime.Now.AddDays(4).ToString("yyyy-MM-dd")"><div class="col">@DateTime.Now.AddDays(4).ToString("ddd", culture)</div></a>
+    <a class="nav-link text-light screening-nav" href="/Screening?date=@DateTime.Now.AddDays(5).ToString("yyyy-MM-dd")"><div class="col">@DateTime.Now.AddDays(5).ToString("ddd", culture)</div></a>
+    <a class="nav-link text-light screening-nav" href="/Screening?date=@DateTime.Now.AddDays(6).ToString("yyyy-MM-dd")"><div class="col">@DateTime.Now.AddDays(6).ToString("ddd", culture)</div></aclass="nav-link></a>
+    <a class="nav-link text-light screening-nav" href="/Screening/Movies"><div class="col">Toate filmele</div></a>
+    <a class="nav-link text-light screening-nav" href="/Screening/ComingSoon"><div class="col">In curand!</div></a>
+</div>
+
+<div class="container mt-5 mb-5">
+
+    <div class="row ">
+        @foreach (var movie in Model)
+        {
+            <div class="col-md-3 col-sm-6 mb-4 mt-4">
+                <a href="/Movie/@movie.id" class="nolink">
+                    <div class="img__wrap">
+
+                        <img src="~/@movie.img" height="250" width="166" class="img" />
+
+                        <p class="img__description">Vezi mai multe detalii.</p>
+                    </div>
+                </a>
+                <h6 style="margin:0;padding:0;text-align:left;">@movie.title</h6>
+            </div>
+        }
+    </div>
+</div>

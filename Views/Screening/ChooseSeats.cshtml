@@ -1,0 +1,190 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+@section Css{
+    <link rel="stylesheet" href="~/css/Screening.css" asp-append-version="true">
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+}
+
+
+@if (Model != null)
+{
+
+
+    <div class="container bg-dark pt-4 pb-3 pl-5 pr-5" style="border-radius:10px;">
+
+        <div class="screen">Ecran</div>
+
+        @{ int s = 1;
+            int k = 0;
+            float width1 = (float)100 / (float)Model.cols;
+            string width = width1.ToString("0.00") + "%";
+
+        }
+        @for (int i = 0; i < Model.rows; i++)
+        {@Html.Raw("<div class='row mt-2 mb-2' >");
+        for (int j = 0; j < Model.cols; j++)
+        {
+            int elem = j + i * Model.cols + 1;
+            if (Model.paths.Contains(elem))
+            {
+                <div class="path" style="width:@width;"></div>
+                k++;
+                continue;
+            }
+
+            if (Model.reserved.Contains(elem))
+            {
+                <div class="seat reserved" style="width:@width;">@s</div>
+                s++;
+                k++;
+                continue;
+
+            }
+            <div id="@Model.seatids[k]" class="seat free" style="width:@width;">@s</div>
+            s++;
+            k++;
+        }
+        @Html.Raw("</div>");
+
+
+    }
+
+        <div class="row mt-4 pl-5 pr-5" style="border-top:2px solid black;">
+
+
+            <div class="col">
+                @if (SignInManager.IsSignedIn(User))
+                {@if (User.IsInRole("Client"))
+                    {
+                        <form action="/Screening/Reserve" method="POST" id="reserveform">
+                            <input type="hidden" value="@UserManager.GetUserId(User)" name="userId" required />
+                            <input type="hidden" value="@Model.screeningId" name="screeningId" required />
+                            <input type="hidden" id="seatslist" name="seats" />
+
+
+                            <br />
+                            <span class="btn btn-danger" id="reserve">Rezerva bilete</span>
+                            <br />
+                            <br />
+                            <span id="reserve" class="btn btn-danger">Cumpara bilete</span>
+                        </form>
+                    }
+                    else
+                    {
+                        <form action="/Screening/Reserve" method="POST" id="reserveform">
+                            <label>Email:</label>
+                            <input type="email" class="form-control" name="email" value="cinemawebsitelicense@gmail.com" required />
+                            <label>Nume:</label>
+                            <input type="text" class="form-control" name="nume" value="client in cinema" required />
+                            <label>Prenume:</label>
+                            <input type="text" class="form-control" name="prenume" value="client in cinema" required />
+                            <input type="hidden" value="@Model.screeningId" name="screeningId" required />
+                            <input type="hidden" name="seats" id="seatslist" />
+
+                            <br />
+                            <span id="reserve" class="btn btn-danger">Rezerva bilete</span>
+                            <br />
+
+                            <br />
+                            <span class="btn btn-danger">Cumpara bilete</span>
+                        </form>
+
+
+                    }
+
+
+            }
+            else
+            {
+                <form action="/Screening/Reserve" method="POST" id="reserveform">
+                    <label>Email:</label>
+                    <input type="email" class="form-control" name="email" required />
+                    <label>Nume:</label>
+                    <input type="text" class="form-control" name="nume" required />
+                    <label>Prenume:</label>
+                    <input type="text" class="form-control" name="prenume" required />
+                    <input type="hidden" value="@Model.screeningId" name="screeningId" required />
+                    <input type="hidden" name="seats" id="seatslist" />
+
+                    <br />
+                    <span id="reserve" class="btn btn-danger">Rezerva bilete</span>
+                    <br />
+
+                    <br />
+                    <span class="btn btn-danger">Cumpara bilete</span>
+                </form>
+            }
+            </div>
+            <div class="col-md-4 " style="text-align:right;">
+                <br />
+                <p>Total: <b>@Model.total Lei</b></p>
+                <p>Numar bilete: @Model.notickets </p>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+<script type="text/javascript">
+
+    var model = @Html.Raw(Json.Serialize(Model));
+    var noseats = model.notickets;
+    var seats = new Array();
+    $('.seat').click(function (event) {
+
+        //daca este un scaun deja rezervat nu se permite selectarea lui
+
+
+
+
+            if ($(event.target).hasClass('reserved')) {
+                alert('Acest loc este deja rezervat si nu poate fi selectat');
+            }
+
+            //daca este un scaun liber se permite selectarea se adauga in array
+
+
+
+            if ($(event.target).hasClass('free')) {
+                if (noseats > 0) {
+                    $(event.target).removeClass('free');
+                    $(event.target).addClass('selected');
+                    noseats = noseats - 1;
+                    seats.push(event.target.id);
+                } else alert("Ati selectat toate locurile");
+            }
+
+            else if ($(event.target).hasClass('selected')) {
+                $(event.target).removeClass('selected');
+                $(event.target).addClass('free');
+                noseats = noseats + 1;
+                seats = $.grep(seats, function (value) {
+                    return value != event.target.id;
+                });
+
+
+        }
+
+    });
+
+    $('#reserve').click(function () {
+        if (noseats==0) {
+            $('#seatslist').val(seats.toString());
+
+            $('#reserveform').submit();
+        } else alert("Mai aveti " + noseats + " locuri de selectat!");
+
+    });
+
+</script>

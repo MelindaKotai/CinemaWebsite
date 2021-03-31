@@ -1,0 +1,119 @@
+﻿@{
+    ViewData["Title"] = "Acasa";
+}
+
+@section Css{
+    <link rel="stylesheet" href="~/css/HomePage.css" asp-append-version="true">
+}
+@using System.Globalization
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@{
+    CultureInfo culture = CultureInfo.CreateSpecificCulture("ro-RO");
+}
+
+
+
+<div class="text-center">
+    <div class="row">
+        <div class="col-md-7">
+            <h2>Vedeti cele mai noi filme aparute!</h2>
+            <hr color="red" />
+            <div class="slideshow-container">
+                @foreach (var movie in Model)
+                {
+                    <div class="mySlides efect">
+                        <img src="@movie.imgpath" style="height:35em">
+
+                        <div class="text">
+                            @movie.title
+                            <br />
+                            Data aparitiei: @movie.release_date.ToString("dd-MMMM-yyyy", culture)
+                        </div>
+
+
+                    </div>
+
+                }
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+            <br>
+        </div>
+
+        <div class="col-md-5 description">
+            <p>
+                Cinematograful nostru dispune de toate facilitatile necesare pentru o iesire in oras relaxanta si interesanta cu prietenii si cu familia. Salile de cinema sunt dotate cu
+                cele mai noi si performante sisteme de proiectie si de sunet si cu scaune ce ofera maximul de confort si loc suficient pentru a va intinde picioarele.
+            </p>
+
+            <p> Puteti sa va bucurati de o varietate mare de sucuri, de popcorn si de cele mai delicioase snaks-uri in timpul filmului datorita barului din incinta cinematografului.</p>
+
+            <p>Tot ce trebuie sa faci este sa alegi un film si sa iti faci o rezervare!</p>
+            <br />
+            <br />
+            <a href="/Screening"><div class="btn btn-danger">Vedeti programul!</div></a>
+        </div>
+    </div>
+    <div style="clear:both;margin-top:50px;"></div>
+
+    <h2>Galerie foto</h2>
+
+    <br />
+    <hr color="red">
+    <br />
+
+    <div style="clear:both;margin-top:50px;"></div>
+
+    <div class="slideshow-container">
+        <div class="mySlides2 efect">
+
+            <img src="~/cinema.jpg" style="width:100%" class="align-self-center">
+        </div>
+
+        <div class="mySlides2 efect">
+
+            <img src="~/cinema2.jpg" style="width:100%">
+        </div>
+
+        <div class="mySlides2 efect">
+
+            <img src="~/cinema6.jpg" style="width:100%">
+        </div>
+
+        <div class="mySlides2 efect">
+
+            <img src="~/cinema4.jpg" style="width:100%">
+        </div>
+
+        <div class="mySlides2 efect">
+
+            <img src="~/cinema5.jpg" style="width:100%">
+        </div>
+
+        <div class="mySlides2 efect">
+
+            <img src="~/cinema7.jpeg" style="width:100%">
+        </div>
+
+        <a class="prev" onclick="plusSlides2(-1)">❮</a>
+        <a class="next" onclick="plusSlides2(1)">❯</a>
+    </div>
+
+
+
+
+    <br />
+    <br />
+    <br />
+
+    @if (!SignInManager.IsSignedIn(User))
+    {
+        <h6 class="alert alert-danger"> Noi rasplatim clientii fideli de aceea daca iti faci un cont poti de asemenea beneficia de tombola noastra de premii! </h6>
+    }
+</div>
+
+
+@section Scripts{
+    <script type="text/javascript" src="~/js/HomePage.js" asp-append-version="true"></script>
+}

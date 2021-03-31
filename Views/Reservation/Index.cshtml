@@ -1,0 +1,102 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@if (Model == null)
+{
+    <div class="alert alert-danger">Inca nu ati realizat nici o rezervare!</div>
+}
+else
+{
+    @if (TempData["errormessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["errormessage"]</div>
+    }
+    @if (TempData["succesmessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["succesmessage"]</div>
+    }
+    <div class="row mt-4" style="cursor:pointer"><div class="col " id="pastreservations">Rezervari trecute</div><div class="col active" id="futurereservations">Rezervari viitoare</div></div>
+
+    <div class="container bg-dark mt-3 hide" style="border-radius:15px" id="pasttable">
+        @if (Model.past == null || !(Model.past.Count > 0))
+        {@Html.Raw("Inca nu ati realizat nici o rezervare!");
+    }
+    else
+    {
+        @foreach (var reservation in Model.past)
+        {
+
+            <div class="row border-top-f pt-3">
+                <div class="col-sm-2"><img src="~/@reservation.movieImg" height="150" /></div>
+                <div class="col-sm-4"><p>@reservation.movieTitle @if (reservation.is3D == 1)
+                {<span>3D</span>}</p><p> @reservation.screeningDate.ToString("yyyy-MM-dd") </p><p>Ora: @reservation.screeningTime.ToString("HH:mm") </p></div>
+                <div class="col-sm-6">
+                    Pret total: @reservation.total Lei
+                    <br />
+                    Biletele @if (reservation.payed == 0)
+                    {<span style="color:red">NU </span>} au fost revendicate
+                    <br />
+                    Bilete: @foreach (var ticket in reservation.tickets)
+                    {
+                        @ticket.typeOfTicket @Html.Raw(":") @ticket.noOfTickets
+                        <br />
+                    }
+
+                </div>
+            </div>
+        }
+
+    }
+    </div>
+
+
+    <div class="container bg-dark mt-3 " style="border-radius:15px" id="futuretable">
+        @if (Model.future == null || !(Model.future.Count > 0))
+        {@Html.Raw("Inca nu ati realizat nici o rezervare!");
+    }
+    else
+    {
+        @foreach (var reservation in Model.future)
+        {
+
+            <div class="row  border-top-f pt-3 pb-1">
+                <div class="col-sm-2"><img src="~/@reservation.movieImg" height="150" /></div>
+                <div class="col-sm-4">
+                    <p>
+                        @reservation.movieTitle @if (reservation.is3D == 1)
+                        {<span>3D</span>}
+                    </p><p> @reservation.screeningDate.ToString("yyyy-MM-dd") </p><p>Ora: @reservation.screeningTime.ToString("HH:mm") </p>
+                </div>
+                <div class="col-sm-6">
+                    Pret total: @reservation.total Lei
+                    <br />
+                    Biletele @if (reservation.payed == 0)
+                    {<span style="color:red">NU </span>} au fost revendicate
+                    <br />
+                    Bilete: @foreach (var ticket in reservation.tickets)
+                    {
+                        @ticket.typeOfTicket @Html.Raw(":") @ticket.noOfTickets
+                        <br />
+                    }
+
+
+                    @if (reservation.payed == 0)
+                    {
+                        <form action="/Reservation/Cancel/@reservation.id" method="POST">
+                            <button type="submit" class="btn btn-danger mt-2">Anulati rezervarea</button>
+                        </form>
+                    }
+                </div>
+            </div>
+        }
+    }
+    </div>
+
+
+    @section Scripts{
+        <script type="text/javascript" src="~/js/ReservationIndex.js" asp-append-version="true"></script>
+    }
+}

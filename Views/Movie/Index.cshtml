@@ -1,0 +1,133 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Detalii Film";
+}
+
+@using System.Globalization
+@{
+    CultureInfo culture = CultureInfo.CreateSpecificCulture("ro-RO");
+}
+
+
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+}
+
+
+
+@if (Model != null)
+{
+    <div class="container pt-2 pb-5">
+        <h3 class="text-center">@Model.title</h3>
+        <hr color="red" />
+
+        <video poster="~/@Model.img" width="650" height="480" controls style="display: block;margin: 0 auto;">
+            <source src="~/@Model.video" type="video/mp4">
+
+            Your browser does not support the video tag.
+        </video>
+
+        <br />
+        <div class="pl-4 pr-4 form" style="border-radius:20px;">
+            <div class="row pl-4 pr-4">
+                <div class="col-md-6 pt-4 " style="border-right:1px solid red">
+                    <p>@Model.description</p>
+                </div>
+
+                <div class="col-md-6 pr-4 pt-4">
+                    @if (Model.rating != 0 && Model.rating != null)
+                    {
+                        <p><b>IMDB rating: </b>@Model.rating</p>
+                    }
+                    else
+                    {
+                        <p><b>IMDB rating: </b>N/A</p>
+                    }
+
+                    <p><b>Durata: </b>@string.Format("{0:00} ore si {1:00} minute", Model.duration / 60, Model.duration % 60) </p>
+                    <p><b>Data lansarii: </b>@Model.release_date.ToString("yyyy-MMMM-dd",culture)</p>
+                    <p>
+                        <b>Actori principali:</b>  @if (Model.actors != null)
+                        { @foreach (var actor in Model.actors)
+                        {@if (Model.actors.IndexOf(actor) == Model.actors.Count - 1)
+                            {
+                                <span>@actor </span>
+                            }
+                            else
+                            {
+                                <span>@actor, </span>
+                            }
+
+                        }
+                        }
+                    </p>
+                    <p>
+                        <b>Genuri:</b>  @foreach (var genre in Model.genres)
+                        {
+                            @if (Model.genres.IndexOf(genre) == Model.genres.Count - 1)
+                            {
+                                <span>@genre </span>
+                            }
+                            else
+                            {
+                                <span>@genre, </span>
+                            }
+
+                        }
+                    </p>
+
+                </div>
+            </div>
+        
+        
+            @if (Model.dates.Count != 0) {
+            <div style="border-top:1px solid red" class="row pb-4">
+                <div class="col-sm-4 pr-5">
+                    <br/>
+                    <p>Alegeti o data:</p>
+                    <select name="date" class="form-control" id="date">
+
+                        @foreach (var date in Model.dates)
+                        {
+                                <option value="@date.ToString("yyyy-MM-dd")">@date.ToString("yyyy-MM-dd")</option>         
+                        }
+                    </select>
+                </div>
+           
+                    <div id="hours" class="col-sm-8 pr-5 pl-5">
+
+                    </div>
+            
+            </div>
+            }
+            else
+            {
+                <div class="alert alert-danger mt-2" >Momentan nu exista ecranizari disponibile</div>
+            }
+
+
+        </div>
+
+        <script type="text/javascript">
+
+            $("#date").on('change', function () {
+                var date = $("#date").val();
+                var model = @Html.Raw(Json.Serialize(Model));
+                var id = model.id;
+                $.ajax({
+                    type: "GET",
+                    url: "/Movie/GetHours?date="+date+"&id="+id,
+                    success: function (data) {
+                        $("#hours").html(data);
+                    } 
+                });
+
+            });
+
+        </script>
+    </div>
+}

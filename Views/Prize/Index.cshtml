@@ -1,0 +1,138 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@section Css{
+    <link rel="stylesheet" href="~/css/PrizeIndex.css" asp-append-version="true">
+}
+
+@if (Model.unclaimedprizes.Count > 0)
+{
+    <div class="alert alert-success">Aveti urmatoarele premii disponibile! Puteti sa le revendicati din incinta cinematografului folosind codurile de mai jos!</div>
+    <table class="table table-dark table-bordered">
+        <thead><tr><th scope="col">Premiu</th><th class="text-center" scope="col">Cod</th></tr></thead>
+        @foreach (var prize in Model.unclaimedprizes)
+        {
+            <tr>
+                <td>@prize.name </td>
+
+                <td>@prize.code </td>
+            </tr>
+
+        }
+
+
+    </table>
+
+}
+
+
+
+
+
+
+@if (Model.noofprizes <= 0)
+{
+
+    <div class="m-3"> Deocamdata nu aveti premii disponibile. Mai achizitionati @Model.noofticketsleft bilete pentru a castiga un premiu!</div>
+}
+else
+{
+    <div class="alert alert-success">Aveti @Model.noofprizes premii disponibile. Invartiti roata pentru a castiga un premiu!</div>
+
+    <div class="container">
+
+
+        <div class="row">
+            <div class="power_controls">
+                <br />
+                <br />
+                <table class="power" cellpadding="10" cellspacing="0">
+                    <tr>
+                        <th align="center">Putere</th>
+                    </tr>
+                    <tr>
+                        <td  align="center" id="pw3" onClick="powerSelected(3);">Mare</td>
+                    </tr>
+                    <tr>
+                        <td align="center" id="pw2" onClick="powerSelected(2);">Medie</td>
+                    </tr>
+                    <tr>
+                        <td align="center" id="pw1" onClick="powerSelected(1);">Mica</td>
+                    </tr>
+                </table>
+                <br />
+                <div><button class="btn btn-danger" onClick="startSpin()" id="spinbutton">Invarte roata!</button></div>
+                <br />
+                <div><a href="/Prize"><div class="btn btn-danger" style="margin:0 auto;">Resetati roata</div></a></div>
+            </div>
+
+            <div id="the_wheel" class="the_wheel" align="center">
+                <canvas style="margin-top:75px" id="canvas" width="434" height="434" data-responsiveminwidth="100" data-responsivescaleheight="true">
+                    Sorry, your browser doesn't support canvas. Please try another.
+                </canvas>
+            </div>
+
+        </div>
+    </div>
+
+
+    @section Scripts{
+        <script type="text/javascript" src="~/js/PrizeIndex.js" asp-append-version="true"></script>
+        <script src="~/js/Winwheel.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+    }
+    <script type="text/javascript">
+
+    var model = @Html.Raw(Json.Serialize(Model.prizes));
+
+    var segments = Object.keys(model).length;
+
+
+        window.onload = function () {
+            colors = ["#CC2609", "#0923CC", "#CCC609", "#0ECD17", "#CD0E70", "#0EC0CD"]
+            j = 0;
+            for (let i = 1; i <= segments; i++) {
+                theWheel.segments[i].text = model[i - 1].name;
+                if (j >= colors.length) {
+                    j = 0
+                    theWheel.segments[i].fillStyle = colors[j];
+                    j++
+                } else {
+                    theWheel.segments[i].fillStyle = colors[j];
+                    j++
+                }
+            } document.getElementById("spinbutton").disabled = true;
+
+            var height = document.getElementById('canvas').offsetHeight;
+            height = height + 146;
+            var width = document.getElementById('canvas').offsetWidth;
+
+            document.getElementById('the_wheel').setAttribute("style", "height:" + height + "px;width: " + width + "px");
+
+            theWheel.draw();
+        };
+
+          function alertPrize(indicatedSegment) {
+
+        alert("You have won " + indicatedSegment.text);
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+
+    }
+        };
+        var userid='@UserManager.GetUserId(User)';
+        xhttp.open("POST", "/Prize/CreatePrize", false);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("prize=" + indicatedSegment.text +"&user="+userid);
+    }
+
+    </script>
+}
