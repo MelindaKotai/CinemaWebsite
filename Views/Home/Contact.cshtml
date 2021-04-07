@@ -1,0 +1,80 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@section Css{
+    <link rel="stylesheet" href="~/css/ContactPage.css" asp-append-version="true">
+}
+@model Licenta.ViewModels.ContactFormViewModel
+<h1 class="text-center">Intrati in legatura cu noi!</h1>
+
+
+
+
+<br />
+<div class="form m-3 p-5">
+   
+    <br/>
+    <div class="row">
+        <div class="col-md-6" >
+            <h5>Date de contact:</h5>
+            <p><i class="fa fa-map-marker" style="font-size:24px;margin-right: 8px;"></i>  Adresa: Str. Bucuresti nr.2, Cluj-Napoca</p>
+          
+            <p><i class="fa fa-phone-square" style="font-size:24px;margin-right: 8px;"></i>Telefon: 0745234568</p>
+           
+
+
+            <p><i class="fa fa-calendar" style="font-size:24px;margin-right: 8px;"></i>Program: Luni-Vineri, 09:00-23:00</p>
+        
+            <p><i class="fa fa-envelope" style="font-size:24px;margin-right: 8px;"></i>E-mail: cinemawebsitelicense@gmail.com</p>
+          
+
+        </div>
+        <div class="col-md-6">
+            <h5>Gasiti-ne pe harta:</h5>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2732.15959942831!2d23.596722185705744!3d46.781459423045696!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47490ea0fec8780f%3A0x870a62d053a17d4e!2sStrada%20Bucure%C8%99ti%202%2C%20Cluj-Napoca%20400000!5e0!3m2!1sro!2sro!4v1617286882563!5m2!1sro!2sro" class="iframe" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+</div>
+
+    @if (ViewBag.SuccesMessage != null)
+    {
+        <div class="alert alert-success m-3">@ViewBag.SuccesMessage</div>
+    }
+    <div class="container form p-5 m-3">
+
+        <h4 class="text-center">Daca aveti nevoie de ajutor sau vreti sa puneti o intrebare trimiteti-ne un mesaj!</h4>
+        <hr color="red" />
+        <div class="row">
+            <div class="col-sm-6 msgicon">  </div>
+            <div class="col-sm-6">
+                <form asp-action="Contact" asp-controller="Home" method="post">
+                    <div class="form-group">
+                        <label asp-for="fullName"></label>
+                        <input asp-for="fullName" class="form-control" required>
+                        <span asp-validation-for="fullName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="email"></label>
+                        <input asp-for="email" class="form-control" required>
+                        <span asp-validation-for="email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="phone"></label>
+                        <input asp-for="phone" class="form-control" required>
+                        <span asp-validation-for="phone" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="mesage"></label>
+                        <textarea asp-for="mesage" class="form-control" required></textarea>
+                        <span asp-validation-for="mesage" class="text-danger"></span>
+                    </div>
+
+                    <button tyepe="submit" class="btn btn-danger">Trimiteti mesajul!</button>
+
+                </form>
+            </div>
+        </div>
+    </div>

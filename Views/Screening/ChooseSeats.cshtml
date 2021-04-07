@@ -73,31 +73,30 @@
 
 
                             <br />
-                            <span class="btn btn-danger" id="reserve">Rezerva bilete</span>
+                            <input type="submit" class="btn btn-danger reserve" name="action" value="Rezerva biletele" / >
                             <br />
                             <br />
-                            <span id="reserve" class="btn btn-danger">Cumpara bilete</span>
+                            <input type="submit" class="btn btn-danger reserve" name="action"  value="Cumpara bilete" />
                         </form>
                     }
                     else
                     {
-                        <form action="/Screening/Reserve" method="POST" id="reserveform">
-                            <label>Email:</label>
-                            <input type="email" class="form-control" name="email" value="cinemawebsitelicense@gmail.com" required />
-                            <label>Nume:</label>
-                            <input type="text" class="form-control" name="nume" value="client in cinema" required />
-                            <label>Prenume:</label>
-                            <input type="text" class="form-control" name="prenume" value="client in cinema" required />
-                            <input type="hidden" value="@Model.screeningId" name="screeningId" required />
-                            <input type="hidden" name="seats" id="seatslist" />
+            <form action="/Screening/Reserve" method="POST" id="reserveform">
+                <label>Email:</label>
+                <input type="email" class="form-control" name="email" value="cinemawebsitelicense@gmail.com" required />
+                <label>Nume:</label>
+                <input type="text" class="form-control" name="nume" value="client in cinema" required />
+                <label>Prenume:</label>
+                <input type="text" class="form-control" name="prenume" value="client in cinema" required />
+                <input type="hidden" value="@Model.screeningId" name="screeningId" required />
+                <input type="hidden" name="seats" id="seatslist" />
 
-                            <br />
-                            <span id="reserve" class="btn btn-danger">Rezerva bilete</span>
-                            <br />
-
-                            <br />
-                            <span class="btn btn-danger">Cumpara bilete</span>
-                        </form>
+                <br />
+                <input type="submit" class="btn btn-danger reserve" name="action" value="Rezerva biletele" />
+                <br />
+                <br />
+                <input type="submit" class="btn btn-danger reserve" name="action" value="Cumpara bilete" />
+            </form>
 
 
                     }
@@ -106,23 +105,22 @@
             }
             else
             {
-                <form action="/Screening/Reserve" method="POST" id="reserveform">
-                    <label>Email:</label>
-                    <input type="email" class="form-control" name="email" required />
-                    <label>Nume:</label>
-                    <input type="text" class="form-control" name="nume" required />
-                    <label>Prenume:</label>
-                    <input type="text" class="form-control" name="prenume" required />
-                    <input type="hidden" value="@Model.screeningId" name="screeningId" required />
-                    <input type="hidden" name="seats" id="seatslist" />
+            <form action="/Screening/Reserve" method="POST" id="reserveform">
+                <label>Email:</label>
+                <input type="email" class="form-control" name="email" required />
+                <label>Nume:</label>
+                <input type="text" class="form-control" name="nume" required />
+                <label>Prenume:</label>
+                <input type="text" class="form-control" name="prenume" required />
+                <input type="hidden" value="@Model.screeningId" name="screeningId" required />
+                <input type="hidden" name="seats" id="seatslist" />
 
-                    <br />
-                    <span id="reserve" class="btn btn-danger">Rezerva bilete</span>
-                    <br />
-
-                    <br />
-                    <span class="btn btn-danger">Cumpara bilete</span>
-                </form>
+                <br />
+                <input type="submit" class="btn btn-danger reserve" name="action" value="Rezerva biletele" />
+                <br />
+                <br />
+                <input type="submit" class="btn btn-danger reserve" name="action" value="Cumpara bilete" />
+            </form>
             }
             </div>
             <div class="col-md-4 " style="text-align:right;">
@@ -178,7 +176,7 @@
 
     });
 
-    $('#reserve').click(function () {
+    $('.reserve').click(function () {
         if (noseats==0) {
             $('#seatslist').val(seats.toString());
 

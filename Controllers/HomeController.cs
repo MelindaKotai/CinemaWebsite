@@ -1,12 +1,17 @@
 ﻿using Licenta.Data;
 
 using Licenta.Models;
+using Licenta.Services;
 using Licenta.ViewModels;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -21,16 +26,19 @@ namespace Licenta.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
-       
 
+        private readonly IEmailSender _emailSender;
         public IConfiguration Configuration { get; }
-        
+     
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, IConfiguration configuration)
+
+        public HomeController(IEmailSender emailSender, ILogger<HomeController> logger, ApplicationDbContext context, IConfiguration configuration)
         {
             _logger = logger;
             _context = context;
+            _emailSender = emailSender;
             Configuration = configuration;
+       
         }
 
         public async Task<IActionResult> Index()
@@ -55,8 +63,38 @@ namespace Licenta.Controllers
             return View(model);       
 
             }
-             
-        
+
+        public IActionResult Contact()
+        {
+            if (TempData["SuccesMessage"] != null)
+            {
+                ViewBag.SuccesMessage = TempData["SuccesMessage"]; 
+
+            }
+            ContactFormViewModel model = new ContactFormViewModel();
+            return View(model);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> ContactAsync(ContactFormViewModel model)
+        {
+
+            if (!ModelState.IsValid) return View(model);
+            var nume= model.fullName;
+            var email=model.email;
+            var telefon= model.phone;
+            var mesaj=model.mesage;
+
+            mesaj = "<h1> Acest mesaj este trimis de catre un client de pe pagina de contact! </h1> <br/> Nume: " + nume + "<br/> Email: " + email + "<br/> Telefon: " + telefon + "<br/><br/> <b>Mesajul transmis este:</b><br/> " + mesaj;
+            TempData["SuccesMessage"]="Mesajul a fost trimis cu succes. Daca este necesar, unul din operatorii nostri va va contacta prin email sau telefon pentru a va raspunde. Multumim!";
+            await  _emailSender.SendEmailAsync("cinemawebsitelicense@gmail.com", "UserMessage", mesaj);
+            return RedirectToAction("Contact", new ContactFormViewModel());
+        }
+
+
+
+
 
         public IActionResult Privacy()
         {
@@ -71,74 +109,4 @@ namespace Licenta.Controllers
     }
 }
 
-/*
-           var client = new HttpClient();
-
-          //list of movies to be passed to view
-
-
-          //get genre from api
-          foreach (var movie in movies)
-          {
-              var titlu = movie.title;
-              //request movie id
-              var request = new HttpRequestMessage
-              {
-                  Method = HttpMethod.Get,
-                  RequestUri = new Uri("https://imdb8.p.rapidapi.com/title/find?q=" + titlu),
-                  Headers =
-              {
-                  { "x-rapidapi-key", Configuration.GetValue<string>("ApiKey")  },
-                  { "x-rapidapi-host", "imdb8.p.rapidapi.com" },
-              },
-              };
-              //get api response
-              var response = await client.SendAsync(request);
-
-              response.EnsureSuccessStatusCode();
-              //get body of response as string
-              var body = await response.Content.ReadAsStringAsync();
-
-              //get list of ids returned
-              IdList ids = new IdList();
-
-
-
-                   ids = JsonConvert.DeserializeObject<IdList>(body);
-
-
-                  //get id of most relevent result
-                 var id = ids.results[0].id;
-
-                  //remove /title and last slash
-                  id = id.Substring(7, id.Length - 8);
-
-
-
-              //get de movie genre
-               var request2 = new HttpRequestMessage
-                {
-                    Method = HttpMethod.Get,
-                    RequestUri = new Uri("https://imdb8.p.rapidapi.com/title/get-genres?tconst="+id),
-                    Headers =
-                    {
-                   { "x-rapidapi-key", Configuration.GetValue<string>("ApiKey") },
-                   { "x-rapidapi-host", "imdb8.p.rapidapi.com" },
-                   },
-                };
-               //get response 
-                var response2 = await client.SendAsync(request2);
-              //response2.EnsureSuccessStatusCode();
-
-              //get list of genres
-              List<string> genres = new List<string>();
-              var body2 = await response2.Content.ReadAsStringAsync();
-
-              //if request return errors movie genres are not available
-              if (!body2.Contains("400") && !body2.Contains("503"))
-              { genres = JsonConvert.DeserializeObject<List<string>>(body2); }
-              else
-                  genres.Add("N/A");
-              //get object movie to return
-
-          */
+         

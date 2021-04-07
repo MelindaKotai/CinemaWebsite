@@ -13,6 +13,7 @@ namespace Licenta.ViewModels
         public string prenume { get; set; }
         public string seats { get; set; }
         public string userId { get; set; }
+        public string action { get; set; }
         
     }
 }

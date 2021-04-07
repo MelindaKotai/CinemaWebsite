@@ -12,130 +12,147 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @RenderSection("Css", required: false)
 
 </head>
 <body>
-
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-dark bg-transparent border-bottom-h box-shadow mb-3">
-            @if (SignInManager.IsSignedIn(User))
-            {
-                @if (this.User.IsInRole("Administrator"))
+    <div class="bg" id="bg">
+        <header >
+            <nav class="navbar navbar-expand-sm navbar-dark bg-transparent border-bottom-h box-shadow mb-3 " id="myHeader" >
+                @if (SignInManager.IsSignedIn(User))
                 {
-                    <div id="Sidenav" class="sidenav">
-                        <a class="closebtn" onclick="closeNav()">&times;</a>
-                        <div class="sidebar-heading">Optiuni</div>
-                        <div>
+                    @if (this.User.IsInRole("Administrator"))
+                    {
+                        <div id="Sidenav" class="sidenav">
+                            <a class="closebtn" onclick="closeNav()">&times;</a>
+                            <div class="sidebar-heading">Optiuni</div>
+                            <div>
 
-                            <a href="/Movie/List" class="list-group-item list-group-item-action bg-dark">Filme</a>
-                            <a href="/Screening/List?date=@DateTime.Now.ToString("yyyy-MM-dd")" class="list-group-item list-group-item-action bg-dark">Ecranizari</a>
-                            <a href="/TicketTypes/List" class="list-group-item list-group-item-action bg-dark">Bilete</a>
-                            <a href="/Prize/List" class="list-group-item list-group-item-action bg-dark">Premii</a>
-                            <a href="/User/List" class="list-group-item list-group-item-action bg-dark">Utilizatori</a>
-                            <a href="/Hall/List" class="list-group-item list-group-item-action bg-dark">Sali</a>
+                                <a href="/Movie/List" class="list-group-item list-group-item-action bg-dark">Filme</a>
+                                <a href="/Screening/List?date=@DateTime.Now.ToString("yyyy-MM-dd")" class="list-group-item list-group-item-action bg-dark">Ecranizari</a>
+                                <a href="/TicketTypes/List" class="list-group-item list-group-item-action bg-dark">Bilete</a>
+                                <a href="/Prize/List" class="list-group-item list-group-item-action bg-dark">Premii</a>
+                                <a href="/User/List" class="list-group-item list-group-item-action bg-dark">Utilizatori</a>
+                                <a href="/Hall/List" class="list-group-item list-group-item-action bg-dark">Sali</a>
+                            </div>
                         </div>
-                    </div>
 
-                    <button class="btn btn-primary" onclick="openNav()">Meniul Administratorului</button>
+                        <button class="btn btn-primary" onclick="openNav()">Meniul Administratorului</button>
+                    }
+                    else
+                    {
+                        <a class="navbar-brand float-left pl-4" id="icon" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/cinema-logo.png" height="70" /></a>
+                    }
+
                 }
                 else
                 {
                     <a class="navbar-brand float-left pl-4" id="icon" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/cinema-logo.png" height="70" /></a>
                 }
 
-            }
-            else
-            {
-                <a class="navbar-brand float-left pl-4" id="icon" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/cinema-logo.png" height="70" /></a>
-            }
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav">
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                <partial name="_LoginPartial" />
-                <ul class="navbar-nav">
-
-                    <li class="nav-item pl-4">
-                        <a class="nav-link text-light" href="#Contact">Contact</a>
-                    </li>
-                    <li class="nav-item pl-4">
-                        <a class="nav-link text-light" href="/Screening?date=@DateTime.Now.ToString("yyyy-MM-dd")">Program</a>
-                    </li>
-                    @if (SignInManager.IsSignedIn(User))
-                    {
-                        @if (User.IsInRole("Client"))
+                        <li class="nav-item pl-4">
+                            <a class="nav-link text-light" href="/Home/Contact" >Contact</a>
+                        </li>
+                        <li class="nav-item pl-4">
+                            <a class="nav-link text-light" href="/Screening?date=@DateTime.Now.ToString("yyyy-MM-dd")">Program</a>
+                        </li>
+                        @if (SignInManager.IsSignedIn(User))
                         {
+                            @if (User.IsInRole("Client"))
+                            {
 
-                            <li class="nav-item pl-4">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Prize" asp-action="Index">Tombola</a>
-                            </li>
-                            <li class="nav-item pl-4">
-                                <a class="nav-link text-light" href="/Reservation">Rezervari</a>
-                            </li>
+                                <li class="nav-item pl-4">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Prize" asp-action="Index">Tombola</a>
+                                </li>
+                                <li class="nav-item pl-4">
+                                    <a class="nav-link text-light" href="/Reservation">Rezervari</a>
+                                </li>
 
+
+                            }
+                            else if (User.IsInRole("Administrator"))
+                            {
+                                <li class="nav-item pl-4">
+                                    <a class="nav-link text-light" href="/">Acasa</a>
+                                </li>
+                            }
 
                         }
-                        else if (User.IsInRole("Administrator"))
-                        {
-                            <li class="nav-item pl-4">
-                                <a class="nav-link text-light" href="/">Acasa</a>
-                            </li>
-                        }
-
-                    }
 
 
 
-                </ul>
-            </div>
+                    </ul>
+                </div>
 
-        </nav>
-    </header>
-    <div class="container" id="content">
-        <main role="main" class="pb-3">
-
-            @RenderBody()
-        </main>
-    </div>
-
-    <div style="clear:both"></div>
-    <footer class="border-top-f footer bg-transparent">
-        <div class="container" id="Contact">
-            <p style="margin:0"><i class="fa fa-map-marker" style="font-size:24px;margin-right: 8px;"></i>  Adresa: Str. Bucuresti nr.2, Cluj-Napoca</p>
-            <p style="margin:0"><i class="fa fa-phone-square" style="font-size:24px;margin-right: 8px;"></i>Telefon: 0745234568</p>
-            <p style="margin:0"><i class="fa fa-calendar" style="font-size:24px;margin-right: 8px;"></i>Program: Luni-Vineri, 09:00-23:00</p>
-            <p style="margin:0"><i class="fa fa-envelope" style="font-size:24px;margin-right: 8px;"></i>E-mail: cinemawebsitelicense@gmail.com</p>
+            </nav>
+        </header>
+     
+            @RenderSection("OuterContainer", required: false)
+        
         </div>
-    </footer>
 
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
+        <div class="container" id="content">
+            <main role="main" class="pb-3">
 
-    <script type="text/javascript">
-        $(function () {
-            var path = location.pathname + location.search;
-            $('a[href="' + path + '"]').addClass('active');
+                @RenderBody()
+            </main>
+        </div>
+
+        <div style="clear:both"></div>
+        <footer class="border-top-f footer bg-transparent">
+            <div class="container pt-5" id="Contact">
+                <div class="row">
+                    <div class="col-4 text-center">
+                        <a href="#" class="fa fa-facebook" style=" padding: 20px; font-size: 30px; width: 70px; text-align: center; text-decoration: none; margin: 2px 2px; border-radius: 40px;"></a>
+                    </div>
+                    <div class="col-4 text-center">
+                        <a href="#" class="fa fa-twitter" style=" padding: 20px; font-size: 30px; width: 70px; text-align: center; text-decoration: none; margin: 2px 2px; border-radius: 40px;"></a>
+                    </div>
+                    <div class="col-4 text-center">
+                        <a href="#" class="fa fa-instagram" style=" padding: 20px; font-size: 30px; width: 70px; text-align: center; text-decoration: none; margin: 2px 2px; border-radius: 40px;"></a>
+                    </div>
+                </div>
+
+            </div> 
+            <div class="m-1 text-right" style="font-size:11px;">
+                <a class="nolink" href="/Home/Privacy">Politica de confidentialitate</a>
+            </div>
+        </footer>
 
 
-            $("#icon").removeClass('active');
-        });
-        function openNav() {
-            document.getElementById("Sidenav").style.width = "250px";
-        }
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @RenderSection("Scripts", required: false)
 
-        function closeNav() {
-            document.getElementById("Sidenav").style.width = "0";
-        }
+        <script type="text/javascript">
+            $(function () {
+                var path = location.pathname + location.search;
+                $('a[href="' + path + '"]').addClass('active');
 
 
-    </script>
+                $("#icon").removeClass('active');
+            });
+            function openNav() {
+                document.getElementById("Sidenav").style.width = "250px";
+            }
+
+            function closeNav() {
+                document.getElementById("Sidenav").style.width = "0";
+            }
+
+
+        </script>
 
 </body>
 </html>

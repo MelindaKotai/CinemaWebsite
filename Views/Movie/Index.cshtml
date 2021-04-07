@@ -10,6 +10,9 @@
     CultureInfo culture = CultureInfo.CreateSpecificCulture("ro-RO");
 }
 
+@section Css{
+    <link rel="stylesheet" href="~/css/Program.css" asp-append-version="true">
+}
 
 
 @if (ViewBag.ErrorMessage != null)
@@ -49,21 +52,21 @@
                     }
 
                     <p><b>Durata: </b>@string.Format("{0:00} ore si {1:00} minute", Model.duration / 60, Model.duration % 60) </p>
-                    <p><b>Data lansarii: </b>@Model.release_date.ToString("yyyy-MMMM-dd",culture)</p>
+                    <p><b>Data lansarii: </b>@Model.release_date.ToString("yyyy-MMMM-dd", culture)</p>
                     <p>
                         <b>Actori principali:</b>  @if (Model.actors != null)
-                        { @foreach (var actor in Model.actors)
-                        {@if (Model.actors.IndexOf(actor) == Model.actors.Count - 1)
-                            {
-                                <span>@actor </span>
-                            }
-                            else
-                            {
-                                <span>@actor, </span>
-                            }
+                        {@foreach (var actor in Model.actors)
+                            {@if (Model.actors.IndexOf(actor) == Model.actors.Count - 1)
+                                {
+                                    <span>@actor </span>
+                                }
+                                else
+                                {
+                                    <span>@actor, </span>
+                                }
 
                         }
-                        }
+                    }
                     </p>
                     <p>
                         <b>Genuri:</b>  @foreach (var genre in Model.genres)
@@ -82,31 +85,33 @@
 
                 </div>
             </div>
-        
-        
-            @if (Model.dates.Count != 0) {
-            <div style="border-top:1px solid red" class="row pb-4">
-                <div class="col-sm-4 pr-5">
-                    <br/>
-                    <p>Alegeti o data:</p>
-                    <select name="date" class="form-control" id="date">
 
-                        @foreach (var date in Model.dates)
-                        {
-                                <option value="@date.ToString("yyyy-MM-dd")">@date.ToString("yyyy-MM-dd")</option>         
-                        }
-                    </select>
-                </div>
-           
+
+            @if (Model.dates.Count != 0)
+            {
+                <div style="border-top:1px solid red" class="row pb-4">
+                    <div class="col-sm-4 pr-5">
+                        <br />
+                        <p>Alegeti o data:</p>
+                        <select name="date" class="form-control" id="date">
+
+                            @foreach (var date in Model.dates)
+                            {
+                                <option value="@date.ToString("yyyy-MM-dd")">@date.ToString("yyyy-MM-dd")</option>
+
+                            }
+                        </select>
+                    </div>
+
                     <div id="hours" class="col-sm-8 pr-5 pl-5">
 
                     </div>
-            
-            </div>
+
+                </div>
             }
             else
             {
-                <div class="alert alert-danger mt-2" >Momentan nu exista ecranizari disponibile</div>
+                <div class="alert alert-danger mt-2">Momentan nu exista ecranizari disponibile</div>
             }
 
 
@@ -123,7 +128,7 @@
                     url: "/Movie/GetHours?date="+date+"&id="+id,
                     success: function (data) {
                         $("#hours").html(data);
-                    } 
+                    }
                 });
 
             });
