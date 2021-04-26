@@ -1,0 +1,35 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger" style="height:500px;text-align:center;vertical-align:central" >@ViewBag.ErrorMessage</div>
+}
+else
+{
+<div class="container bg-dark p-5" style="border-radius:15px;">
+    <div class="alert alert-success">@ViewBag.SuccesMessage</div>
+    <br />
+    <br />
+    <b>Titlu film: </b>@Model.title
+    <br />
+
+    <b>Data: </b>@Model.date.ToString("dd-MM-yyyy")
+    <br />
+    <b>Ora: </b>@Model.hour.ToString("HH:mm")
+    <br />
+    <b>Sala: </b>@Model.hallname
+    <br />
+    <b>Tip bilet: </b> @Model.type
+    <br/>
+    <b>Rand: </b>@Model.row
+    <br />
+    <b>Coloana: </b>@Model.seatNo
+    <br />
+</div>
+
+}

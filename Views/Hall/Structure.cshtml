@@ -6,50 +6,70 @@
 @section Css{
     <link rel="stylesheet" href="~/css/Screening.css" asp-append-version="true">
 }
-<h1>Structura salii de cinema </h1>
-<h3>@Model.name</h3>
 
 @if (ViewBag.ErrorMessage != null)
 {
     <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
 }
 
+
+
 @if (Model != null)
 {
+    <h1>Structura salii de cinema </h1>
+    <h3>@Model.name</h3>
 
     <div class="container bg-dark pt-4 pb-3 pl-5 pr-5" style="border-radius:10px;">
 
         <div class="screen">Ecran</div>
 
-        @{ int s = 1;
-            float width1 = (float)100 / (float)Model.cols;
-            string width = width1.ToString("0.00") + "%";
+        @{  
+            //rand de scaune
+            int row = 1;
+            float width1 = (float)100 / (float)(Model.cols + 1);
+            string width = width1.ToString("0.0000") + "%";
 
         }
-        @for (int i = 0; i < Model.rows; i++)
-        {
-            @Html.Raw("<div class='row mt-2 mb-2' >");
-            for (int j = 0; j < Model.cols; j++)
+        <div class="row">
+            <div class="path" style="width:@width;"><b>R1</b></div>
+          
+            @foreach (var seat in Model.seats)
             {
-                int elem = j + i * Model.cols + 1;
-                if (Model.paths.Contains(elem))
+                //se verifica daca s-a trecut pe rand nou
+                @if (seat.row != row)
+                {   
+                    //tot timpul un scaun cu rand=0 marcheaza inceputul unui rand de tip culoar, acesta nu se marcheaza ca rand
+                    @if (seat.row == 0)
+                    {
+                        @Html.Raw("</div><div class='row'>");
+                        row = seat.row;
+
+                    }
+                    else
+                    {
+                        @Html.Raw("</div><div class='row'>");
+                        row = seat.row;
+                        <div class="path" style="width:@width;"><b>R</b><b>@row</b></div>
+
+                    }
+
+                }
+
+                @if (seat.seatNo == null)
                 {
                     <div class="path" style="width:@width;"></div>
-
                     continue;
                 }
 
-                else
-                {
-                    <div class="seat free" style="width:@width;">@s</div>
-                    s++;
-                }
+                <div id="@seat.Id" class="seat free" style="width:@width;">@seat.seatNo</div>
 
             }
-            @Html.Raw("</div>");
+        </div>
+        </div>
+    }
+    
 
+     
 
-        }
-
-    </div>
-}
+            
+            

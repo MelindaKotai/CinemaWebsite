@@ -30,7 +30,7 @@
 
 
 <div class="row">
-    <form action="/Movie/List" method="get" class="col-sm-6 " id="filterform">
+    <form action="/Movie/List" method="get" class="col-sm-6 m-2" id="filterform">
         Filtrati filmele:
         <br />
         <br />
@@ -42,7 +42,7 @@
         </select>
     </form>
 
-    <form action="/Movie/List" method="get" class="col-sm-6 ">
+    <form action="/Movie/List" method="get" class="col-sm-6 m-2">
         Cautati un film dupa titlu:
         <br />
         <br />
@@ -66,59 +66,195 @@
 
 
 
+        <div class="ofx">
+            <table class="table table-dark table-bordered " id="dtHorizontalVerticalExample">
+                <thead><tr><th scope="col">Imagine</th><th class="text-center" scope="col">Titlu</th><th class="text-center" scope="col">Data adaugarii</th><th class="text-center" scope="col">Data lansarii</th><th class="text-center" scope="col">Ruleaza</th><th class="text-center" scope="col">Actiune</th></tr></thead>
 
-        <table class="table table-dark table-bordered">
-            <thead><tr><th scope="col">Imagine</th><th class="text-center" scope="col">Titlu</th><th class="text-center" scope="col">Data adaugarii</th><th class="text-center" scope="col">Data lansarii</th><th class="text-center" scope="col">Ruleaza</th><th class="text-center" scope="col">Actiune</th></tr></thead>
+                @foreach (var movie in Model)
+                {
 
-            @foreach (var movie in Model)
-            {
+                    <tr>
+                        <td>
+                            <a href="/Movie/@movie.id">
+                                <div class="col-md-5 col-sm-6 ">
 
-                <tr>
-                    <td>
-                        <a href="/Movie/@movie.id">
-                            <div class="col-md-5 col-sm-6 ">
+                                    <img src="~/@movie.img" height="150" width="90" class="img" />
 
-                                <img src="~/@movie.img" height="150" width="90" class="img" />
-
-                            </div>
-                        </a>
-                    </td>
-                    <td class="bw">@movie.title</td>
-                    <td class="bw">
-                        @movie.date_added.ToString("yyyy-MMM-dd")
-                    </td>
-                    <td class="bw">
-                        @movie.release_date.ToString("yyyy-MMM-dd")
+                                </div>
+                            </a>
+                        </td>
+                        <td>@movie.title</td>
+                        <td class="bw">
+                            @movie.date_added.ToString("yyyy-MMM-dd")
+                        </td>
+                        <td>
+                            @movie.release_date.ToString("yyyy-MMM-dd")
 
 
-                    </td>
-                    <td class="bw">
-                        @if (movie.active == 1)
-                        {<select name="active" class="isactive">
-                                <option value="@movie.id" selected>Da</option>
-                                <option value="@movie.id">Nu</option>
-                            </select>
+                        </td>
+                        <td>
+                            @if (movie.active == 1)
+                            {<select name="active" class="isactive">
+                                    <option value="@movie.id" selected>Da</option>
+                                    <option value="@movie.id">Nu</option>
+                                </select>
+                            }
+                            else
+                            {
+                                <select name="active" class="isactive">
+                                    <option value="@movie.id">Da</option>
+                                    <option value="@movie.id" selected>Nu</option>
+                                </select>
+
+                            }
+                        </td>
+                        <td style="text-align: center; vertical-align: middle;">
+                            <a class="btn btn-danger " href="/Movie/Update/@movie.id">Actualizati</a>
+                            <br />
+                            <br />
+                            <a class="btn btn-info " href="/Movie/@movie.id">Detalii</a>
+                        </td>
+
+                    </tr>
+                }
+            </table>
+
+
+
+        </div>
+        <div class="pagining">
+            @{
+
+                string url;
+                if (Context.Request.Query.Count == 0)
+                {
+                    url = Context.Request.Path + "?";
+                }
+                else
+                {
+                    url = Context.Request.Path + Context.Request.QueryString;
+                    url = url.Replace("&p=" + Context.Request.Query["p"].ToString(), "");
+                    url = url.Replace("?p=" + Context.Request.Query["p"].ToString(), "");
+
+                    if (string.IsNullOrEmpty(Context.Request.Query["p"]))
+                    {
+                        if (Context.Request.Query.Count >= 1)
+                        {
+                            url = url + "&";
                         }
                         else
                         {
-                            <select name="active" class="isactive">
-                                <option value="@movie.id">Da</option>
-                                <option value="@movie.id" selected>Nu</option>
-                            </select>
+                            url = url + "?";
 
                         }
-                    </td>
-                    <td style="text-align: center; vertical-align: middle;">
-                        <a class="btn btn-danger " href="/Movie/Update/@movie.id">Actualizati</a>
-                        <br />
-                        <br />
-                        <a class="btn btn-info " href="/Movie/@movie.id">Detalii</a>
-                    </td>
+                    }
+                    else
+                    {
+                        if (Context.Request.Query.Count >= 2)
+                        {
+                            url = url + "&";
+                        }
+                        else
+                        {
+                            url = url + "?";
 
-                </tr>
+                        }
+
+                    }
+
+
+                }
+
+
             }
-        </table>
 
+
+            @if (ViewBag.noPages > 6)
+            {
+                if (ViewBag.currPage == 1 || ViewBag.currPage == 2)
+                {
+                    <a href="@(url + "p=")@(ViewBag.currPage-1)"> Prev &lt </a>
+                    <a href="@(url + "p=")1">1</a>
+                    <a href="@(url + "p=")2">2</a>
+                    <a href="@(url + "p=")3">3</a>
+                    <span>...</span>
+                    <a href="@(url + "p=")@ViewBag.noPages">@ViewBag.noPages</a>
+                    <a href="@(url + "p=")@(ViewBag.currPage+1)"> &gt Next</a>
+
+                }
+                else if (ViewBag.currPage == 3)
+                {
+                    <a href="@(url + "p=")@(ViewBag.currPage-1)"> Prev &lt </a>
+                    <a href="@(url + "p=")1">1</a>
+                    <a href="@(url + "p=")2">2</a>
+                    <a href="@(url + "p=")3">3</a>
+                    <a href="@(url + "p=")4">4</a>
+                    <span>...</span>
+                    <a href="@(url + "p=")@ViewBag.noPages">@ViewBag.noPages</a>
+                    <a href="@(url + "p=")@(ViewBag.currPage+1)"> &gt Next</a>
+
+                }
+
+
+                else if (ViewBag.currPage == ViewBag.noPages || ViewBag.currPage == ViewBag.noPages - 1)
+                {
+
+                    <a href="@(url + "p=")@(ViewBag.currPage-1)"> Prev &lt </a>
+                    <a href="@(url + "p=")1">1</a>
+                    <span>...</span>
+                    <a href="@(url + "p=")@(ViewBag.noPages-2)">@(ViewBag.noPages-2)</a>
+                    <a href="@(url + "p=")@(ViewBag.noPages-1)">@(ViewBag.noPages-1)</a>
+                    <a href="@(url + "p=")@ViewBag.noPages">@ViewBag.noPages</a>
+                    <a href="@(url + "p=")@(ViewBag.currPage+1)"> &gt Next</a>
+
+                }
+                else if (ViewBag.currPage == ViewBag.noPages - 2)
+                {
+                    <a href="@(url + "p=")@(ViewBag.currPage-1)"> Prev &lt </a>
+                    <a href="@(url + "p=")1">1</a>
+                    <span>...</span>
+                    <a href="@(url + "p=")@(ViewBag.noPages-3)">@(ViewBag.noPages-3)</a>
+                    <a href="@(url + "p=")@(ViewBag.noPages-2)">@(ViewBag.noPages-2)</a>
+                    <a href="@(url + "p=")@(ViewBag.noPages-1)">@(ViewBag.noPages-1)</a>
+                    <a href="@(url + "p=")@ViewBag.noPages">@ViewBag.noPages</a>
+                    <a href="@(url + "p=")@(ViewBag.currPage+1)"> &gt Next</a>
+                }
+                else
+                {
+                    <a href="@(url + "p=")@(ViewBag.currPage-1)"> Prev &lt </a>
+                    <a href="@(url + "p=")1">1</a>
+                    <span>...</span>
+                    <a href="@(url + "p=")@(ViewBag.currPage-1)">@(ViewBag.currPage-1)</a>
+                    <a href="@(url + "p=")@ViewBag.currPage">@ViewBag.currPage</a>
+                    <a href="@(url + "p=")@(ViewBag.currPage+1)">@(ViewBag.currPage+1)</a>
+                    <span>...</span>
+                    <a href="@(url + "p=")@ViewBag.noPages">@ViewBag.noPages</a>
+                    <a href="@(url + "p=")@(ViewBag.currPage+1)"> &gt Next</a>
+                }
+
+            }
+            else if (ViewBag.noPages == 1)
+            {
+
+            }
+            else
+            { <a href="@(url + "p=")@(ViewBag.currPage-1)"> Prev &lt </a>
+                for (var i = 1; i <= ViewBag.noPages; i++)
+                {     
+                        <a href="@(url + "p=")@i">@i</a>     
+                }
+                <a href="@(url + "p=")@(ViewBag.currPage+1)"> &gt Next</a>
+            }
+
+
+
+
+
+
+
+
+
+        </div>
 
     }
 }
@@ -127,4 +263,9 @@
 
 @section Scripts{
     <script type="text/javascript" src="~/js/MovieList.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+
+
+    </script>
+
 }

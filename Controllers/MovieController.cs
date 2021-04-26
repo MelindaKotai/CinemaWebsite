@@ -286,10 +286,13 @@ namespace Licenta.Controllers
         }
 
         [Authorize(Roles="Administrator")]
-        public async Task<IActionResult> List(string q, string f)
+        public async Task<IActionResult> List(string q, string f,int p)
         {
-
-            List<MovieListViewModel> movies = await _context.Movies.Select(x=> new MovieListViewModel { id=x.id,img=x.img, title=x.title,date_added=x.date_added,release_date=x.release_date,active=x.active}).ToListAsync();
+            if (p == null || p==0)
+            {
+                p = 1;
+            }
+            List<MovieListViewModel> movies = await _context.Movies.Select(x => new MovieListViewModel { id = x.id, img = x.img, title = x.title, date_added = x.date_added, release_date = x.release_date, active = x.active }).ToListAsync();
             if (q != null)
             {
                 q = q.ToLower();
@@ -314,12 +317,21 @@ namespace Licenta.Controllers
                 }
               
             }
-
+            if(movies.Count%5==0)
+              ViewBag.noPages = (movies.Count / 5);
+            else
+              ViewBag.noPages = (movies.Count / 5)+1;
+            movies = movies.Skip((p-1) * 5).Take(5).ToList();
             if (movies.Count == 0)
             {
                 ViewBag.ErrorMessage = "Nu au fost gasite filme!";
                 return View();
             }
+
+           
+            ViewBag.currPage = p;
+
+
             if (TempData["ErrorMessage"] != null)
             {
                 ViewBag.ErrorMessage = TempData["ErrorMessage"];

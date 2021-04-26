@@ -28,17 +28,18 @@ namespace Licenta.Controllers
 
 
 
-        private static char[] _base62chars ="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+        private static char[] _base36chars ="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
         private static Random _random = new Random();
-        public static string GetRandomId(int length)
+        public static string GetRandomCode(int length)
         {
             var sb = new StringBuilder(length);
 
             for (int i = 0; i < length; i++)
-                sb.Append(_base62chars[_random.Next(36)]);
+                sb.Append(_base36chars[_random.Next(36)]);
 
             return sb.ToString();
         }
+
 
         //calculeaza cate premii disponibile are utilizatorul logat
         public  int numberOfPrizes()
@@ -115,7 +116,7 @@ namespace Licenta.Controllers
                 var prizeid = await _context.Prizes.Where(x => x.name == prize).FirstOrDefaultAsync();
                 if (prizeid != null)
                 {
-                    string obj = GetRandomId(7);
+                    string obj = GetRandomCode(7);
                     UserPrizes up = new UserPrizes();
                     up.prizeId = prizeid.Id;
                     up.userId = user;

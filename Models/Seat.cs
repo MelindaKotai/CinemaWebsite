@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Licenta.Models
@@ -13,11 +14,20 @@ namespace Licenta.Models
         public int Id { get; set; }
         [Required]
         public int hallId { get; set; }
+
+
         [Required]
-        public int number { get; set; }
+        public int order { get; set; }
+
         [Required]
-        public int path { get; set; }
+        public int row { get; set; }
+      
+        public int? seatNo { get; set; }
+
+        [JsonIgnore]
         public virtual Hall hall { get; set; }
+
+        [JsonIgnore]
         public virtual ICollection<ReservedSeats> reservedSeats { get; set; }
     }
 }

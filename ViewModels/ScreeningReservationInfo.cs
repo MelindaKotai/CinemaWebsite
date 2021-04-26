@@ -12,9 +12,12 @@ namespace Licenta.ViewModels
         public string LastName { get; set; }
         public string email { get; set; }
         public float total { get; set; }
-        public int payed { get; set; }
-        public List<TypeNameNumber> tickets { get; set; }
+        public int payed { get; set; } 
+        public int totaltickets { get; set; }
+        public List<int> ticketsids { get; set; }
+        public List<TypeNameNumber> ticketTypes { get; set; }
         public Dictionary<int,List<int>> seats { get; set; }
-
+        public List<Tickets> tickets { get; set; }
+      
     }
 }

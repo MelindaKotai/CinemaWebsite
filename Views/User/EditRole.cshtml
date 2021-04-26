@@ -22,18 +22,25 @@
    
 
 
-<form asp-action="EditRole" asp-controller="User" method="post"  class="m-5">
-    Selectati noul rol :
-    <br />
-    @foreach (var role in Model.roles)
-    {
-
-        <input type="radio" name="role" value="@role" />@role
+    <form asp-action="EditRole" asp-controller="User" method="post" class="m-5">
+        Selectati noul rol :
         <br />
-    }
-    <input type="hidden" name="id" value="@Model.userId" />
-    <br />
-    <button type="submit" class="btn btn-danger">Modificati rolul</button>
-</form>
+        @foreach (var role in Model.roles)
+        {
+            if (Model.userRole == role)
+            {
+                <input type="radio" name="role" value="@role" checked />@role
+                <br />
+            }
+            else
+            {
+                <input type="radio" name="role" value="@role" />@role
+                <br />
+            }
+        }
+        <input type="hidden" name="id" value="@Model.userId" />
+        <br />
+        <button type="submit" class="btn btn-danger">Modificati rolul</button>
+    </form>
 
 </div>

@@ -33,50 +33,51 @@
 
 
 
+        <div class="ofx">
+            <table class="table table-dark table-bordered">
+                <thead><tr><th scope="col">Nume</th><th class="text-center" scope="col">Discount</th><th class="text-center" scope="col">Activ</th><th class="text-center" scope="col">Actiune</th></tr></thead>
 
-        <table class="table table-dark table-bordered">
-            <thead><tr><th scope="col">Nume</th><th class="text-center" scope="col">Discount</th><th class="text-center" scope="col">Activ</th><th class="text-center" scope="col">Actiune</th></tr></thead>
+                @foreach (var ticket in Model)
+                {
+                    var discount = ticket.discount * 100;
 
-            @foreach (var ticket in Model)
-            {
-                var discount = ticket.discount * 100;
+                    <tr style="text-align:center">
+                        <td>
+                            @ticket.name
+                        </td>
+                        <td> @discount.ToString("0.00")%</td>
+                        <td>
+                            @if (ticket.active == 0)
+                            {
+                                <select class="status" name="active">
+                                    <option value="@ticket.id">Activ</option>
+                                    <option value="@ticket.id" selected>Inactiv</option>
+                                </select>
 
-                <tr style=" word-break: break-all;text-align:center">
-                    <td>
-                        @ticket.name
-                    </td>
-                    <td> @discount.ToString("0.00")%</td>
-                    <td>
-                        @if (ticket.active == 0)
-                        {
-                            <select class="status" name="active">
-                                <option value="@ticket.id">Activ</option>
-                                <option value="@ticket.id" selected>Inactiv</option>
-                            </select>
+                            }
+                            else
+                            {
+                                <select class="status" name="active">
+                                    <option value="@ticket.id" selected>Activa</option>
+                                    <option value="@ticket.id">Inactiva</option>
+                                </select>
 
-                        }
-                        else
-                        {
-                            <select class="status" name="active">
-                                <option value="@ticket.id" selected>Activa</option>
-                                <option value="@ticket.id">Inactiva</option>
-                            </select>
+                            }
+                        </td>
+                        <td>
 
-                        }
-                    </td>
-                    <td>
-
-                        <a class="btn btn-danger" href="/TicketTypes/Update/@ticket.id">Editeaza denumirea biletului</a>
-
-
-                    </td>
+                            <a class="btn btn-danger" style="word-break:normal" href="/TicketTypes/Update/@ticket.id">Editeaza denumirea biletului</a>
 
 
+                        </td>
 
 
-                </tr>
-            }
-        </table>
+
+
+                    </tr>
+                }
+            </table>
+        </div>
 
         @section Scripts{
             <script type="text/javascript" src="~/js/TicketList.js" asp-append-version="true"></script>

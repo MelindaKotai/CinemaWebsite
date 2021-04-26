@@ -47,7 +47,7 @@ namespace Licenta.Migrations
                         new
                         {
                             id = 1,
-                            active = 0,
+                            active = 1,
                             columns = 21,
                             name = "sala1",
                             rows = 11
@@ -55,7 +55,7 @@ namespace Licenta.Migrations
                         new
                         {
                             id = 2,
-                            active = 0,
+                            active = 1,
                             columns = 16,
                             name = "sala2",
                             rows = 9
@@ -400,37 +400,37 @@ namespace Licenta.Migrations
                         new
                         {
                             Id = 1,
-                            active = 0,
+                            active = 1,
                             name = "Popcorn"
                         },
                         new
                         {
                             Id = 2,
-                            active = 0,
+                            active = 1,
                             name = "Bautura la alegere"
                         },
                         new
                         {
                             Id = 3,
-                            active = 0,
+                            active = 1,
                             name = "Bilet"
                         },
                         new
                         {
                             Id = 4,
-                            active = 0,
+                            active = 1,
                             name = "Meniu duet"
                         },
                         new
                         {
                             Id = 5,
-                            active = 0,
+                            active = 1,
                             name = "50% reducere la meniu nachos"
                         },
                         new
                         {
                             Id = 6,
-                            active = 0,
+                            active = 1,
                             name = "50% reducere la meniu popcorn"
                         });
                 });
@@ -445,17 +445,30 @@ namespace Licenta.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<DateTime>("date")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("firstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("lastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("online")
+                        .HasColumnType("bit");
 
                     b.Property<int>("payed")
                         .HasColumnType("int");
+
+                    b.Property<string>("phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("screeningId")
                         .HasColumnType("int");
@@ -477,6 +490,9 @@ namespace Licenta.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("TicketTypeid")
+                        .HasColumnType("int");
+
+                    b.Property<int>("claimed")
                         .HasColumnType("int");
 
                     b.Property<int>("reservationId")
@@ -537,10110 +553,10110 @@ namespace Licenta.Migrations
                         {
                             Id = 1,
                             date = new DateTime(2021, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 45, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 45, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 2,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 13, 45, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 13, 45, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 2,
                             date = new DateTime(2021, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 3,
                             date = new DateTime(2021, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 4,
                             date = new DateTime(2021, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 5,
                             date = new DateTime(2021, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 17, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 17, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 6,
                             date = new DateTime(2021, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 5,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 7,
                             date = new DateTime(2021, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 52, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 52, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 8,
                             date = new DateTime(2021, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 9,
                             date = new DateTime(2021, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 10,
                             date = new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 20, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 20, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 2,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 11,
                             date = new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 38, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 38, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 4,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 12,
                             date = new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 13,
                             date = new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 15f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 14,
                             date = new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 7,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 15,
                             date = new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 16,
                             date = new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 5,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 17,
                             date = new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 18,
                             date = new DateTime(2021, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 8,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 19,
                             date = new DateTime(2021, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 20,
                             date = new DateTime(2021, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 10,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 21,
                             date = new DateTime(2021, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 22,
                             date = new DateTime(2021, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 2, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 2, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 23,
                             date = new DateTime(2021, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 55, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 55, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 24,
                             date = new DateTime(2021, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 25,
                             date = new DateTime(2021, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 26,
                             date = new DateTime(2021, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 10,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 27,
                             date = new DateTime(2021, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 28,
                             date = new DateTime(2021, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 28f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 29,
                             date = new DateTime(2021, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 30,
                             date = new DateTime(2021, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 22, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 22, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 31,
                             date = new DateTime(2021, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 32,
                             date = new DateTime(2021, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 33,
                             date = new DateTime(2021, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 34,
                             date = new DateTime(2021, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 35,
                             date = new DateTime(2021, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 36,
                             date = new DateTime(2021, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 37,
                             date = new DateTime(2021, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 38,
                             date = new DateTime(2021, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 39,
                             date = new DateTime(2021, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 40,
                             date = new DateTime(2021, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 41,
                             date = new DateTime(2021, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 42,
                             date = new DateTime(2021, 3, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 43,
                             date = new DateTime(2021, 3, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 44,
                             date = new DateTime(2021, 3, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 45,
                             date = new DateTime(2021, 3, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 46,
                             date = new DateTime(2021, 3, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 13,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 47,
                             date = new DateTime(2021, 3, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 10,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 48,
                             date = new DateTime(2021, 3, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 49,
                             date = new DateTime(2021, 3, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 50,
                             date = new DateTime(2021, 3, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 51,
                             date = new DateTime(2021, 3, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 45, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 45, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 9,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 52,
                             date = new DateTime(2021, 3, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 53,
                             date = new DateTime(2021, 3, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 2,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 54,
                             date = new DateTime(2021, 3, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 55,
                             date = new DateTime(2021, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 45, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 45, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 2,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 13, 45, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 13, 45, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 56,
                             date = new DateTime(2021, 3, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 57,
                             date = new DateTime(2021, 3, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 58,
                             date = new DateTime(2021, 3, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 59,
                             date = new DateTime(2021, 3, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 17, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 17, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 60,
                             date = new DateTime(2021, 3, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 5,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 61,
                             date = new DateTime(2021, 3, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 52, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 52, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 62,
                             date = new DateTime(2021, 3, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 63,
                             date = new DateTime(2021, 3, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 64,
                             date = new DateTime(2021, 3, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 20, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 20, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 2,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 65,
                             date = new DateTime(2021, 3, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 38, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 38, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 4,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 66,
                             date = new DateTime(2021, 3, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 67,
                             date = new DateTime(2021, 3, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 15f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 68,
                             date = new DateTime(2021, 3, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 7,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 69,
                             date = new DateTime(2021, 3, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 70,
                             date = new DateTime(2021, 3, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 5,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 71,
                             date = new DateTime(2021, 3, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 72,
                             date = new DateTime(2021, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 8,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 73,
                             date = new DateTime(2021, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 74,
                             date = new DateTime(2021, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 10,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 75,
                             date = new DateTime(2021, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 76,
                             date = new DateTime(2021, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 2, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 2, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 77,
                             date = new DateTime(2021, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 55, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 55, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 78,
                             date = new DateTime(2021, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 79,
                             date = new DateTime(2021, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 80,
                             date = new DateTime(2021, 3, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 10,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 81,
                             date = new DateTime(2021, 3, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 82,
                             date = new DateTime(2021, 3, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 28f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 83,
                             date = new DateTime(2021, 3, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 84,
                             date = new DateTime(2021, 3, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 22, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 22, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 85,
                             date = new DateTime(2021, 3, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 86,
                             date = new DateTime(2021, 3, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 87,
                             date = new DateTime(2021, 3, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 88,
                             date = new DateTime(2021, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 89,
                             date = new DateTime(2021, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 90,
                             date = new DateTime(2021, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 91,
                             date = new DateTime(2021, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 92,
                             date = new DateTime(2021, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 93,
                             date = new DateTime(2021, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 94,
                             date = new DateTime(2021, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 95,
                             date = new DateTime(2021, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 96,
                             date = new DateTime(2021, 3, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 97,
                             date = new DateTime(2021, 3, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 98,
                             date = new DateTime(2021, 3, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 99,
                             date = new DateTime(2021, 3, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 100,
                             date = new DateTime(2021, 3, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 13,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 101,
                             date = new DateTime(2021, 3, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 10,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 102,
                             date = new DateTime(2021, 3, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 103,
                             date = new DateTime(2021, 3, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 104,
                             date = new DateTime(2021, 3, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 105,
                             date = new DateTime(2021, 3, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 45, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 45, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 9,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 106,
                             date = new DateTime(2021, 3, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 107,
                             date = new DateTime(2021, 3, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 2,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 108,
                             date = new DateTime(2021, 3, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 109,
                             date = new DateTime(2021, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 110,
                             date = new DateTime(2021, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 111,
                             date = new DateTime(2021, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 112,
                             date = new DateTime(2021, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 17, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 17, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 113,
                             date = new DateTime(2021, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 5,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 114,
                             date = new DateTime(2021, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 52, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 52, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 115,
                             date = new DateTime(2021, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 116,
                             date = new DateTime(2021, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 117,
                             date = new DateTime(2021, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 20, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 20, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 2,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 118,
                             date = new DateTime(2021, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 38, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 38, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 4,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 119,
                             date = new DateTime(2021, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 120,
                             date = new DateTime(2021, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 15f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 121,
                             date = new DateTime(2021, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 7,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 122,
                             date = new DateTime(2021, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 123,
                             date = new DateTime(2021, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 5,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 124,
                             date = new DateTime(2021, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 125,
                             date = new DateTime(2021, 3, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 8,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 126,
                             date = new DateTime(2021, 3, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 127,
                             date = new DateTime(2021, 3, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 10,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 128,
                             date = new DateTime(2021, 3, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 129,
                             date = new DateTime(2021, 3, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 2, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 2, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 130,
                             date = new DateTime(2021, 3, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 55, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 55, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 131,
                             date = new DateTime(2021, 3, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 132,
                             date = new DateTime(2021, 3, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 133,
                             date = new DateTime(2021, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 10,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 134,
                             date = new DateTime(2021, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 135,
                             date = new DateTime(2021, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 28f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 136,
                             date = new DateTime(2021, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 137,
                             date = new DateTime(2021, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 22, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 22, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 138,
                             date = new DateTime(2021, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 139,
                             date = new DateTime(2021, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 140,
                             date = new DateTime(2021, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 141,
                             date = new DateTime(2021, 3, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 142,
                             date = new DateTime(2021, 3, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 143,
                             date = new DateTime(2021, 3, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 144,
                             date = new DateTime(2021, 3, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 145,
                             date = new DateTime(2021, 3, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 146,
                             date = new DateTime(2021, 3, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 147,
                             date = new DateTime(2021, 3, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 148,
                             date = new DateTime(2021, 3, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 149,
                             date = new DateTime(2021, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 150,
                             date = new DateTime(2021, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 151,
                             date = new DateTime(2021, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 152,
                             date = new DateTime(2021, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 153,
                             date = new DateTime(2021, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 13,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 154,
                             date = new DateTime(2021, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 10,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 155,
                             date = new DateTime(2021, 3, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 156,
                             date = new DateTime(2021, 3, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 157,
                             date = new DateTime(2021, 3, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 158,
                             date = new DateTime(2021, 3, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 45, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 45, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 9,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 159,
                             date = new DateTime(2021, 3, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 160,
                             date = new DateTime(2021, 3, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 2,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 161,
                             date = new DateTime(2021, 3, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 162,
                             date = new DateTime(2021, 3, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 163,
                             date = new DateTime(2021, 3, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 164,
                             date = new DateTime(2021, 3, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 165,
                             date = new DateTime(2021, 3, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 17, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 17, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 166,
                             date = new DateTime(2021, 3, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 5,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 167,
                             date = new DateTime(2021, 3, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 52, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 52, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 168,
                             date = new DateTime(2021, 3, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 169,
                             date = new DateTime(2021, 3, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 170,
                             date = new DateTime(2021, 3, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 20, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 20, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 2,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 171,
                             date = new DateTime(2021, 3, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 38, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 38, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 4,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 172,
                             date = new DateTime(2021, 3, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 173,
                             date = new DateTime(2021, 3, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 15f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 174,
                             date = new DateTime(2021, 3, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 7,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 175,
                             date = new DateTime(2021, 3, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 176,
                             date = new DateTime(2021, 3, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 5,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 177,
                             date = new DateTime(2021, 3, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 178,
                             date = new DateTime(2021, 3, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 8,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 179,
                             date = new DateTime(2021, 3, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 180,
                             date = new DateTime(2021, 3, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 10,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 181,
                             date = new DateTime(2021, 3, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 182,
                             date = new DateTime(2021, 3, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 2, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 2, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 183,
                             date = new DateTime(2021, 3, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 55, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 55, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 184,
                             date = new DateTime(2021, 3, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 185,
                             date = new DateTime(2021, 3, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 186,
                             date = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 10,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 187,
                             date = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 188,
                             date = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 28f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 189,
                             date = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 190,
                             date = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 22, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 22, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 191,
                             date = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 192,
                             date = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 193,
                             date = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 194,
                             date = new DateTime(2021, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 195,
                             date = new DateTime(2021, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 196,
                             date = new DateTime(2021, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 197,
                             date = new DateTime(2021, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 198,
                             date = new DateTime(2021, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 199,
                             date = new DateTime(2021, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 200,
                             date = new DateTime(2021, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 201,
                             date = new DateTime(2021, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 202,
                             date = new DateTime(2021, 3, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 203,
                             date = new DateTime(2021, 3, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 204,
                             date = new DateTime(2021, 3, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 205,
                             date = new DateTime(2021, 3, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 206,
                             date = new DateTime(2021, 3, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 13,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 207,
                             date = new DateTime(2021, 3, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 10,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 208,
                             date = new DateTime(2021, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 209,
                             date = new DateTime(2021, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 210,
                             date = new DateTime(2021, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 211,
                             date = new DateTime(2021, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 45, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 45, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 9,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 212,
                             date = new DateTime(2021, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 213,
                             date = new DateTime(2021, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 2,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 214,
                             date = new DateTime(2021, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 215,
                             date = new DateTime(2021, 3, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 216,
                             date = new DateTime(2021, 3, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 217,
                             date = new DateTime(2021, 3, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 218,
                             date = new DateTime(2021, 3, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 17, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 17, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 219,
                             date = new DateTime(2021, 3, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 5,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 220,
                             date = new DateTime(2021, 3, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 52, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 52, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 221,
                             date = new DateTime(2021, 3, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 222,
                             date = new DateTime(2021, 3, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 223,
                             date = new DateTime(2021, 3, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 20, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 20, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 2,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 224,
                             date = new DateTime(2021, 3, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 38, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 38, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 4,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 225,
                             date = new DateTime(2021, 3, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 226,
                             date = new DateTime(2021, 3, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 15f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 227,
                             date = new DateTime(2021, 3, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 7,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 228,
                             date = new DateTime(2021, 3, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 229,
                             date = new DateTime(2021, 3, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 5,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 230,
                             date = new DateTime(2021, 3, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 231,
                             date = new DateTime(2021, 3, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 8,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 232,
                             date = new DateTime(2021, 3, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 233,
                             date = new DateTime(2021, 3, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 10,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 234,
                             date = new DateTime(2021, 3, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 235,
                             date = new DateTime(2021, 3, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 2, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 2, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 236,
                             date = new DateTime(2021, 3, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 55, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 55, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 237,
                             date = new DateTime(2021, 3, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 238,
                             date = new DateTime(2021, 3, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 239,
                             date = new DateTime(2021, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 10,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 240,
                             date = new DateTime(2021, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 241,
                             date = new DateTime(2021, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 28f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 242,
                             date = new DateTime(2021, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 243,
                             date = new DateTime(2021, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 22, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 22, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 244,
                             date = new DateTime(2021, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 245,
                             date = new DateTime(2021, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 246,
                             date = new DateTime(2021, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 247,
                             date = new DateTime(2021, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 248,
                             date = new DateTime(2021, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 249,
                             date = new DateTime(2021, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 250,
                             date = new DateTime(2021, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 251,
                             date = new DateTime(2021, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 252,
                             date = new DateTime(2021, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 253,
                             date = new DateTime(2021, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 254,
                             date = new DateTime(2021, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 255,
                             date = new DateTime(2021, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 256,
                             date = new DateTime(2021, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 257,
                             date = new DateTime(2021, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 258,
                             date = new DateTime(2021, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 259,
                             date = new DateTime(2021, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 13,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 260,
                             date = new DateTime(2021, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 10,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 261,
                             date = new DateTime(2021, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 262,
                             date = new DateTime(2021, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 263,
                             date = new DateTime(2021, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 264,
                             date = new DateTime(2021, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 45, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 45, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 9,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 265,
                             date = new DateTime(2021, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 266,
                             date = new DateTime(2021, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 2,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 267,
                             date = new DateTime(2021, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 268,
                             date = new DateTime(2021, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 269,
                             date = new DateTime(2021, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 270,
                             date = new DateTime(2021, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 271,
                             date = new DateTime(2021, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 17, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 17, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 272,
                             date = new DateTime(2021, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 5,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 273,
                             date = new DateTime(2021, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 52, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 52, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 274,
                             date = new DateTime(2021, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 275,
                             date = new DateTime(2021, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 276,
                             date = new DateTime(2021, 4, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 20, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 20, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 2,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 277,
                             date = new DateTime(2021, 4, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 38, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 38, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 4,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 278,
                             date = new DateTime(2021, 4, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 279,
                             date = new DateTime(2021, 4, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 15f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 280,
                             date = new DateTime(2021, 4, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 7,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 281,
                             date = new DateTime(2021, 4, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 282,
                             date = new DateTime(2021, 4, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 5,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 283,
                             date = new DateTime(2021, 4, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 284,
                             date = new DateTime(2021, 4, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 8,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 285,
                             date = new DateTime(2021, 4, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 286,
                             date = new DateTime(2021, 4, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 10,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 287,
                             date = new DateTime(2021, 4, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 288,
                             date = new DateTime(2021, 4, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 2, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 2, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 289,
                             date = new DateTime(2021, 4, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 55, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 55, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 290,
                             date = new DateTime(2021, 4, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 291,
                             date = new DateTime(2021, 4, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 292,
                             date = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 10,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 293,
                             date = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 294,
                             date = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 28f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 295,
                             date = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 296,
                             date = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 22, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 22, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 297,
                             date = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 298,
                             date = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 299,
                             date = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 300,
                             date = new DateTime(2021, 4, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 301,
                             date = new DateTime(2021, 4, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 302,
                             date = new DateTime(2021, 4, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 303,
                             date = new DateTime(2021, 4, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 304,
                             date = new DateTime(2021, 4, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 305,
                             date = new DateTime(2021, 4, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 306,
                             date = new DateTime(2021, 4, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 307,
                             date = new DateTime(2021, 4, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 308,
                             date = new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 309,
                             date = new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 310,
                             date = new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 311,
                             date = new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 312,
                             date = new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 13,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 313,
                             date = new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 10,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 314,
                             date = new DateTime(2021, 4, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 315,
                             date = new DateTime(2021, 4, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 316,
                             date = new DateTime(2021, 4, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 317,
                             date = new DateTime(2021, 4, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 45, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 45, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 9,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 318,
                             date = new DateTime(2021, 4, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 319,
                             date = new DateTime(2021, 4, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 2,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 320,
                             date = new DateTime(2021, 4, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 321,
                             date = new DateTime(2021, 4, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 322,
                             date = new DateTime(2021, 4, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 323,
                             date = new DateTime(2021, 4, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 324,
                             date = new DateTime(2021, 4, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 17, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 17, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 325,
                             date = new DateTime(2021, 4, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 5,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 326,
                             date = new DateTime(2021, 4, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 52, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 52, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 327,
                             date = new DateTime(2021, 4, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 328,
                             date = new DateTime(2021, 4, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 329,
                             date = new DateTime(2021, 4, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 20, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 20, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 2,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 330,
                             date = new DateTime(2021, 4, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 38, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 38, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 4,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 331,
                             date = new DateTime(2021, 4, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 332,
                             date = new DateTime(2021, 4, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 15f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 333,
                             date = new DateTime(2021, 4, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 7,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 334,
                             date = new DateTime(2021, 4, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 335,
                             date = new DateTime(2021, 4, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 5,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 336,
                             date = new DateTime(2021, 4, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 337,
                             date = new DateTime(2021, 4, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 8,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 338,
                             date = new DateTime(2021, 4, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 339,
                             date = new DateTime(2021, 4, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 10,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 340,
                             date = new DateTime(2021, 4, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 341,
                             date = new DateTime(2021, 4, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 2, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 2, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 342,
                             date = new DateTime(2021, 4, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 55, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 55, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 343,
                             date = new DateTime(2021, 4, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 344,
                             date = new DateTime(2021, 4, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 345,
                             date = new DateTime(2021, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 10,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 346,
                             date = new DateTime(2021, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 347,
                             date = new DateTime(2021, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 28f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 348,
                             date = new DateTime(2021, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 349,
                             date = new DateTime(2021, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 22, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 22, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 350,
                             date = new DateTime(2021, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 351,
                             date = new DateTime(2021, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 352,
                             date = new DateTime(2021, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 353,
                             date = new DateTime(2021, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 354,
                             date = new DateTime(2021, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 355,
                             date = new DateTime(2021, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 356,
                             date = new DateTime(2021, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 357,
                             date = new DateTime(2021, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 358,
                             date = new DateTime(2021, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 359,
                             date = new DateTime(2021, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 360,
                             date = new DateTime(2021, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 361,
                             date = new DateTime(2021, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 362,
                             date = new DateTime(2021, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 363,
                             date = new DateTime(2021, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 364,
                             date = new DateTime(2021, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 365,
                             date = new DateTime(2021, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 13,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 366,
                             date = new DateTime(2021, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 10,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 367,
                             date = new DateTime(2021, 4, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 368,
                             date = new DateTime(2021, 4, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 369,
                             date = new DateTime(2021, 4, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 370,
                             date = new DateTime(2021, 4, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 45, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 45, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 9,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 371,
                             date = new DateTime(2021, 4, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 372,
                             date = new DateTime(2021, 4, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 2,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 373,
                             date = new DateTime(2021, 4, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 374,
                             date = new DateTime(2021, 4, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 375,
                             date = new DateTime(2021, 4, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 376,
                             date = new DateTime(2021, 4, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 377,
                             date = new DateTime(2021, 4, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 17, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 17, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 378,
                             date = new DateTime(2021, 4, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 5,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 379,
                             date = new DateTime(2021, 4, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 52, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 52, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 380,
                             date = new DateTime(2021, 4, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 381,
                             date = new DateTime(2021, 4, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 382,
                             date = new DateTime(2021, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 20, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 20, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 2,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 383,
                             date = new DateTime(2021, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 38, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 38, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 4,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 384,
                             date = new DateTime(2021, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 385,
                             date = new DateTime(2021, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 15f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 386,
                             date = new DateTime(2021, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 7,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 387,
                             date = new DateTime(2021, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 388,
                             date = new DateTime(2021, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 5,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 389,
                             date = new DateTime(2021, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 390,
                             date = new DateTime(2021, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 8,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 391,
                             date = new DateTime(2021, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 392,
                             date = new DateTime(2021, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 10,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 393,
                             date = new DateTime(2021, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 394,
                             date = new DateTime(2021, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 2, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 2, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 395,
                             date = new DateTime(2021, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 55, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 55, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 396,
                             date = new DateTime(2021, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 397,
                             date = new DateTime(2021, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 398,
                             date = new DateTime(2021, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 10,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 399,
                             date = new DateTime(2021, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 400,
                             date = new DateTime(2021, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 28f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 401,
                             date = new DateTime(2021, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 402,
                             date = new DateTime(2021, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 22, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 22, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 403,
                             date = new DateTime(2021, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 404,
                             date = new DateTime(2021, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 405,
                             date = new DateTime(2021, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 406,
                             date = new DateTime(2021, 4, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 407,
                             date = new DateTime(2021, 4, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 408,
                             date = new DateTime(2021, 4, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 409,
                             date = new DateTime(2021, 4, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 410,
                             date = new DateTime(2021, 4, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 411,
                             date = new DateTime(2021, 4, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 412,
                             date = new DateTime(2021, 4, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 413,
                             date = new DateTime(2021, 4, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 414,
                             date = new DateTime(2021, 4, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 415,
                             date = new DateTime(2021, 4, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 416,
                             date = new DateTime(2021, 4, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 417,
                             date = new DateTime(2021, 4, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 418,
                             date = new DateTime(2021, 4, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 13,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 419,
                             date = new DateTime(2021, 4, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 10,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 420,
                             date = new DateTime(2021, 4, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 421,
                             date = new DateTime(2021, 4, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 422,
                             date = new DateTime(2021, 4, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 423,
                             date = new DateTime(2021, 4, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 45, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 45, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 9,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 424,
                             date = new DateTime(2021, 4, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 425,
                             date = new DateTime(2021, 4, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 2,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 426,
                             date = new DateTime(2021, 4, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 427,
                             date = new DateTime(2021, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 428,
                             date = new DateTime(2021, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 429,
                             date = new DateTime(2021, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 430,
                             date = new DateTime(2021, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 17, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 17, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 431,
                             date = new DateTime(2021, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 5,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 432,
                             date = new DateTime(2021, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 52, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 52, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 433,
                             date = new DateTime(2021, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 434,
                             date = new DateTime(2021, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 435,
                             date = new DateTime(2021, 4, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 20, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 20, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 2,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 436,
                             date = new DateTime(2021, 4, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 38, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 38, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 4,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 437,
                             date = new DateTime(2021, 4, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 438,
                             date = new DateTime(2021, 4, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 15f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 439,
                             date = new DateTime(2021, 4, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 7,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 440,
                             date = new DateTime(2021, 4, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 441,
                             date = new DateTime(2021, 4, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 5,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 442,
                             date = new DateTime(2021, 4, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 443,
                             date = new DateTime(2021, 4, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 8,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 444,
                             date = new DateTime(2021, 4, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 445,
                             date = new DateTime(2021, 4, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 10,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 446,
                             date = new DateTime(2021, 4, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 447,
                             date = new DateTime(2021, 4, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 2, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 2, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 448,
                             date = new DateTime(2021, 4, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 55, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 55, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 449,
                             date = new DateTime(2021, 4, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 450,
                             date = new DateTime(2021, 4, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 451,
                             date = new DateTime(2021, 4, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 10,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 452,
                             date = new DateTime(2021, 4, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 453,
                             date = new DateTime(2021, 4, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 28f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 454,
                             date = new DateTime(2021, 4, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 455,
                             date = new DateTime(2021, 4, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 22, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 22, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 456,
                             date = new DateTime(2021, 4, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 457,
                             date = new DateTime(2021, 4, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 458,
                             date = new DateTime(2021, 4, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 459,
                             date = new DateTime(2021, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 460,
                             date = new DateTime(2021, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 461,
                             date = new DateTime(2021, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 462,
                             date = new DateTime(2021, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 463,
                             date = new DateTime(2021, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 464,
                             date = new DateTime(2021, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 465,
                             date = new DateTime(2021, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 466,
                             date = new DateTime(2021, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 467,
                             date = new DateTime(2021, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 468,
                             date = new DateTime(2021, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 469,
                             date = new DateTime(2021, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 470,
                             date = new DateTime(2021, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 471,
                             date = new DateTime(2021, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 13,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 472,
                             date = new DateTime(2021, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 10,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 473,
                             date = new DateTime(2021, 5, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 474,
                             date = new DateTime(2021, 5, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 475,
                             date = new DateTime(2021, 5, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 476,
                             date = new DateTime(2021, 5, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 45, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 45, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 9,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 477,
                             date = new DateTime(2021, 5, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 478,
                             date = new DateTime(2021, 5, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 2,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 479,
                             date = new DateTime(2021, 5, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 480,
                             date = new DateTime(2021, 5, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 481,
                             date = new DateTime(2021, 5, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 482,
                             date = new DateTime(2021, 5, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 483,
                             date = new DateTime(2021, 5, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 17, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 17, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 484,
                             date = new DateTime(2021, 5, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 5,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 485,
                             date = new DateTime(2021, 5, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 52, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 52, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 486,
                             date = new DateTime(2021, 5, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 487,
                             date = new DateTime(2021, 5, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 488,
                             date = new DateTime(2021, 5, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 20, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 20, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 2,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 489,
                             date = new DateTime(2021, 5, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 38, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 38, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 4,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 490,
                             date = new DateTime(2021, 5, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 491,
                             date = new DateTime(2021, 5, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 15f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 492,
                             date = new DateTime(2021, 5, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 7,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 493,
                             date = new DateTime(2021, 5, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 494,
                             date = new DateTime(2021, 5, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 5,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 495,
                             date = new DateTime(2021, 5, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 496,
                             date = new DateTime(2021, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 8,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 497,
                             date = new DateTime(2021, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 498,
                             date = new DateTime(2021, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 10,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 499,
                             date = new DateTime(2021, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 500,
                             date = new DateTime(2021, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 2, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 2, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 501,
                             date = new DateTime(2021, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 55, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 55, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 502,
                             date = new DateTime(2021, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 503,
                             date = new DateTime(2021, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 504,
                             date = new DateTime(2021, 5, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 10,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 505,
                             date = new DateTime(2021, 5, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 506,
                             date = new DateTime(2021, 5, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 28f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 507,
                             date = new DateTime(2021, 5, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 508,
                             date = new DateTime(2021, 5, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 22, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 22, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 509,
                             date = new DateTime(2021, 5, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 510,
                             date = new DateTime(2021, 5, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 511,
                             date = new DateTime(2021, 5, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 512,
                             date = new DateTime(2021, 5, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 513,
                             date = new DateTime(2021, 5, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 514,
                             date = new DateTime(2021, 5, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 515,
                             date = new DateTime(2021, 5, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 516,
                             date = new DateTime(2021, 5, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 517,
                             date = new DateTime(2021, 5, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 518,
                             date = new DateTime(2021, 5, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 519,
                             date = new DateTime(2021, 5, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 520,
                             date = new DateTime(2021, 5, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 521,
                             date = new DateTime(2021, 5, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 522,
                             date = new DateTime(2021, 5, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 523,
                             date = new DateTime(2021, 5, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 524,
                             date = new DateTime(2021, 5, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 13,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 525,
                             date = new DateTime(2021, 5, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 10,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 526,
                             date = new DateTime(2021, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 527,
                             date = new DateTime(2021, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 528,
                             date = new DateTime(2021, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 529,
                             date = new DateTime(2021, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 45, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 45, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 9,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 530,
                             date = new DateTime(2021, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 531,
                             date = new DateTime(2021, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 2,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 532,
                             date = new DateTime(2021, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 533,
                             date = new DateTime(2021, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 534,
                             date = new DateTime(2021, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 535,
                             date = new DateTime(2021, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 536,
                             date = new DateTime(2021, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 17, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 17, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 537,
                             date = new DateTime(2021, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 5,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 538,
                             date = new DateTime(2021, 5, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 52, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 52, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 539,
                             date = new DateTime(2021, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 540,
                             date = new DateTime(2021, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 541,
                             date = new DateTime(2021, 5, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 20, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 20, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 2,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 542,
                             date = new DateTime(2021, 5, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 38, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 38, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 4,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 543,
                             date = new DateTime(2021, 5, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 544,
                             date = new DateTime(2021, 5, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 15f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 545,
                             date = new DateTime(2021, 5, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 7,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 546,
                             date = new DateTime(2021, 5, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 547,
                             date = new DateTime(2021, 5, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 5,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 548,
                             date = new DateTime(2021, 5, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 549,
                             date = new DateTime(2021, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 8,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 550,
                             date = new DateTime(2021, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 551,
                             date = new DateTime(2021, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 10,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 552,
                             date = new DateTime(2021, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 553,
                             date = new DateTime(2021, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 2, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 2, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 554,
                             date = new DateTime(2021, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 55, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 55, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 555,
                             date = new DateTime(2021, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 556,
                             date = new DateTime(2021, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 557,
                             date = new DateTime(2021, 5, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 10,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 558,
                             date = new DateTime(2021, 5, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 559,
                             date = new DateTime(2021, 5, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 28f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 560,
                             date = new DateTime(2021, 5, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 561,
                             date = new DateTime(2021, 5, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 22, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 22, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 562,
                             date = new DateTime(2021, 5, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 563,
                             date = new DateTime(2021, 5, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 564,
                             date = new DateTime(2021, 5, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 565,
                             date = new DateTime(2021, 5, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 566,
                             date = new DateTime(2021, 5, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 567,
                             date = new DateTime(2021, 5, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 568,
                             date = new DateTime(2021, 5, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 569,
                             date = new DateTime(2021, 5, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 570,
                             date = new DateTime(2021, 5, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 571,
                             date = new DateTime(2021, 5, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 572,
                             date = new DateTime(2021, 5, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 573,
                             date = new DateTime(2021, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 574,
                             date = new DateTime(2021, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 575,
                             date = new DateTime(2021, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 576,
                             date = new DateTime(2021, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 577,
                             date = new DateTime(2021, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 13,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 578,
                             date = new DateTime(2021, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 10,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 579,
                             date = new DateTime(2021, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 580,
                             date = new DateTime(2021, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 581,
                             date = new DateTime(2021, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 582,
                             date = new DateTime(2021, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 45, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 45, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 9,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 583,
                             date = new DateTime(2021, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 584,
                             date = new DateTime(2021, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 2,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 585,
                             date = new DateTime(2021, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 586,
                             date = new DateTime(2021, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 587,
                             date = new DateTime(2021, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 588,
                             date = new DateTime(2021, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 589,
                             date = new DateTime(2021, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 17, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 17, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 590,
                             date = new DateTime(2021, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 5,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 591,
                             date = new DateTime(2021, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 52, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 52, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 592,
                             date = new DateTime(2021, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 593,
                             date = new DateTime(2021, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 594,
                             date = new DateTime(2021, 5, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 20, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 20, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 2,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 595,
                             date = new DateTime(2021, 5, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 38, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 38, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 4,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 596,
                             date = new DateTime(2021, 5, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 597,
                             date = new DateTime(2021, 5, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 15f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 598,
                             date = new DateTime(2021, 5, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 7,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 599,
                             date = new DateTime(2021, 5, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 600,
                             date = new DateTime(2021, 5, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 5,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 601,
                             date = new DateTime(2021, 5, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 602,
                             date = new DateTime(2021, 5, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 8,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 603,
                             date = new DateTime(2021, 5, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 604,
                             date = new DateTime(2021, 5, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 10,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 605,
                             date = new DateTime(2021, 5, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 606,
                             date = new DateTime(2021, 5, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 2, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 2, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 607,
                             date = new DateTime(2021, 5, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 55, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 55, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 608,
                             date = new DateTime(2021, 5, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 609,
                             date = new DateTime(2021, 5, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 610,
                             date = new DateTime(2021, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 10,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 611,
                             date = new DateTime(2021, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 612,
                             date = new DateTime(2021, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 28f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 613,
                             date = new DateTime(2021, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 614,
                             date = new DateTime(2021, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 22, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 22, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 615,
                             date = new DateTime(2021, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 616,
                             date = new DateTime(2021, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 617,
                             date = new DateTime(2021, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 618,
                             date = new DateTime(2021, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 619,
                             date = new DateTime(2021, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 620,
                             date = new DateTime(2021, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 621,
                             date = new DateTime(2021, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 622,
                             date = new DateTime(2021, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 623,
                             date = new DateTime(2021, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 624,
                             date = new DateTime(2021, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 625,
                             date = new DateTime(2021, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 626,
                             date = new DateTime(2021, 5, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 627,
                             date = new DateTime(2021, 5, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 628,
                             date = new DateTime(2021, 5, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 629,
                             date = new DateTime(2021, 5, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 630,
                             date = new DateTime(2021, 5, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 13,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 631,
                             date = new DateTime(2021, 5, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 10,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 632,
                             date = new DateTime(2021, 5, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 633,
                             date = new DateTime(2021, 5, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 634,
                             date = new DateTime(2021, 5, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 635,
                             date = new DateTime(2021, 5, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 45, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 45, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 9,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 636,
                             date = new DateTime(2021, 5, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 637,
                             date = new DateTime(2021, 5, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 2,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 638,
                             date = new DateTime(2021, 5, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 639,
                             date = new DateTime(2021, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 640,
                             date = new DateTime(2021, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 641,
                             date = new DateTime(2021, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 642,
                             date = new DateTime(2021, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 17, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 17, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 643,
                             date = new DateTime(2021, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 5,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 644,
                             date = new DateTime(2021, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 52, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 52, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 645,
                             date = new DateTime(2021, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 646,
                             date = new DateTime(2021, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 647,
                             date = new DateTime(2021, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 20, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 20, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 2,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 648,
                             date = new DateTime(2021, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 38, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 38, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 4,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 649,
                             date = new DateTime(2021, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 650,
                             date = new DateTime(2021, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 15f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 651,
                             date = new DateTime(2021, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 7,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 652,
                             date = new DateTime(2021, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 653,
                             date = new DateTime(2021, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 5,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 654,
                             date = new DateTime(2021, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 655,
                             date = new DateTime(2021, 5, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 8,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 656,
                             date = new DateTime(2021, 5, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 657,
                             date = new DateTime(2021, 5, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 10,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 658,
                             date = new DateTime(2021, 5, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 659,
                             date = new DateTime(2021, 5, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 2, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 2, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 660,
                             date = new DateTime(2021, 5, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 55, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 55, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 661,
                             date = new DateTime(2021, 5, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 662,
                             date = new DateTime(2021, 5, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 663,
                             date = new DateTime(2021, 5, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 10,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 664,
                             date = new DateTime(2021, 5, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 665,
                             date = new DateTime(2021, 5, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 28f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 666,
                             date = new DateTime(2021, 5, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 667,
                             date = new DateTime(2021, 5, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 22, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 22, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 668,
                             date = new DateTime(2021, 5, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 669,
                             date = new DateTime(2021, 5, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 670,
                             date = new DateTime(2021, 5, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 671,
                             date = new DateTime(2021, 5, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 672,
                             date = new DateTime(2021, 5, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 673,
                             date = new DateTime(2021, 5, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 674,
                             date = new DateTime(2021, 5, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 675,
                             date = new DateTime(2021, 5, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 676,
                             date = new DateTime(2021, 5, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 677,
                             date = new DateTime(2021, 5, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 678,
                             date = new DateTime(2021, 5, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 679,
                             date = new DateTime(2021, 5, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 680,
                             date = new DateTime(2021, 5, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 681,
                             date = new DateTime(2021, 5, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 682,
                             date = new DateTime(2021, 5, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 683,
                             date = new DateTime(2021, 5, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 13,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 684,
                             date = new DateTime(2021, 5, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 10,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 685,
                             date = new DateTime(2021, 5, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 686,
                             date = new DateTime(2021, 5, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 687,
                             date = new DateTime(2021, 5, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 688,
                             date = new DateTime(2021, 5, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 45, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 45, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 9,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 689,
                             date = new DateTime(2021, 5, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 690,
                             date = new DateTime(2021, 5, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 2,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 691,
                             date = new DateTime(2021, 5, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 692,
                             date = new DateTime(2021, 5, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 693,
                             date = new DateTime(2021, 5, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 694,
                             date = new DateTime(2021, 5, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 695,
                             date = new DateTime(2021, 5, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 17, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 17, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 696,
                             date = new DateTime(2021, 5, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 5,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 697,
                             date = new DateTime(2021, 5, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 52, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 52, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 698,
                             date = new DateTime(2021, 5, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 699,
                             date = new DateTime(2021, 5, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 700,
                             date = new DateTime(2021, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 20, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 20, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 2,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 701,
                             date = new DateTime(2021, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 38, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 38, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 4,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 702,
                             date = new DateTime(2021, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 703,
                             date = new DateTime(2021, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 15f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 704,
                             date = new DateTime(2021, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 7,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 705,
                             date = new DateTime(2021, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 706,
                             date = new DateTime(2021, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 5,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 707,
                             date = new DateTime(2021, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 708,
                             date = new DateTime(2021, 6, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 8,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 709,
                             date = new DateTime(2021, 6, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 710,
                             date = new DateTime(2021, 6, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 10,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 711,
                             date = new DateTime(2021, 6, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 712,
                             date = new DateTime(2021, 6, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 2, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 2, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 713,
                             date = new DateTime(2021, 6, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 55, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 55, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 714,
                             date = new DateTime(2021, 6, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 715,
                             date = new DateTime(2021, 6, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 716,
                             date = new DateTime(2021, 6, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 10,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 717,
                             date = new DateTime(2021, 6, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 718,
                             date = new DateTime(2021, 6, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 28f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 719,
                             date = new DateTime(2021, 6, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 720,
                             date = new DateTime(2021, 6, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 22, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 22, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 721,
                             date = new DateTime(2021, 6, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 722,
                             date = new DateTime(2021, 6, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 723,
                             date = new DateTime(2021, 6, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 724,
                             date = new DateTime(2021, 6, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 725,
                             date = new DateTime(2021, 6, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 726,
                             date = new DateTime(2021, 6, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 727,
                             date = new DateTime(2021, 6, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 728,
                             date = new DateTime(2021, 6, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 729,
                             date = new DateTime(2021, 6, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 730,
                             date = new DateTime(2021, 6, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 731,
                             date = new DateTime(2021, 6, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 732,
                             date = new DateTime(2021, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 733,
                             date = new DateTime(2021, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 734,
                             date = new DateTime(2021, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 735,
                             date = new DateTime(2021, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 736,
                             date = new DateTime(2021, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 13,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 737,
                             date = new DateTime(2021, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 10,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 738,
                             date = new DateTime(2021, 6, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 739,
                             date = new DateTime(2021, 6, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 740,
                             date = new DateTime(2021, 6, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 741,
                             date = new DateTime(2021, 6, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 45, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 45, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 9,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 742,
                             date = new DateTime(2021, 6, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 743,
                             date = new DateTime(2021, 6, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 2,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 744,
                             date = new DateTime(2021, 6, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 745,
                             date = new DateTime(2021, 6, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 746,
                             date = new DateTime(2021, 6, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 747,
                             date = new DateTime(2021, 6, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 748,
                             date = new DateTime(2021, 6, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 17, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 17, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 749,
                             date = new DateTime(2021, 6, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 5,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 750,
                             date = new DateTime(2021, 6, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 52, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 52, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 751,
                             date = new DateTime(2021, 6, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 752,
                             date = new DateTime(2021, 6, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 753,
                             date = new DateTime(2021, 6, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 20, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 20, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 2,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 754,
                             date = new DateTime(2021, 6, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 38, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 38, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 4,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 755,
                             date = new DateTime(2021, 6, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 756,
                             date = new DateTime(2021, 6, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 15f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 757,
                             date = new DateTime(2021, 6, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 7,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 758,
                             date = new DateTime(2021, 6, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 759,
                             date = new DateTime(2021, 6, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 5,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 760,
                             date = new DateTime(2021, 6, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 761,
                             date = new DateTime(2021, 6, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 8,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 762,
                             date = new DateTime(2021, 6, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 763,
                             date = new DateTime(2021, 6, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 10,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 764,
                             date = new DateTime(2021, 6, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 765,
                             date = new DateTime(2021, 6, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 2, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 2, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 766,
                             date = new DateTime(2021, 6, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 55, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 55, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 767,
                             date = new DateTime(2021, 6, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 768,
                             date = new DateTime(2021, 6, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 769,
                             date = new DateTime(2021, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 10,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 770,
                             date = new DateTime(2021, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 771,
                             date = new DateTime(2021, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 28f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 772,
                             date = new DateTime(2021, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 773,
                             date = new DateTime(2021, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 22, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 22, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 774,
                             date = new DateTime(2021, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 775,
                             date = new DateTime(2021, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 776,
                             date = new DateTime(2021, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 777,
                             date = new DateTime(2021, 6, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 778,
                             date = new DateTime(2021, 6, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 779,
                             date = new DateTime(2021, 6, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 780,
                             date = new DateTime(2021, 6, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 781,
                             date = new DateTime(2021, 6, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 782,
                             date = new DateTime(2021, 6, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 783,
                             date = new DateTime(2021, 6, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 784,
                             date = new DateTime(2021, 6, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 785,
                             date = new DateTime(2021, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 786,
                             date = new DateTime(2021, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 787,
                             date = new DateTime(2021, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 788,
                             date = new DateTime(2021, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 789,
                             date = new DateTime(2021, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 13,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 790,
                             date = new DateTime(2021, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 10,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 791,
                             date = new DateTime(2021, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 792,
                             date = new DateTime(2021, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 793,
                             date = new DateTime(2021, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 794,
                             date = new DateTime(2021, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 45, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 45, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 9,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 795,
                             date = new DateTime(2021, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 796,
                             date = new DateTime(2021, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 2,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 797,
                             date = new DateTime(2021, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 798,
                             date = new DateTime(2021, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 799,
                             date = new DateTime(2021, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 800,
                             date = new DateTime(2021, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 801,
                             date = new DateTime(2021, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 17, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 17, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 802,
                             date = new DateTime(2021, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 5,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 803,
                             date = new DateTime(2021, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 52, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 52, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 804,
                             date = new DateTime(2021, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 805,
                             date = new DateTime(2021, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 806,
                             date = new DateTime(2021, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 20, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 20, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 2,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 807,
                             date = new DateTime(2021, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 38, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 38, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 4,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 808,
                             date = new DateTime(2021, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 809,
                             date = new DateTime(2021, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 15f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 810,
                             date = new DateTime(2021, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 7,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 811,
                             date = new DateTime(2021, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 812,
                             date = new DateTime(2021, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 5,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 813,
                             date = new DateTime(2021, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 814,
                             date = new DateTime(2021, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 8,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 815,
                             date = new DateTime(2021, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 816,
                             date = new DateTime(2021, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 10,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 817,
                             date = new DateTime(2021, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 818,
                             date = new DateTime(2021, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 2, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 2, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 819,
                             date = new DateTime(2021, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 55, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 55, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 820,
                             date = new DateTime(2021, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 821,
                             date = new DateTime(2021, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 822,
                             date = new DateTime(2021, 6, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 10,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 823,
                             date = new DateTime(2021, 6, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 824,
                             date = new DateTime(2021, 6, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 28f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 825,
                             date = new DateTime(2021, 6, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 826,
                             date = new DateTime(2021, 6, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 22, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 22, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 827,
                             date = new DateTime(2021, 6, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 828,
                             date = new DateTime(2021, 6, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 829,
                             date = new DateTime(2021, 6, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 830,
                             date = new DateTime(2021, 6, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 831,
                             date = new DateTime(2021, 6, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 832,
                             date = new DateTime(2021, 6, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 833,
                             date = new DateTime(2021, 6, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 834,
                             date = new DateTime(2021, 6, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 835,
                             date = new DateTime(2021, 6, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 836,
                             date = new DateTime(2021, 6, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 837,
                             date = new DateTime(2021, 6, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 838,
                             date = new DateTime(2021, 6, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 839,
                             date = new DateTime(2021, 6, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 840,
                             date = new DateTime(2021, 6, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 841,
                             date = new DateTime(2021, 6, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 842,
                             date = new DateTime(2021, 6, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 13,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 843,
                             date = new DateTime(2021, 6, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 10,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 844,
                             date = new DateTime(2021, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 845,
                             date = new DateTime(2021, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 846,
                             date = new DateTime(2021, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 847,
                             date = new DateTime(2021, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 45, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 45, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 9,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 848,
                             date = new DateTime(2021, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 849,
                             date = new DateTime(2021, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 2,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 850,
                             date = new DateTime(2021, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 851,
                             date = new DateTime(2021, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 852,
                             date = new DateTime(2021, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 853,
                             date = new DateTime(2021, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 854,
                             date = new DateTime(2021, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 17, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 17, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 855,
                             date = new DateTime(2021, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 5,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 856,
                             date = new DateTime(2021, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 52, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 52, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 857,
                             date = new DateTime(2021, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 858,
                             date = new DateTime(2021, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 859,
                             date = new DateTime(2021, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 20, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 20, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 2,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 860,
                             date = new DateTime(2021, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 38, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 38, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 4,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 861,
                             date = new DateTime(2021, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 862,
                             date = new DateTime(2021, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 15f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 863,
                             date = new DateTime(2021, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 7,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 864,
                             date = new DateTime(2021, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 865,
                             date = new DateTime(2021, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 5,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 866,
                             date = new DateTime(2021, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 867,
                             date = new DateTime(2021, 6, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 8,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 868,
                             date = new DateTime(2021, 6, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 869,
                             date = new DateTime(2021, 6, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 10,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 870,
                             date = new DateTime(2021, 6, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 871,
                             date = new DateTime(2021, 6, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 2, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 2, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 872,
                             date = new DateTime(2021, 6, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 55, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 55, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 873,
                             date = new DateTime(2021, 6, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 874,
                             date = new DateTime(2021, 6, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 875,
                             date = new DateTime(2021, 6, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 10,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 876,
                             date = new DateTime(2021, 6, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 877,
                             date = new DateTime(2021, 6, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 28f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 878,
                             date = new DateTime(2021, 6, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 879,
                             date = new DateTime(2021, 6, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 22, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 22, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 880,
                             date = new DateTime(2021, 6, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 881,
                             date = new DateTime(2021, 6, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 882,
                             date = new DateTime(2021, 6, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 883,
                             date = new DateTime(2021, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 8,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 884,
                             date = new DateTime(2021, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 885,
                             date = new DateTime(2021, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 886,
                             date = new DateTime(2021, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 887,
                             date = new DateTime(2021, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 888,
                             date = new DateTime(2021, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 889,
                             date = new DateTime(2021, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 12, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 12, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 890,
                             date = new DateTime(2021, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 891,
                             date = new DateTime(2021, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 5,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 892,
                             date = new DateTime(2021, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 893,
                             date = new DateTime(2021, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 13,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 894,
                             date = new DateTime(2021, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 12,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 895,
                             date = new DateTime(2021, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 13,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 896,
                             date = new DateTime(2021, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 10,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 897,
                             date = new DateTime(2021, 6, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 12,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 898,
                             date = new DateTime(2021, 6, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 13,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 899,
                             date = new DateTime(2021, 6, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 11,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 900,
                             date = new DateTime(2021, 6, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 45, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 45, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 9,
                             price = 21f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 901,
                             date = new DateTime(2021, 6, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 11,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 902,
                             date = new DateTime(2021, 3, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 2,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 903,
                             date = new DateTime(2021, 6, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 40, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 40, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 4,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 904,
                             date = new DateTime(2021, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 10, 47, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 10, 47, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 905,
                             date = new DateTime(2021, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 12, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 12, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 906,
                             date = new DateTime(2021, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 16, 15, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 16, 15, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 9,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 907,
                             date = new DateTime(2021, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 17, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 17, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 3,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 908,
                             date = new DateTime(2021, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 5,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 909,
                             date = new DateTime(2021, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 52, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 52, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 10,
                             price = 20f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 910,
                             date = new DateTime(2021, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 5,
                             price = 19f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 911,
                             date = new DateTime(2021, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 32, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 32, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 11,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 912,
                             date = new DateTime(2021, 6, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 11, 20, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 11, 20, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 2,
                             price = 23f,
-                            s_hour = new DateTime(2021, 3, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 913,
                             date = new DateTime(2021, 6, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 13, 38, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 13, 38, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 4,
                             price = 25f,
-                            s_hour = new DateTime(2021, 3, 25, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 11, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 914,
                             date = new DateTime(2021, 6, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 15, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 15, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 6,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 915,
                             date = new DateTime(2021, 6, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 0,
                             movieId = 2,
                             price = 15f,
-                            s_hour = new DateTime(2021, 3, 25, 16, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 16, 30, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 916,
                             date = new DateTime(2021, 6, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 10, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 10, 0, 0, DateTimeKind.Unspecified),
                             hallId = 1,
                             is3D = 1,
                             movieId = 7,
                             price = 22f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 917,
                             date = new DateTime(2021, 6, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 14, 50, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 14, 50, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 7,
                             price = 26f,
-                            s_hour = new DateTime(2021, 3, 25, 12, 40, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 12, 40, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 918,
                             date = new DateTime(2021, 6, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 0,
                             movieId = 5,
                             price = 17f,
-                            s_hour = new DateTime(2021, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 919,
                             date = new DateTime(2021, 6, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            f_hour = new DateTime(2021, 3, 25, 23, 30, 0, 0, DateTimeKind.Unspecified),
+                            f_hour = new DateTime(2021, 4, 26, 23, 30, 0, 0, DateTimeKind.Unspecified),
                             hallId = 2,
                             is3D = 1,
                             movieId = 4,
                             price = 24f,
-                            s_hour = new DateTime(2021, 3, 25, 21, 30, 0, 0, DateTimeKind.Unspecified)
+                            s_hour = new DateTime(2021, 4, 26, 21, 30, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -10654,10 +10670,13 @@ namespace Licenta.Migrations
                     b.Property<int>("hallId")
                         .HasColumnType("int");
 
-                    b.Property<int>("number")
+                    b.Property<int>("order")
                         .HasColumnType("int");
 
-                    b.Property<int>("path")
+                    b.Property<int>("row")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("seatNo")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -10671,2626 +10690,2911 @@ namespace Licenta.Migrations
                         {
                             Id = 1,
                             hallId = 1,
-                            number = 1,
-                            path = 1
+                            order = 0,
+                            row = 1
                         },
                         new
                         {
                             Id = 2,
                             hallId = 1,
-                            number = 2,
-                            path = 1
+                            order = 0,
+                            row = 1
                         },
                         new
                         {
                             Id = 3,
                             hallId = 1,
-                            number = 3,
-                            path = 1
+                            order = 0,
+                            row = 1
                         },
                         new
                         {
                             Id = 4,
                             hallId = 1,
-                            number = 4,
-                            path = 1
+                            order = 0,
+                            row = 1
                         },
                         new
                         {
                             Id = 5,
                             hallId = 1,
-                            number = 5,
-                            path = 1
+                            order = 0,
+                            row = 1
                         },
                         new
                         {
                             Id = 6,
                             hallId = 1,
-                            number = 6,
-                            path = 1
+                            order = 0,
+                            row = 1
                         },
                         new
                         {
                             Id = 7,
                             hallId = 1,
-                            number = 7,
-                            path = 0
+                            order = 0,
+                            row = 1,
+                            seatNo = 9
                         },
                         new
                         {
                             Id = 8,
                             hallId = 1,
-                            number = 8,
-                            path = 0
+                            order = 0,
+                            row = 1,
+                            seatNo = 8
                         },
                         new
                         {
                             Id = 9,
                             hallId = 1,
-                            number = 9,
-                            path = 0
+                            order = 0,
+                            row = 1,
+                            seatNo = 7
                         },
                         new
                         {
                             Id = 10,
                             hallId = 1,
-                            number = 10,
-                            path = 0
+                            order = 0,
+                            row = 1,
+                            seatNo = 6
                         },
                         new
                         {
                             Id = 11,
                             hallId = 1,
-                            number = 11,
-                            path = 0
+                            order = 0,
+                            row = 1,
+                            seatNo = 5
                         },
                         new
                         {
                             Id = 12,
                             hallId = 1,
-                            number = 12,
-                            path = 0
+                            order = 0,
+                            row = 1,
+                            seatNo = 4
                         },
                         new
                         {
                             Id = 13,
                             hallId = 1,
-                            number = 13,
-                            path = 0
+                            order = 0,
+                            row = 1,
+                            seatNo = 3
                         },
                         new
                         {
                             Id = 14,
                             hallId = 1,
-                            number = 14,
-                            path = 0
+                            order = 0,
+                            row = 1,
+                            seatNo = 2
                         },
                         new
                         {
                             Id = 15,
                             hallId = 1,
-                            number = 15,
-                            path = 0
+                            order = 0,
+                            row = 1
                         },
                         new
                         {
                             Id = 16,
                             hallId = 1,
-                            number = 16,
-                            path = 1
+                            order = 0,
+                            row = 1
                         },
                         new
                         {
                             Id = 17,
                             hallId = 1,
-                            number = 17,
-                            path = 1
+                            order = 0,
+                            row = 1
                         },
                         new
                         {
                             Id = 18,
                             hallId = 1,
-                            number = 18,
-                            path = 1
+                            order = 0,
+                            row = 1
                         },
                         new
                         {
                             Id = 19,
                             hallId = 1,
-                            number = 19,
-                            path = 1
+                            order = 0,
+                            row = 1
                         },
                         new
                         {
                             Id = 20,
                             hallId = 1,
-                            number = 20,
-                            path = 1
+                            order = 0,
+                            row = 2
                         },
                         new
                         {
                             Id = 21,
                             hallId = 1,
-                            number = 21,
-                            path = 1
+                            order = 0,
+                            row = 2
                         },
                         new
                         {
                             Id = 22,
                             hallId = 1,
-                            number = 22,
-                            path = 1
+                            order = 0,
+                            row = 2
                         },
                         new
                         {
                             Id = 23,
                             hallId = 1,
-                            number = 23,
-                            path = 1
+                            order = 0,
+                            row = 2
                         },
                         new
                         {
                             Id = 24,
                             hallId = 1,
-                            number = 24,
-                            path = 1
+                            order = 0,
+                            row = 2
                         },
                         new
                         {
                             Id = 25,
                             hallId = 1,
-                            number = 25,
-                            path = 1
+                            order = 0,
+                            row = 2
                         },
                         new
                         {
                             Id = 26,
                             hallId = 1,
-                            number = 26,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 13
                         },
                         new
                         {
                             Id = 27,
                             hallId = 1,
-                            number = 27,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 12
                         },
                         new
                         {
                             Id = 28,
                             hallId = 1,
-                            number = 28,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 11
                         },
                         new
                         {
                             Id = 29,
                             hallId = 1,
-                            number = 29,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 10
                         },
                         new
                         {
                             Id = 30,
                             hallId = 1,
-                            number = 30,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 9
                         },
                         new
                         {
                             Id = 31,
                             hallId = 1,
-                            number = 31,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 8
                         },
                         new
                         {
                             Id = 32,
                             hallId = 1,
-                            number = 32,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 7
                         },
                         new
                         {
                             Id = 33,
                             hallId = 1,
-                            number = 33,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 6
                         },
                         new
                         {
                             Id = 34,
                             hallId = 1,
-                            number = 34,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 5
                         },
                         new
                         {
                             Id = 35,
                             hallId = 1,
-                            number = 35,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 4
                         },
                         new
                         {
                             Id = 36,
                             hallId = 1,
-                            number = 36,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 3
                         },
                         new
                         {
                             Id = 37,
                             hallId = 1,
-                            number = 37,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 2
                         },
                         new
                         {
                             Id = 38,
                             hallId = 1,
-                            number = 38,
-                            path = 0
+                            order = 0,
+                            row = 2
                         },
                         new
                         {
                             Id = 39,
                             hallId = 1,
-                            number = 39,
-                            path = 1
+                            order = 0,
+                            row = 2
                         },
                         new
                         {
                             Id = 40,
                             hallId = 1,
-                            number = 40,
-                            path = 1
+                            order = 0,
+                            row = 2
                         },
                         new
                         {
                             Id = 41,
                             hallId = 1,
-                            number = 41,
-                            path = 1
+                            order = 0,
+                            row = 2
                         },
                         new
                         {
                             Id = 42,
                             hallId = 1,
-                            number = 42,
-                            path = 1
+                            order = 0,
+                            row = 2
                         },
                         new
                         {
                             Id = 43,
                             hallId = 1,
-                            number = 43,
-                            path = 1
+                            order = 0,
+                            row = 3
                         },
                         new
                         {
                             Id = 44,
                             hallId = 1,
-                            number = 44,
-                            path = 1
+                            order = 0,
+                            row = 3
                         },
                         new
                         {
                             Id = 45,
                             hallId = 1,
-                            number = 45,
-                            path = 1
+                            order = 0,
+                            row = 3
                         },
                         new
                         {
                             Id = 46,
                             hallId = 1,
-                            number = 46,
-                            path = 1
+                            order = 0,
+                            row = 3
                         },
                         new
                         {
                             Id = 47,
                             hallId = 1,
-                            number = 47,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 13
                         },
                         new
                         {
                             Id = 48,
                             hallId = 1,
-                            number = 48,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 12
                         },
                         new
                         {
                             Id = 49,
                             hallId = 1,
-                            number = 49,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 11
                         },
                         new
                         {
                             Id = 50,
                             hallId = 1,
-                            number = 50,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 10
                         },
                         new
                         {
                             Id = 51,
                             hallId = 1,
-                            number = 51,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 9
                         },
                         new
                         {
                             Id = 52,
                             hallId = 1,
-                            number = 52,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 8
                         },
                         new
                         {
                             Id = 53,
                             hallId = 1,
-                            number = 53,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 7
                         },
                         new
                         {
                             Id = 54,
                             hallId = 1,
-                            number = 54,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 6
                         },
                         new
                         {
                             Id = 55,
                             hallId = 1,
-                            number = 55,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 5
                         },
                         new
                         {
                             Id = 56,
                             hallId = 1,
-                            number = 56,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 4
                         },
                         new
                         {
                             Id = 57,
                             hallId = 1,
-                            number = 57,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 3
                         },
                         new
                         {
                             Id = 58,
                             hallId = 1,
-                            number = 58,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 2
                         },
                         new
                         {
                             Id = 59,
                             hallId = 1,
-                            number = 59,
-                            path = 0
+                            order = 0,
+                            row = 3
                         },
                         new
                         {
                             Id = 60,
                             hallId = 1,
-                            number = 60,
-                            path = 1
+                            order = 0,
+                            row = 3
                         },
                         new
                         {
                             Id = 61,
                             hallId = 1,
-                            number = 61,
-                            path = 1
+                            order = 0,
+                            row = 3
                         },
                         new
                         {
                             Id = 62,
                             hallId = 1,
-                            number = 62,
-                            path = 1
+                            order = 0,
+                            row = 3
                         },
                         new
                         {
                             Id = 63,
                             hallId = 1,
-                            number = 63,
-                            path = 1
+                            order = 0,
+                            row = 3
                         },
                         new
                         {
                             Id = 64,
                             hallId = 1,
-                            number = 64,
-                            path = 1
+                            order = 0,
+                            row = 4
                         },
                         new
                         {
                             Id = 65,
                             hallId = 1,
-                            number = 65,
-                            path = 1
+                            order = 0,
+                            row = 4
                         },
                         new
                         {
                             Id = 66,
                             hallId = 1,
-                            number = 66,
-                            path = 1
+                            order = 0,
+                            row = 4
                         },
                         new
                         {
                             Id = 67,
                             hallId = 1,
-                            number = 67,
-                            path = 1
+                            order = 0,
+                            row = 4
                         },
                         new
                         {
                             Id = 68,
                             hallId = 1,
-                            number = 68,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 13
                         },
                         new
                         {
                             Id = 69,
                             hallId = 1,
-                            number = 69,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 12
                         },
                         new
                         {
                             Id = 70,
                             hallId = 1,
-                            number = 70,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 11
                         },
                         new
                         {
                             Id = 71,
                             hallId = 1,
-                            number = 71,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 10
                         },
                         new
                         {
                             Id = 72,
                             hallId = 1,
-                            number = 72,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 9
                         },
                         new
                         {
                             Id = 73,
                             hallId = 1,
-                            number = 73,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 8
                         },
                         new
                         {
                             Id = 74,
                             hallId = 1,
-                            number = 74,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 7
                         },
                         new
                         {
                             Id = 75,
                             hallId = 1,
-                            number = 75,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 6
                         },
                         new
                         {
                             Id = 76,
                             hallId = 1,
-                            number = 76,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 5
                         },
                         new
                         {
                             Id = 77,
                             hallId = 1,
-                            number = 77,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 4
                         },
                         new
                         {
                             Id = 78,
                             hallId = 1,
-                            number = 78,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 3
                         },
                         new
                         {
                             Id = 79,
                             hallId = 1,
-                            number = 79,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 2
                         },
                         new
                         {
                             Id = 80,
                             hallId = 1,
-                            number = 80,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 1
                         },
                         new
                         {
                             Id = 81,
                             hallId = 1,
-                            number = 81,
-                            path = 1
+                            order = 0,
+                            row = 4
                         },
                         new
                         {
                             Id = 82,
                             hallId = 1,
-                            number = 82,
-                            path = 1
+                            order = 0,
+                            row = 4
                         },
                         new
                         {
                             Id = 83,
                             hallId = 1,
-                            number = 83,
-                            path = 1
+                            order = 0,
+                            row = 4
                         },
                         new
                         {
                             Id = 84,
                             hallId = 1,
-                            number = 84,
-                            path = 1
+                            order = 0,
+                            row = 4
                         },
                         new
                         {
                             Id = 85,
                             hallId = 1,
-                            number = 85,
-                            path = 1
+                            order = 0,
+                            row = 5
                         },
                         new
                         {
                             Id = 86,
                             hallId = 1,
-                            number = 86,
-                            path = 1
+                            order = 0,
+                            row = 5
                         },
                         new
                         {
                             Id = 87,
                             hallId = 1,
-                            number = 87,
-                            path = 1
+                            order = 0,
+                            row = 5
                         },
                         new
                         {
                             Id = 88,
                             hallId = 1,
-                            number = 88,
-                            path = 1
+                            order = 0,
+                            row = 5
                         },
                         new
                         {
                             Id = 89,
                             hallId = 1,
-                            number = 89,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 13
                         },
                         new
                         {
                             Id = 90,
                             hallId = 1,
-                            number = 90,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 12
                         },
                         new
                         {
                             Id = 91,
                             hallId = 1,
-                            number = 91,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 11
                         },
                         new
                         {
                             Id = 92,
                             hallId = 1,
-                            number = 92,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 10
                         },
                         new
                         {
                             Id = 93,
                             hallId = 1,
-                            number = 93,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 9
                         },
                         new
                         {
                             Id = 94,
                             hallId = 1,
-                            number = 94,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 8
                         },
                         new
                         {
                             Id = 95,
                             hallId = 1,
-                            number = 95,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 7
                         },
                         new
                         {
                             Id = 96,
                             hallId = 1,
-                            number = 96,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 6
                         },
                         new
                         {
                             Id = 97,
                             hallId = 1,
-                            number = 97,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 5
                         },
                         new
                         {
                             Id = 98,
                             hallId = 1,
-                            number = 98,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 4
                         },
                         new
                         {
                             Id = 99,
                             hallId = 1,
-                            number = 99,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 3
                         },
                         new
                         {
                             Id = 100,
                             hallId = 1,
-                            number = 100,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 2
                         },
                         new
                         {
                             Id = 101,
                             hallId = 1,
-                            number = 101,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 1
                         },
                         new
                         {
                             Id = 102,
                             hallId = 1,
-                            number = 102,
-                            path = 1
+                            order = 0,
+                            row = 5
                         },
                         new
                         {
                             Id = 103,
                             hallId = 1,
-                            number = 103,
-                            path = 1
+                            order = 0,
+                            row = 5
                         },
                         new
                         {
                             Id = 104,
                             hallId = 1,
-                            number = 104,
-                            path = 1
+                            order = 0,
+                            row = 5
                         },
                         new
                         {
                             Id = 105,
                             hallId = 1,
-                            number = 105,
-                            path = 1
+                            order = 0,
+                            row = 5
                         },
                         new
                         {
                             Id = 106,
                             hallId = 1,
-                            number = 106,
-                            path = 1
+                            order = 0,
+                            row = 6
                         },
                         new
                         {
                             Id = 107,
                             hallId = 1,
-                            number = 107,
-                            path = 1
+                            order = 0,
+                            row = 6
                         },
                         new
                         {
                             Id = 108,
                             hallId = 1,
-                            number = 108,
-                            path = 1
+                            order = 0,
+                            row = 6
                         },
                         new
                         {
                             Id = 109,
                             hallId = 1,
-                            number = 109,
-                            path = 1
+                            order = 0,
+                            row = 6
                         },
                         new
                         {
                             Id = 110,
                             hallId = 1,
-                            number = 110,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 13
                         },
                         new
                         {
                             Id = 111,
                             hallId = 1,
-                            number = 111,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 12
                         },
                         new
                         {
                             Id = 112,
                             hallId = 1,
-                            number = 112,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 11
                         },
                         new
                         {
                             Id = 113,
                             hallId = 1,
-                            number = 113,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 10
                         },
                         new
                         {
                             Id = 114,
                             hallId = 1,
-                            number = 114,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 9
                         },
                         new
                         {
                             Id = 115,
                             hallId = 1,
-                            number = 115,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 8
                         },
                         new
                         {
                             Id = 116,
                             hallId = 1,
-                            number = 116,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 7
                         },
                         new
                         {
                             Id = 117,
                             hallId = 1,
-                            number = 117,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 6
                         },
                         new
                         {
                             Id = 118,
                             hallId = 1,
-                            number = 118,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 5
                         },
                         new
                         {
                             Id = 119,
                             hallId = 1,
-                            number = 119,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 4
                         },
                         new
                         {
                             Id = 120,
                             hallId = 1,
-                            number = 120,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 3
                         },
                         new
                         {
                             Id = 121,
                             hallId = 1,
-                            number = 121,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 2
                         },
                         new
                         {
                             Id = 122,
                             hallId = 1,
-                            number = 122,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 1
                         },
                         new
                         {
                             Id = 123,
                             hallId = 1,
-                            number = 123,
-                            path = 1
+                            order = 0,
+                            row = 6
                         },
                         new
                         {
                             Id = 124,
                             hallId = 1,
-                            number = 124,
-                            path = 1
+                            order = 0,
+                            row = 6
                         },
                         new
                         {
                             Id = 125,
                             hallId = 1,
-                            number = 125,
-                            path = 1
+                            order = 0,
+                            row = 6
                         },
                         new
                         {
                             Id = 126,
                             hallId = 1,
-                            number = 126,
-                            path = 1
+                            order = 0,
+                            row = 6
                         },
                         new
                         {
                             Id = 127,
                             hallId = 1,
-                            number = 127,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 17
                         },
                         new
                         {
                             Id = 128,
                             hallId = 1,
-                            number = 128,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 16
                         },
                         new
                         {
                             Id = 129,
                             hallId = 1,
-                            number = 129,
-                            path = 1
+                            order = 0,
+                            row = 7
                         },
                         new
                         {
                             Id = 130,
                             hallId = 1,
-                            number = 130,
-                            path = 1
+                            order = 0,
+                            row = 7
                         },
                         new
                         {
                             Id = 131,
                             hallId = 1,
-                            number = 131,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 15
                         },
                         new
                         {
                             Id = 132,
                             hallId = 1,
-                            number = 132,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 14
                         },
                         new
                         {
                             Id = 133,
                             hallId = 1,
-                            number = 133,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 13
                         },
                         new
                         {
                             Id = 134,
                             hallId = 1,
-                            number = 134,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 12
                         },
                         new
                         {
                             Id = 135,
                             hallId = 1,
-                            number = 135,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 11
                         },
                         new
                         {
                             Id = 136,
                             hallId = 1,
-                            number = 136,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 10
                         },
                         new
                         {
                             Id = 137,
                             hallId = 1,
-                            number = 137,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 9
                         },
                         new
                         {
                             Id = 138,
                             hallId = 1,
-                            number = 138,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 8
                         },
                         new
                         {
                             Id = 139,
                             hallId = 1,
-                            number = 139,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 7
                         },
                         new
                         {
                             Id = 140,
                             hallId = 1,
-                            number = 140,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 6
                         },
                         new
                         {
                             Id = 141,
                             hallId = 1,
-                            number = 141,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 5
                         },
                         new
                         {
                             Id = 142,
                             hallId = 1,
-                            number = 142,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 4
                         },
                         new
                         {
                             Id = 143,
                             hallId = 1,
-                            number = 143,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 3
                         },
                         new
                         {
                             Id = 144,
                             hallId = 1,
-                            number = 144,
-                            path = 1
+                            order = 0,
+                            row = 7
                         },
                         new
                         {
                             Id = 145,
                             hallId = 1,
-                            number = 145,
-                            path = 1
+                            order = 0,
+                            row = 7
                         },
                         new
                         {
                             Id = 146,
                             hallId = 1,
-                            number = 146,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 2
                         },
                         new
                         {
                             Id = 147,
                             hallId = 1,
-                            number = 147,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 1
                         },
                         new
                         {
                             Id = 148,
                             hallId = 1,
-                            number = 148,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 17
                         },
                         new
                         {
                             Id = 149,
                             hallId = 1,
-                            number = 149,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 16
                         },
                         new
                         {
                             Id = 150,
                             hallId = 1,
-                            number = 150,
-                            path = 1
+                            order = 0,
+                            row = 8
                         },
                         new
                         {
                             Id = 151,
                             hallId = 1,
-                            number = 151,
-                            path = 1
+                            order = 0,
+                            row = 8
                         },
                         new
                         {
                             Id = 152,
                             hallId = 1,
-                            number = 152,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 15
                         },
                         new
                         {
                             Id = 153,
                             hallId = 1,
-                            number = 153,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 14
                         },
                         new
                         {
                             Id = 154,
                             hallId = 1,
-                            number = 154,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 13
                         },
                         new
                         {
                             Id = 155,
                             hallId = 1,
-                            number = 155,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 12
                         },
                         new
                         {
                             Id = 156,
                             hallId = 1,
-                            number = 156,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 11
                         },
                         new
                         {
                             Id = 157,
                             hallId = 1,
-                            number = 157,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 10
                         },
                         new
                         {
                             Id = 158,
                             hallId = 1,
-                            number = 158,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 9
                         },
                         new
                         {
                             Id = 159,
                             hallId = 1,
-                            number = 159,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 8
                         },
                         new
                         {
                             Id = 160,
                             hallId = 1,
-                            number = 160,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 7
                         },
                         new
                         {
                             Id = 161,
                             hallId = 1,
-                            number = 161,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 6
                         },
                         new
                         {
                             Id = 162,
                             hallId = 1,
-                            number = 162,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 5
                         },
                         new
                         {
                             Id = 163,
                             hallId = 1,
-                            number = 163,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 4
                         },
                         new
                         {
                             Id = 164,
                             hallId = 1,
-                            number = 164,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 3
                         },
                         new
                         {
                             Id = 165,
                             hallId = 1,
-                            number = 165,
-                            path = 1
+                            order = 0,
+                            row = 8
                         },
                         new
                         {
                             Id = 166,
                             hallId = 1,
-                            number = 166,
-                            path = 1
+                            order = 0,
+                            row = 8
                         },
                         new
                         {
                             Id = 167,
                             hallId = 1,
-                            number = 167,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 2
                         },
                         new
                         {
                             Id = 168,
                             hallId = 1,
-                            number = 168,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 1
                         },
                         new
                         {
                             Id = 169,
                             hallId = 1,
-                            number = 169,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 17
                         },
                         new
                         {
                             Id = 170,
                             hallId = 1,
-                            number = 170,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 16
                         },
                         new
                         {
                             Id = 171,
                             hallId = 1,
-                            number = 171,
-                            path = 1
+                            order = 0,
+                            row = 9
                         },
                         new
                         {
                             Id = 172,
                             hallId = 1,
-                            number = 172,
-                            path = 1
+                            order = 0,
+                            row = 9
                         },
                         new
                         {
                             Id = 173,
                             hallId = 1,
-                            number = 173,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 15
                         },
                         new
                         {
                             Id = 174,
                             hallId = 1,
-                            number = 174,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 14
                         },
                         new
                         {
                             Id = 175,
                             hallId = 1,
-                            number = 175,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 13
                         },
                         new
                         {
                             Id = 176,
                             hallId = 1,
-                            number = 176,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 12
                         },
                         new
                         {
                             Id = 177,
                             hallId = 1,
-                            number = 177,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 11
                         },
                         new
                         {
                             Id = 178,
                             hallId = 1,
-                            number = 178,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 10
                         },
                         new
                         {
                             Id = 179,
                             hallId = 1,
-                            number = 179,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 9
                         },
                         new
                         {
                             Id = 180,
                             hallId = 1,
-                            number = 180,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 8
                         },
                         new
                         {
                             Id = 181,
                             hallId = 1,
-                            number = 181,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 7
                         },
                         new
                         {
                             Id = 182,
                             hallId = 1,
-                            number = 182,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 6
                         },
                         new
                         {
                             Id = 183,
                             hallId = 1,
-                            number = 183,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 5
                         },
                         new
                         {
                             Id = 184,
                             hallId = 1,
-                            number = 184,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 4
                         },
                         new
                         {
                             Id = 185,
                             hallId = 1,
-                            number = 185,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 3
                         },
                         new
                         {
                             Id = 186,
                             hallId = 1,
-                            number = 186,
-                            path = 1
+                            order = 0,
+                            row = 9
                         },
                         new
                         {
                             Id = 187,
                             hallId = 1,
-                            number = 187,
-                            path = 1
+                            order = 0,
+                            row = 9
                         },
                         new
                         {
                             Id = 188,
                             hallId = 1,
-                            number = 188,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 2
                         },
                         new
                         {
                             Id = 189,
                             hallId = 1,
-                            number = 189,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 1
                         },
                         new
                         {
                             Id = 190,
                             hallId = 1,
-                            number = 190,
-                            path = 0
+                            order = 0,
+                            row = 10,
+                            seatNo = 17
                         },
                         new
                         {
                             Id = 191,
                             hallId = 1,
-                            number = 191,
-                            path = 0
+                            order = 0,
+                            row = 10,
+                            seatNo = 16
                         },
                         new
                         {
                             Id = 192,
                             hallId = 1,
-                            number = 192,
-                            path = 1
+                            order = 0,
+                            row = 10
                         },
                         new
                         {
                             Id = 193,
                             hallId = 1,
-                            number = 193,
-                            path = 1
+                            order = 0,
+                            row = 10
                         },
                         new
                         {
                             Id = 194,
                             hallId = 1,
-                            number = 194,
-                            path = 0
+                            order = 0,
+                            row = 10,
+                            seatNo = 15
                         },
                         new
                         {
                             Id = 195,
                             hallId = 1,
-                            number = 195,
-                            path = 0
+                            order = 0,
+                            row = 10,
+                            seatNo = 14
                         },
                         new
                         {
                             Id = 196,
                             hallId = 1,
-                            number = 196,
-                            path = 0
+                            order = 0,
+                            row = 10,
+                            seatNo = 13
                         },
                         new
                         {
                             Id = 197,
                             hallId = 1,
-                            number = 197,
-                            path = 0
+                            order = 0,
+                            row = 10,
+                            seatNo = 12
                         },
                         new
                         {
                             Id = 198,
                             hallId = 1,
-                            number = 198,
-                            path = 0
+                            order = 0,
+                            row = 10,
+                            seatNo = 11
                         },
                         new
                         {
                             Id = 199,
                             hallId = 1,
-                            number = 199,
-                            path = 0
+                            order = 0,
+                            row = 10,
+                            seatNo = 10
                         },
                         new
                         {
                             Id = 200,
                             hallId = 1,
-                            number = 200,
-                            path = 0
+                            order = 0,
+                            row = 10,
+                            seatNo = 9
                         },
                         new
                         {
                             Id = 201,
                             hallId = 1,
-                            number = 201,
-                            path = 0
+                            order = 0,
+                            row = 10,
+                            seatNo = 8
                         },
                         new
                         {
                             Id = 202,
                             hallId = 1,
-                            number = 202,
-                            path = 0
+                            order = 0,
+                            row = 10,
+                            seatNo = 7
                         },
                         new
                         {
                             Id = 203,
                             hallId = 1,
-                            number = 203,
-                            path = 0
+                            order = 0,
+                            row = 10,
+                            seatNo = 6
                         },
                         new
                         {
                             Id = 204,
                             hallId = 1,
-                            number = 204,
-                            path = 0
+                            order = 0,
+                            row = 10,
+                            seatNo = 5
                         },
                         new
                         {
                             Id = 205,
                             hallId = 1,
-                            number = 205,
-                            path = 0
+                            order = 0,
+                            row = 10,
+                            seatNo = 4
                         },
                         new
                         {
                             Id = 206,
                             hallId = 1,
-                            number = 206,
-                            path = 0
+                            order = 0,
+                            row = 10,
+                            seatNo = 3
                         },
                         new
                         {
                             Id = 207,
                             hallId = 1,
-                            number = 207,
-                            path = 1
+                            order = 0,
+                            row = 10
                         },
                         new
                         {
                             Id = 208,
                             hallId = 1,
-                            number = 208,
-                            path = 1
+                            order = 0,
+                            row = 10
                         },
                         new
                         {
                             Id = 209,
                             hallId = 1,
-                            number = 209,
-                            path = 0
+                            order = 0,
+                            row = 10,
+                            seatNo = 2
                         },
                         new
                         {
                             Id = 210,
                             hallId = 1,
-                            number = 210,
-                            path = 0
+                            order = 0,
+                            row = 10,
+                            seatNo = 1
                         },
                         new
                         {
                             Id = 211,
                             hallId = 1,
-                            number = 211,
-                            path = 1
+                            order = 0,
+                            row = 11
                         },
                         new
                         {
                             Id = 212,
                             hallId = 1,
-                            number = 212,
-                            path = 0
+                            order = 0,
+                            row = 11,
+                            seatNo = 12
                         },
                         new
                         {
                             Id = 213,
                             hallId = 1,
-                            number = 213,
-                            path = 0
+                            order = 0,
+                            row = 11,
+                            seatNo = 11
                         },
                         new
                         {
                             Id = 214,
                             hallId = 1,
-                            number = 214,
-                            path = 0
+                            order = 0,
+                            row = 11,
+                            seatNo = 10
                         },
                         new
                         {
                             Id = 215,
                             hallId = 1,
-                            number = 215,
-                            path = 0
+                            order = 0,
+                            row = 11,
+                            seatNo = 9
                         },
                         new
                         {
                             Id = 216,
                             hallId = 1,
-                            number = 216,
-                            path = 0
+                            order = 0,
+                            row = 11,
+                            seatNo = 8
                         },
                         new
                         {
                             Id = 217,
                             hallId = 1,
-                            number = 217,
-                            path = 0
+                            order = 0,
+                            row = 11,
+                            seatNo = 7
                         },
                         new
                         {
                             Id = 218,
                             hallId = 1,
-                            number = 218,
-                            path = 1
+                            order = 0,
+                            row = 11
                         },
                         new
                         {
                             Id = 219,
                             hallId = 1,
-                            number = 219,
-                            path = 1
+                            order = 0,
+                            row = 11
                         },
                         new
                         {
                             Id = 220,
                             hallId = 1,
-                            number = 220,
-                            path = 1
+                            order = 0,
+                            row = 11
                         },
                         new
                         {
                             Id = 221,
                             hallId = 1,
-                            number = 221,
-                            path = 1
+                            order = 0,
+                            row = 11
                         },
                         new
                         {
                             Id = 222,
                             hallId = 1,
-                            number = 222,
-                            path = 1
+                            order = 0,
+                            row = 11
                         },
                         new
                         {
                             Id = 223,
                             hallId = 1,
-                            number = 223,
-                            path = 1
+                            order = 0,
+                            row = 11
                         },
                         new
                         {
                             Id = 224,
                             hallId = 1,
-                            number = 224,
-                            path = 1
+                            order = 0,
+                            row = 11
                         },
                         new
                         {
                             Id = 225,
                             hallId = 1,
-                            number = 225,
-                            path = 0
+                            order = 0,
+                            row = 11,
+                            seatNo = 6
                         },
                         new
                         {
                             Id = 226,
                             hallId = 1,
-                            number = 226,
-                            path = 0
+                            order = 0,
+                            row = 11,
+                            seatNo = 5
                         },
                         new
                         {
                             Id = 227,
                             hallId = 1,
-                            number = 227,
-                            path = 0
+                            order = 0,
+                            row = 11,
+                            seatNo = 4
                         },
                         new
                         {
                             Id = 228,
                             hallId = 1,
-                            number = 228,
-                            path = 0
+                            order = 0,
+                            row = 11,
+                            seatNo = 3
                         },
                         new
                         {
                             Id = 229,
                             hallId = 1,
-                            number = 229,
-                            path = 0
+                            order = 0,
+                            row = 11,
+                            seatNo = 2
                         },
                         new
                         {
                             Id = 230,
                             hallId = 1,
-                            number = 230,
-                            path = 0
+                            order = 0,
+                            row = 11,
+                            seatNo = 1
                         },
                         new
                         {
                             Id = 231,
                             hallId = 1,
-                            number = 231,
-                            path = 1
+                            order = 0,
+                            row = 11
                         },
                         new
                         {
                             Id = 232,
                             hallId = 2,
-                            number = 1,
-                            path = 0
+                            order = 0,
+                            row = 1,
+                            seatNo = 15
                         },
                         new
                         {
                             Id = 233,
                             hallId = 2,
-                            number = 2,
-                            path = 0
+                            order = 0,
+                            row = 1,
+                            seatNo = 14
                         },
                         new
                         {
                             Id = 234,
                             hallId = 2,
-                            number = 3,
-                            path = 0
+                            order = 0,
+                            row = 1,
+                            seatNo = 13
                         },
                         new
                         {
                             Id = 235,
                             hallId = 2,
-                            number = 4,
-                            path = 0
+                            order = 0,
+                            row = 1,
+                            seatNo = 12
                         },
                         new
                         {
                             Id = 236,
                             hallId = 2,
-                            number = 5,
-                            path = 0
+                            order = 0,
+                            row = 1,
+                            seatNo = 11
                         },
                         new
                         {
                             Id = 237,
                             hallId = 2,
-                            number = 6,
-                            path = 0
+                            order = 0,
+                            row = 1,
+                            seatNo = 10
                         },
                         new
                         {
                             Id = 238,
                             hallId = 2,
-                            number = 7,
-                            path = 0
+                            order = 0,
+                            row = 1,
+                            seatNo = 9
                         },
                         new
                         {
                             Id = 239,
                             hallId = 2,
-                            number = 8,
-                            path = 0
+                            order = 0,
+                            row = 1,
+                            seatNo = 8
                         },
                         new
                         {
                             Id = 240,
                             hallId = 2,
-                            number = 9,
-                            path = 0
+                            order = 0,
+                            row = 1,
+                            seatNo = 7
                         },
                         new
                         {
                             Id = 241,
                             hallId = 2,
-                            number = 10,
-                            path = 1
+                            order = 0,
+                            row = 1
                         },
                         new
                         {
                             Id = 242,
                             hallId = 2,
-                            number = 11,
-                            path = 0
+                            order = 0,
+                            row = 1,
+                            seatNo = 6
                         },
                         new
                         {
                             Id = 243,
                             hallId = 2,
-                            number = 12,
-                            path = 0
+                            order = 0,
+                            row = 1,
+                            seatNo = 5
                         },
                         new
                         {
                             Id = 244,
                             hallId = 2,
-                            number = 13,
-                            path = 0
+                            order = 0,
+                            row = 1,
+                            seatNo = 4
                         },
                         new
                         {
                             Id = 245,
                             hallId = 2,
-                            number = 14,
-                            path = 0
+                            order = 0,
+                            row = 1,
+                            seatNo = 3
                         },
                         new
                         {
                             Id = 246,
                             hallId = 2,
-                            number = 15,
-                            path = 0
+                            order = 0,
+                            row = 1,
+                            seatNo = 2
                         },
                         new
                         {
                             Id = 247,
                             hallId = 2,
-                            number = 16,
-                            path = 0
+                            order = 0,
+                            row = 1,
+                            seatNo = 1
                         },
                         new
                         {
                             Id = 248,
                             hallId = 2,
-                            number = 17,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 15
                         },
                         new
                         {
                             Id = 249,
                             hallId = 2,
-                            number = 18,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 14
                         },
                         new
                         {
                             Id = 250,
                             hallId = 2,
-                            number = 19,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 13
                         },
                         new
                         {
                             Id = 251,
                             hallId = 2,
-                            number = 20,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 12
                         },
                         new
                         {
                             Id = 252,
                             hallId = 2,
-                            number = 21,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 11
                         },
                         new
                         {
                             Id = 253,
                             hallId = 2,
-                            number = 22,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 10
                         },
                         new
                         {
                             Id = 254,
                             hallId = 2,
-                            number = 23,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 9
                         },
                         new
                         {
                             Id = 255,
                             hallId = 2,
-                            number = 24,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 8
                         },
                         new
                         {
                             Id = 256,
                             hallId = 2,
-                            number = 25,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 7
                         },
                         new
                         {
                             Id = 257,
                             hallId = 2,
-                            number = 26,
-                            path = 1
+                            order = 0,
+                            row = 2
                         },
                         new
                         {
                             Id = 258,
                             hallId = 2,
-                            number = 27,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 6
                         },
                         new
                         {
                             Id = 259,
                             hallId = 2,
-                            number = 28,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 5
                         },
                         new
                         {
                             Id = 260,
                             hallId = 2,
-                            number = 29,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 4
                         },
                         new
                         {
                             Id = 261,
                             hallId = 2,
-                            number = 30,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 3
                         },
                         new
                         {
                             Id = 262,
                             hallId = 2,
-                            number = 31,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 2
                         },
                         new
                         {
                             Id = 263,
                             hallId = 2,
-                            number = 32,
-                            path = 0
+                            order = 0,
+                            row = 2,
+                            seatNo = 1
                         },
                         new
                         {
                             Id = 264,
                             hallId = 2,
-                            number = 33,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 15
                         },
                         new
                         {
                             Id = 265,
                             hallId = 2,
-                            number = 34,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 14
                         },
                         new
                         {
                             Id = 266,
                             hallId = 2,
-                            number = 35,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 13
                         },
                         new
                         {
                             Id = 267,
                             hallId = 2,
-                            number = 36,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 12
                         },
                         new
                         {
                             Id = 268,
                             hallId = 2,
-                            number = 37,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 11
                         },
                         new
                         {
                             Id = 269,
                             hallId = 2,
-                            number = 38,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 10
                         },
                         new
                         {
                             Id = 270,
                             hallId = 2,
-                            number = 39,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 9
                         },
                         new
                         {
                             Id = 271,
                             hallId = 2,
-                            number = 40,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 8
                         },
                         new
                         {
                             Id = 272,
                             hallId = 2,
-                            number = 41,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 7
                         },
                         new
                         {
                             Id = 273,
                             hallId = 2,
-                            number = 42,
-                            path = 1
+                            order = 0,
+                            row = 3
                         },
                         new
                         {
                             Id = 274,
                             hallId = 2,
-                            number = 43,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 6
                         },
                         new
                         {
                             Id = 275,
                             hallId = 2,
-                            number = 44,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 5
                         },
                         new
                         {
                             Id = 276,
                             hallId = 2,
-                            number = 45,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 4
                         },
                         new
                         {
                             Id = 277,
                             hallId = 2,
-                            number = 46,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 3
                         },
                         new
                         {
                             Id = 278,
                             hallId = 2,
-                            number = 47,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 2
                         },
                         new
                         {
                             Id = 279,
                             hallId = 2,
-                            number = 48,
-                            path = 0
+                            order = 0,
+                            row = 3,
+                            seatNo = 1
                         },
                         new
                         {
                             Id = 280,
                             hallId = 2,
-                            number = 49,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 15
                         },
                         new
                         {
                             Id = 281,
                             hallId = 2,
-                            number = 50,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 14
                         },
                         new
                         {
                             Id = 282,
                             hallId = 2,
-                            number = 51,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 13
                         },
                         new
                         {
                             Id = 283,
                             hallId = 2,
-                            number = 52,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 12
                         },
                         new
                         {
                             Id = 284,
                             hallId = 2,
-                            number = 53,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 11
                         },
                         new
                         {
                             Id = 285,
                             hallId = 2,
-                            number = 54,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 10
                         },
                         new
                         {
                             Id = 286,
                             hallId = 2,
-                            number = 55,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 9
                         },
                         new
                         {
                             Id = 287,
                             hallId = 2,
-                            number = 56,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 8
                         },
                         new
                         {
                             Id = 288,
                             hallId = 2,
-                            number = 57,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 7
                         },
                         new
                         {
                             Id = 289,
                             hallId = 2,
-                            number = 58,
-                            path = 1
+                            order = 0,
+                            row = 4
                         },
                         new
                         {
                             Id = 290,
                             hallId = 2,
-                            number = 59,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 6
                         },
                         new
                         {
                             Id = 291,
                             hallId = 2,
-                            number = 60,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 5
                         },
                         new
                         {
                             Id = 292,
                             hallId = 2,
-                            number = 61,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 4
                         },
                         new
                         {
                             Id = 293,
                             hallId = 2,
-                            number = 62,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 3
                         },
                         new
                         {
                             Id = 294,
                             hallId = 2,
-                            number = 63,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 2
                         },
                         new
                         {
                             Id = 295,
                             hallId = 2,
-                            number = 64,
-                            path = 0
+                            order = 0,
+                            row = 4,
+                            seatNo = 1
                         },
                         new
                         {
                             Id = 296,
                             hallId = 2,
-                            number = 65,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 15
                         },
                         new
                         {
                             Id = 297,
                             hallId = 2,
-                            number = 66,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 14
                         },
                         new
                         {
                             Id = 298,
                             hallId = 2,
-                            number = 67,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 13
                         },
                         new
                         {
                             Id = 299,
                             hallId = 2,
-                            number = 68,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 12
                         },
                         new
                         {
                             Id = 300,
                             hallId = 2,
-                            number = 69,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 11
                         },
                         new
                         {
                             Id = 301,
                             hallId = 2,
-                            number = 70,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 10
                         },
                         new
                         {
                             Id = 302,
                             hallId = 2,
-                            number = 71,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 9
                         },
                         new
                         {
                             Id = 303,
                             hallId = 2,
-                            number = 72,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 8
                         },
                         new
                         {
                             Id = 304,
                             hallId = 2,
-                            number = 73,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 7
                         },
                         new
                         {
                             Id = 305,
                             hallId = 2,
-                            number = 74,
-                            path = 1
+                            order = 0,
+                            row = 5
                         },
                         new
                         {
                             Id = 306,
                             hallId = 2,
-                            number = 75,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 6
                         },
                         new
                         {
                             Id = 307,
                             hallId = 2,
-                            number = 76,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 5
                         },
                         new
                         {
                             Id = 308,
                             hallId = 2,
-                            number = 77,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 4
                         },
                         new
                         {
                             Id = 309,
                             hallId = 2,
-                            number = 78,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 3
                         },
                         new
                         {
                             Id = 310,
                             hallId = 2,
-                            number = 79,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 2
                         },
                         new
                         {
                             Id = 311,
                             hallId = 2,
-                            number = 80,
-                            path = 0
+                            order = 0,
+                            row = 5,
+                            seatNo = 1
                         },
                         new
                         {
                             Id = 312,
                             hallId = 2,
-                            number = 81,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 15
                         },
                         new
                         {
                             Id = 313,
                             hallId = 2,
-                            number = 82,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 14
                         },
                         new
                         {
                             Id = 314,
                             hallId = 2,
-                            number = 83,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 13
                         },
                         new
                         {
                             Id = 315,
                             hallId = 2,
-                            number = 84,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 12
                         },
                         new
                         {
                             Id = 316,
                             hallId = 2,
-                            number = 85,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 11
                         },
                         new
                         {
                             Id = 317,
                             hallId = 2,
-                            number = 86,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 10
                         },
                         new
                         {
                             Id = 318,
                             hallId = 2,
-                            number = 87,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 9
                         },
                         new
                         {
                             Id = 319,
                             hallId = 2,
-                            number = 88,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 8
                         },
                         new
                         {
                             Id = 320,
                             hallId = 2,
-                            number = 89,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 7
                         },
                         new
                         {
                             Id = 321,
                             hallId = 2,
-                            number = 90,
-                            path = 1
+                            order = 0,
+                            row = 6
                         },
                         new
                         {
                             Id = 322,
                             hallId = 2,
-                            number = 91,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 6
                         },
                         new
                         {
                             Id = 323,
                             hallId = 2,
-                            number = 92,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 5
                         },
                         new
                         {
                             Id = 324,
                             hallId = 2,
-                            number = 93,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 4
                         },
                         new
                         {
                             Id = 325,
                             hallId = 2,
-                            number = 94,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 3
                         },
                         new
                         {
                             Id = 326,
                             hallId = 2,
-                            number = 95,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 2
                         },
                         new
                         {
                             Id = 327,
                             hallId = 2,
-                            number = 96,
-                            path = 0
+                            order = 0,
+                            row = 6,
+                            seatNo = 1
                         },
                         new
                         {
                             Id = 328,
                             hallId = 2,
-                            number = 97,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 15
                         },
                         new
                         {
                             Id = 329,
                             hallId = 2,
-                            number = 98,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 14
                         },
                         new
                         {
                             Id = 330,
                             hallId = 2,
-                            number = 99,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 13
                         },
                         new
                         {
                             Id = 331,
                             hallId = 2,
-                            number = 100,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 12
                         },
                         new
                         {
                             Id = 332,
                             hallId = 2,
-                            number = 101,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 11
                         },
                         new
                         {
                             Id = 333,
                             hallId = 2,
-                            number = 102,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 10
                         },
                         new
                         {
                             Id = 334,
                             hallId = 2,
-                            number = 103,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 9
                         },
                         new
                         {
                             Id = 335,
                             hallId = 2,
-                            number = 104,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 8
                         },
                         new
                         {
                             Id = 336,
                             hallId = 2,
-                            number = 105,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 7
                         },
                         new
                         {
                             Id = 337,
                             hallId = 2,
-                            number = 106,
-                            path = 1
+                            order = 0,
+                            row = 7
                         },
                         new
                         {
                             Id = 338,
                             hallId = 2,
-                            number = 107,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 6
                         },
                         new
                         {
                             Id = 339,
                             hallId = 2,
-                            number = 108,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 5
                         },
                         new
                         {
                             Id = 340,
                             hallId = 2,
-                            number = 109,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 4
                         },
                         new
                         {
                             Id = 341,
                             hallId = 2,
-                            number = 110,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 3
                         },
                         new
                         {
                             Id = 342,
                             hallId = 2,
-                            number = 111,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 2
                         },
                         new
                         {
                             Id = 343,
                             hallId = 2,
-                            number = 112,
-                            path = 0
+                            order = 0,
+                            row = 7,
+                            seatNo = 1
                         },
                         new
                         {
                             Id = 344,
                             hallId = 2,
-                            number = 113,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 15
                         },
                         new
                         {
                             Id = 345,
                             hallId = 2,
-                            number = 114,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 14
                         },
                         new
                         {
                             Id = 346,
                             hallId = 2,
-                            number = 115,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 13
                         },
                         new
                         {
                             Id = 347,
                             hallId = 2,
-                            number = 116,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 12
                         },
                         new
                         {
                             Id = 348,
                             hallId = 2,
-                            number = 117,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 11
                         },
                         new
                         {
                             Id = 349,
                             hallId = 2,
-                            number = 118,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 10
                         },
                         new
                         {
                             Id = 350,
                             hallId = 2,
-                            number = 119,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 9
                         },
                         new
                         {
                             Id = 351,
                             hallId = 2,
-                            number = 120,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 8
                         },
                         new
                         {
                             Id = 352,
                             hallId = 2,
-                            number = 121,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 7
                         },
                         new
                         {
                             Id = 353,
                             hallId = 2,
-                            number = 122,
-                            path = 1
+                            order = 0,
+                            row = 8
                         },
                         new
                         {
                             Id = 354,
                             hallId = 2,
-                            number = 123,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 6
                         },
                         new
                         {
                             Id = 355,
                             hallId = 2,
-                            number = 124,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 5
                         },
                         new
                         {
                             Id = 356,
                             hallId = 2,
-                            number = 125,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 4
                         },
                         new
                         {
                             Id = 357,
                             hallId = 2,
-                            number = 126,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 3
                         },
                         new
                         {
                             Id = 358,
                             hallId = 2,
-                            number = 127,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 2
                         },
                         new
                         {
                             Id = 359,
                             hallId = 2,
-                            number = 128,
-                            path = 0
+                            order = 0,
+                            row = 8,
+                            seatNo = 1
                         },
                         new
                         {
                             Id = 360,
                             hallId = 2,
-                            number = 129,
-                            path = 1
+                            order = 0,
+                            row = 9
                         },
                         new
                         {
                             Id = 361,
                             hallId = 2,
-                            number = 130,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 14
                         },
                         new
                         {
                             Id = 362,
                             hallId = 2,
-                            number = 131,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 13
                         },
                         new
                         {
                             Id = 363,
                             hallId = 2,
-                            number = 132,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 12
                         },
                         new
                         {
                             Id = 364,
                             hallId = 2,
-                            number = 133,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 11
                         },
                         new
                         {
                             Id = 365,
                             hallId = 2,
-                            number = 134,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 10
                         },
                         new
                         {
                             Id = 366,
                             hallId = 2,
-                            number = 135,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 9
                         },
                         new
                         {
                             Id = 367,
                             hallId = 2,
-                            number = 136,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 8
                         },
                         new
                         {
                             Id = 368,
                             hallId = 2,
-                            number = 137,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 7
                         },
                         new
                         {
                             Id = 369,
                             hallId = 2,
-                            number = 138,
-                            path = 1
+                            order = 0,
+                            row = 9
                         },
                         new
                         {
                             Id = 370,
                             hallId = 2,
-                            number = 139,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 6
                         },
                         new
                         {
                             Id = 371,
                             hallId = 2,
-                            number = 140,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 5
                         },
                         new
                         {
                             Id = 372,
                             hallId = 2,
-                            number = 141,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 4
                         },
                         new
                         {
                             Id = 373,
                             hallId = 2,
-                            number = 142,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 3
                         },
                         new
                         {
                             Id = 374,
                             hallId = 2,
-                            number = 143,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 2
                         },
                         new
                         {
                             Id = 375,
                             hallId = 2,
-                            number = 144,
-                            path = 0
+                            order = 0,
+                            row = 9,
+                            seatNo = 1
                         });
                 });
 

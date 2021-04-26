@@ -28,7 +28,7 @@
         <h3 class="text-center">@Model.title</h3>
         <hr color="red" />
 
-        <video poster="~/@Model.img" width="650" height="480" controls style="display: block;margin: 0 auto;">
+        <video poster="~/@Model.img"  controls class="video">
             <source src="~/@Model.video" type="video/mp4">
 
             Your browser does not support the video tag.
@@ -37,7 +37,7 @@
         <br />
         <div class="pl-4 pr-4 form" style="border-radius:20px;">
             <div class="row pl-4 pr-4">
-                <div class="col-md-6 pt-4 " style="border-right:1px solid red">
+                <div class="col-md-6 pt-4 " >
                     <p>@Model.description</p>
                 </div>
 
@@ -94,7 +94,7 @@
                         <br />
                         <p>Alegeti o data:</p>
                         <select name="date" class="form-control" id="date">
-
+                            <option value="" selected>Selectati o data</option>
                             @foreach (var date in Model.dates)
                             {
                                 <option value="@date.ToString("yyyy-MM-dd")">@date.ToString("yyyy-MM-dd")</option>
@@ -103,7 +103,7 @@
                         </select>
                     </div>
 
-                    <div id="hours" class="col-sm-8 pr-5 pl-5">
+                    <div id="hours" class="col-sm-8 pr-5 pl-5 mt-2">
 
                     </div>
 
@@ -121,6 +121,10 @@
 
             $("#date").on('change', function () {
                 var date = $("#date").val();
+                if (date == "") {
+                    $("#hours").html(date);
+                    return;
+                }
                 var model = @Html.Raw(Json.Serialize(Model));
                 var id = model.id;
                 $.ajax({

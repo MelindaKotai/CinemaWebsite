@@ -1,11 +1,14 @@
 ﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 *@
 @{
 }
-@using Microsoft.AspNetCore.Identity
-@inject SignInManager<User> SignInManager
-@inject UserManager<User> UserManager
+
+@using Microsoft.AspNetCore.Identity;
+@model Licenta.ViewModels.ChooseSeatsViewModel;
+@inject SignInManager<User> SignInManager;
+@inject UserManager<User> UserManager;
+
 @section Css{
     <link rel="stylesheet" href="~/css/Screening.css" asp-append-version="true">
 }
@@ -18,110 +21,111 @@
 
 @if (Model != null)
 {
+        int row = 1;
+        float width1 = (float)100 / (float)(Model.cols + 1);
+        string width = width1.ToString("0.0000") + "%";
 
+    
 
     <div class="container bg-dark pt-4 pb-3 pl-5 pr-5" style="border-radius:10px;">
 
+        <div class="p-5">
+            <div class="seat free ml-1" style="width:@width;"></div>  Loc liber
+            <div class="seat reserved ml-1" style="width:@width;"></div>  Loc deja ocupat
+            <div class="seat selected ml-1" style="width:@width;"></div>  Loc selectat de dumneavoastră
+        </div>
+
         <div class="screen">Ecran</div>
 
-        @{ int s = 1;
-            int k = 0;
-            float width1 = (float)100 / (float)Model.cols;
-            string width = width1.ToString("0.00") + "%";
 
-        }
-        @for (int i = 0; i < Model.rows; i++)
-        {@Html.Raw("<div class='row mt-2 mb-2' >");
-        for (int j = 0; j < Model.cols; j++)
-        {
-            int elem = j + i * Model.cols + 1;
-            if (Model.paths.Contains(elem))
+        <div class="row">
+            <div class="path" style="width:@width;"><b>R1</b></div>
+            @foreach (var seat in Model.seats)
             {
-                <div class="path" style="width:@width;"></div>
-                k++;
-                continue;
+                @if (seat.row != row)
+                {
+
+                    @if (seat.row == 0)
+                    {
+                        @Html.Raw("</div><div class='row'>");
+                        row = seat.row;
+
+                    }
+                    else
+                    {
+                        @Html.Raw("</div><div class='row'>");
+                        row = seat.row;
+                        <div class="path" style="width:@width;"><b>R</b><b>@row</b></div>
+
+
+                    }
+
+                }
+
+                @if (seat.seatNo == null)
+                {
+                    <div class="path" style="width:@width;"></div>
+                    continue;
+                }
+
+                @if (Model.reserved.Contains(seat.Id))
+                {
+                    <div class="seat reserved" style="width:@width;">@seat.seatNo</div>
+                    continue;
+                }
+                @if (Model.selectedseats != null)
+                {
+                    @if (Model.selectedseats.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList().Contains(seat.Id))
+                    {
+
+                        <div class="seat selected" style="width:@width;">@seat.seatNo</div>
+                        continue;
+                    }
+                }
+                <div id="@seat.Id" class="seat free" style="width:@width;">@seat.seatNo</div>
+
             }
-
-            if (Model.reserved.Contains(elem))
-            {
-                <div class="seat reserved" style="width:@width;">@s</div>
-                s++;
-                k++;
-                continue;
-
-            }
-            <div id="@Model.seatids[k]" class="seat free" style="width:@width;">@s</div>
-            s++;
-            k++;
-        }
-        @Html.Raw("</div>");
-
-
-    }
+        </div>
 
         <div class="row mt-4 pl-5 pr-5" style="border-top:2px solid black;">
 
 
             <div class="col">
-                @if (SignInManager.IsSignedIn(User))
-                {@if (User.IsInRole("Client"))
+                <form action="/Screening/ChooseSeats/@Model.screeningId" method="POST" id="reserveform">
+
+                    <input asp-for="selectedseats" type="hidden" />
+                    <input asp-for="screeningId" type="hidden" />
+                    <input asp-for="userId" type="hidden" />
+                    <label asp-for="nume"></label>
+                    <input asp-for="nume" class="form-control" />
+                    <span asp-validation-for="nume" class="text-danger"></span>
+                    <br />
+                    <label asp-for="prenume"></label>
+                    <input asp-for="prenume" class="form-control" />
+                    <span asp-validation-for="prenume" class="text-danger"></span>
+                    <br />
+                    <label asp-for="email"></label>
+                    <input asp-for="email" class="form-control" />
+                    <span asp-validation-for="email" class="text-danger"></span>
+                    <br />
+                    <label asp-for="telefon"></label>
+                    <input asp-for="telefon" class="form-control" />
+                    <span asp-validation-for="telefon" class="text-danger"></span>
+                    <br />
+                    <br />
+                    @if (User.IsInRole("Administrator"))
                     {
-                        <form action="/Screening/Reserve" method="POST" id="reserveform">
-                            <input type="hidden" value="@UserManager.GetUserId(User)" name="userId" required />
-                            <input type="hidden" value="@Model.screeningId" name="screeningId" required />
-                            <input type="hidden" id="seatslist" name="seats" />
-
-
-                            <br />
-                            <input type="submit" class="btn btn-danger reserve" name="action" value="Rezerva biletele" / >
-                            <br />
-                            <br />
-                            <input type="submit" class="btn btn-danger reserve" name="action"  value="Cumpara bilete" />
-                        </form>
+                        <input type="submit" class="btn btn-danger reserve" name="action" value="Rezerva biletele" />
                     }
                     else
                     {
-            <form action="/Screening/Reserve" method="POST" id="reserveform">
-                <label>Email:</label>
-                <input type="email" class="form-control" name="email" value="cinemawebsitelicense@gmail.com" required />
-                <label>Nume:</label>
-                <input type="text" class="form-control" name="nume" value="client in cinema" required />
-                <label>Prenume:</label>
-                <input type="text" class="form-control" name="prenume" value="client in cinema" required />
-                <input type="hidden" value="@Model.screeningId" name="screeningId" required />
-                <input type="hidden" name="seats" id="seatslist" />
-
-                <br />
-                <input type="submit" class="btn btn-danger reserve" name="action" value="Rezerva biletele" />
-                <br />
-                <br />
-                <input type="submit" class="btn btn-danger reserve" name="action" value="Cumpara bilete" />
-            </form>
-
-
+                        <input type="submit" class="btn btn-danger reserve" name="action" value="Rezerva biletele" />
+                        <br />
+                        <br />
+                        <input type="submit" class="btn btn-danger reserve" name="action" value="Cumpara bilete" />
                     }
+                </form>
 
-
-            }
-            else
-            {
-            <form action="/Screening/Reserve" method="POST" id="reserveform">
-                <label>Email:</label>
-                <input type="email" class="form-control" name="email" required />
-                <label>Nume:</label>
-                <input type="text" class="form-control" name="nume" required />
-                <label>Prenume:</label>
-                <input type="text" class="form-control" name="prenume" required />
-                <input type="hidden" value="@Model.screeningId" name="screeningId" required />
-                <input type="hidden" name="seats" id="seatslist" />
-
-                <br />
-                <input type="submit" class="btn btn-danger reserve" name="action" value="Rezerva biletele" />
-                <br />
-                <br />
-                <input type="submit" class="btn btn-danger reserve" name="action" value="Cumpara bilete" />
-            </form>
-            }
             </div>
             <div class="col-md-4 " style="text-align:right;">
                 <br />
@@ -137,8 +141,14 @@
 <script type="text/javascript">
 
     var model = @Html.Raw(Json.Serialize(Model));
-    var noseats = model.notickets;
+
     var seats = new Array();
+    var selected = 0;
+    if (model.selectedseats != null) {
+        seats = model.selectedseats.split(",").map(Number);
+        selected = seats.count();
+    }
+    var noseats = model.notickets - model.selectedseats;
     $('.seat').click(function (event) {
 
         //daca este un scaun deja rezervat nu se permite selectarea lui
@@ -176,12 +186,15 @@
 
     });
 
-    $('.reserve').click(function () {
-        if (noseats==0) {
-            $('#seatslist').val(seats.toString());
+    $('.reserve').click(function (e) {
+        if (noseats == 0) {
+            $('#selectedseats').val(seats.toString());
 
             $('#reserveform').submit();
-        } else alert("Mai aveti " + noseats + " locuri de selectat!");
+        } else {
+            e.preventDefault();
+            alert("Mai aveti " + noseats + " locuri de selectat!");
+        }
 
     });
 

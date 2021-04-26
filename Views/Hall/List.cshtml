@@ -34,51 +34,52 @@
 
 
 
+        <div class="ofx">
+            <table class="table table-dark table-bordered">
+                <thead><tr><th scope="col">Nume</th><th class="text-center" scope="col">Numar de locuri</th><th class="text-center" scope="col">Activa</th><th class="text-center" scope="col">Actiune</th></tr></thead>
 
-        <table class="table table-dark table-bordered">
-            <thead><tr><th scope="col">Nume</th><th class="text-center" scope="col">Numar de locuri</th><th class="text-center" scope="col">Activa</th><th class="text-center" scope="col">Actiune</th></tr></thead>
+                @foreach (var hall in Model)
+                {
 
-            @foreach (var hall in Model)
-            {
+                    <tr style=" word-break: break-all;">
+                        <td>
+                            @hall.name
+                        </td>
+                        <td>@hall.noseats</td>
+                        <td>
+                            @if (hall.active == 0)
+                            {
+                                <select class="status" name="active">
+                                    <option value="@hall.id">Activa</option>
+                                    <option value="@hall.id" selected>Inactiva</option>
+                                </select>
 
-                <tr style=" word-break: break-all;">
-                    <td>
-                        @hall.name
-                    </td>
-                    <td>@hall.noseats</td>
-                    <td>
-                        @if (hall.active == 0)
-                        {
-                            <select class="status" name="active">
-                                <option value="@hall.id">Activa</option>
-                                <option value="@hall.id" selected>Inactiva</option>
-                            </select>
+                            }
+                            else
+                            {
+                                <select class="status" name="active">
+                                    <option value="@hall.id" selected>Activa</option>
+                                    <option value="@hall.id">Inactiva</option>
+                                </select>
 
-                        }
-                        else
-                        {
-                            <select class="status" name="active">
-                                <option value="@hall.id" selected>Activa</option>
-                                <option value="@hall.id">Inactiva</option>
-                            </select>
-
-                        }
-                    </td>
-                    <td>
-                        <a class="btn btn-danger" href="/Hall/Structure/@hall.id">Vezi structura salii</a>
-                        <br />
-                        <br />
-                        <a class="btn btn-success" href="/Hall/Update/@hall.id">Editeaza numele salii</a>
-
-
-                    </td>
+                            }
+                        </td>
+                        <td>
+                            <a class="btn btn-danger" href="/Hall/Structure/@hall.id">Vezi structura salii</a>
+                            <br />
+                            <br />
+                            <a class="btn btn-success" href="/Hall/Update/@hall.id">Editeaza numele salii</a>
 
 
+                        </td>
 
 
-                </tr>
-            }
-        </table>
+
+
+                    </tr>
+                }
+            </table>
+        </div>
         @section Scripts{
             <script type="text/javascript" src="~/js/HallList.js" asp-append-version="true"></script>
         }

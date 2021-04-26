@@ -55,7 +55,7 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse mt-2">
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav">
 
@@ -63,7 +63,7 @@
                             <a class="nav-link text-light" href="/Home/Contact" >Contact</a>
                         </li>
                         <li class="nav-item pl-4">
-                            <a class="nav-link text-light" href="/Screening?date=@DateTime.Now.ToString("yyyy-MM-dd")">Program</a>
+                            <a class="nav-link text-light program" href="/Screening?date=@DateTime.Now.ToString("yyyy-MM-dd")">Program</a>
                         </li>
                         @if (SignInManager.IsSignedIn(User))
                         {
@@ -139,10 +139,16 @@
             $(function () {
                 var path = location.pathname + location.search;
                 $('a[href="' + path + '"]').addClass('active');
+                if (path.indexOf("Screening?") !== -1) {
+                    $(".program").addClass('active');
+
+                }
 
 
                 $("#icon").removeClass('active');
             });
+
+
             function openNav() {
                 document.getElementById("Sidenav").style.width = "250px";
             }

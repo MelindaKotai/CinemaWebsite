@@ -29,8 +29,13 @@ namespace Licenta.Controllers
             _userManager = userManager;
         }
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> List(string q)
+        public async Task<IActionResult> List(string q,int p)
         {
+
+            if (p == null || p == 0)
+            {
+                p = 1;
+            }
             List<UserViewModel> model = new List<UserViewModel>();
 
             var users = await _context.Users.ToListAsync();
@@ -53,6 +58,15 @@ namespace Licenta.Controllers
                 model.Add(u);
 
             }
+            if (model.Count % 5 == 0)
+                ViewBag.noPages = (model.Count / 5);
+            else
+                ViewBag.noPages = (model.Count / 5) + 1;
+            model = model.Skip((p - 1) * 5).Take(5).ToList();
+          
+
+
+            ViewBag.currPage = p;
             if (model.Count == 0)
             {
                 ViewBag.ErrorMessage = "Nu a fost gasit nici un utilizator!";

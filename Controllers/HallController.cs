@@ -38,7 +38,7 @@ namespace Licenta.Controllers
                 h.name = hall.name;
                 h.active = hall.active;
 
-                var noseats = await _context.Seats.Where(x => x.path == 0).Where(x => x.hallId == hall.id).CountAsync();
+                var noseats = await _context.Seats.Where(x => x.seatNo != null).Where(x => x.hallId == hall.id).CountAsync();
                 h.noseats = noseats;
                 model.Add(h);
 
@@ -52,7 +52,10 @@ namespace Licenta.Controllers
 
             if (TempData["SuccesMessage"] != null)
                 ViewBag.SuccesMessage = TempData["SuccesMessage"];
-                return View(model);
+
+            if (TempData["ErrorMessage"] != null)
+                ViewBag.ErrorMessage = TempData["ErrorMessage"];
+            return View(model);
         }
 
         [HttpPost]
@@ -94,12 +97,13 @@ namespace Licenta.Controllers
             HallStructureViewModel model = new HallStructureViewModel();
             model.hallid = hall.id;
             model.cols = hall.columns;
-            model.rows = hall.rows;
+        
             model.name = hall.name;
 
-            List<int> paths = await _context.Seats.Where(x => x.path == 1).Where(x => x.hallId == id).Select(x => x.number).ToListAsync();
+            //locurile sunt returnate in ordinea lor din matrice
+            List<Seat> seats = await _context.Seats.Where(x => x.hallId == id).OrderBy(x=>x.order).ToListAsync();
 
-            model.paths = paths;
+            model.seats = seats;
             return View(model);
         }
 
@@ -166,35 +170,100 @@ namespace Licenta.Controllers
             {
                 return View(model);
             }
-            Hall  hall = new Hall();
-            hall.name= model.name;
-            hall.rows=model.rows;
-            hall.columns=model.cols;
-            hall.active = 1;
-            _context.Halls.Add(hall);
-            await _context.SaveChangesAsync();
-            List<string> paths = model.paths.Split(',').ToList();
 
-            for(int i = 1; i <= model.rows * model.cols; i++)
+
+
+            //tranzactie->ori se creaza sala cu toate locurile ori nimic
+            using var transaction = _context.Database.BeginTransaction();
+
+            try
             {
-                Seat seat = new Seat();
-                if (paths.Contains(i.ToString()))
+                Hall hall = new Hall();
+                hall.name = model.name;
+                hall.rows = model.rows;
+                hall.columns = model.cols;
+                hall.active = 1;
+
+                _context.Halls.Add(hall);
+                await _context.SaveChangesAsync();
+
+                //lista de culoare
+                List<int> paths = model.paths.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
+
+                //primul rand de scaune
+                int row = 1;
+                for (int i = 1; i <= model.rows; i++)
                 {
-                    seat.path = 1;
+                    //numarul de ordine al primului element al matricii de pe randul curent
+                    int firstRowElement = i * model.cols - model.cols + 1;
 
+                    //lista numeelor de ordine a elementelor din matrice de pe randul curent
+                    List<int> rowElementsNumbers = Enumerable.Range(firstRowElement, model.cols).ToList();
+
+                    //se verifica daca in lista de elemenete exista doar culoare
+                    if (rowElementsNumbers.Except(paths).ToList().Count == 0)
+                    {
+                        //se creaza un rand intreg de culoare cu row=0 si seat.no=null
+                        for (int j = 1; j <= model.cols; j++)
+                        {
+                            Seat seat = new Seat();
+                            //numarul elementului din matrice
+                            var order = j + (i - 1) * model.cols;
+                            seat.hallId = hall.id;
+
+                            //randurile complet goale nu sunt considerate randuri de scaune
+                            seat.row = 0;
+                            seat.seatNo = null;
+                            seat.order = order;
+                            _context.Seats.Add(seat);
+                        }
+                    }
+                    else
+                    {   //numarul de scaune pe randul respectiv
+                        int noseats = model.cols - rowElementsNumbers.AsQueryable().Intersect(paths).Count();
+                        for (int j = 1; j <= model.cols; j++)
+                        {
+                            Seat seat = new Seat();
+
+                            //numarul elementului din matrice
+                            var order = j + (i - 1) * model.cols;
+                            //se verifica daca elementul curent e culoar
+                            if (paths.Contains(firstRowElement + j - 1))
+                            {
+                                seat.hallId = hall.id;
+                                seat.row = row;
+                                seat.seatNo = null;
+                                seat.order = order;
+                                _context.Seats.Add(seat);
+
+
+                            }
+                            else
+                            {
+                                seat.hallId = hall.id;
+                                seat.row = row;
+                                seat.seatNo = noseats;
+                                seat.order = order;
+                                _context.Seats.Add(seat);
+                                noseats--;
+                            }
+                        }
+                        //se incrementeaza randurile de scaune doar daca randul contine cel putin un scaun
+                        row++;
+                    }
                 }
-                else
-                {
-                    seat.path = 0;
-                }
 
-                seat.hallId = hall.id;
-                seat.number = i;
-                _context.Seats.Add(seat);
-
+                //se incheie tranzactia
+                
+                await _context.SaveChangesAsync();
+                transaction.Commit();
             }
-
-            await _context.SaveChangesAsync();
+            catch (Exception)
+            {
+                transaction.Rollback();
+                TempData["ErrorMessage"] = "O eroare a intervenit in crearea sălii și procesul a eșuat! Mai încercați odată!";
+                return RedirectToAction("List");
+            }
 
             TempData["SuccesMessage"] = "Sala a fost creata cu succes!";
             return RedirectToAction("List");

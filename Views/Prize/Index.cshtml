@@ -82,58 +82,30 @@ else
     </div>
 
 
+    <script type="text/javascript">
+
+        var model = @Html.Raw(Json.Serialize(Model.prizes));
+        function alertPrize(indicatedSegment) {
+
+    alert("You have won " + indicatedSegment.text);
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+
+        }
+    };
+    var userid = '@UserManager.GetUserId(User)';
+    xhttp.open("POST", "/Prize/CreatePrize", false);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("prize=" + indicatedSegment.text + "&user=" + userid);
+}
+
+    </script>
     @section Scripts{
         <script src="~/js/Winwheel.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
         <script type="text/javascript" src="~/js/PrizeIndex.js" asp-append-version="true"></script>
-       
-    }
-    <script type="text/javascript">
-
-    var model = @Html.Raw(Json.Serialize(Model.prizes));
-
-    var segments = Object.keys(model).length;
-
-
-        window.onload = function () {
-            colors = ["#CC2609", "#0923CC", "#CCC609", "#0ECD17", "#CD0E70", "#0EC0CD"]
-            j = 0;
-            for (let i = 1; i <= segments; i++) {
-                theWheel.segments[i].text = model[i - 1].name;
-                if (j >= colors.length) {
-                    j = 0
-                    theWheel.segments[i].fillStyle = colors[j];
-                    j++
-                } else {
-                    theWheel.segments[i].fillStyle = colors[j];
-                    j++
-                }
-            } document.getElementById("spinbutton").disabled = true;
-
-            var height = document.getElementById('canvas').offsetHeight;
-            height = height + 146;
-            var width = document.getElementById('canvas').offsetWidth;
-
-            document.getElementById('the_wheel').setAttribute("style", "height:" + height + "px;width: " + width + "px");
-
-            theWheel.draw();
-        };
-
-          function alertPrize(indicatedSegment) {
-
-        alert("You have won " + indicatedSegment.text);
-
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
 
     }
-        };
-        var userid='@UserManager.GetUserId(User)';
-        xhttp.open("POST", "/Prize/CreatePrize", false);
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send("prize=" + indicatedSegment.text +"&user="+userid);
-    }
-
-    </script>
 }

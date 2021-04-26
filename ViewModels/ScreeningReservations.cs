@@ -8,6 +8,8 @@ namespace Licenta.ViewModels
     public class ScreeningReservations
     {
         public List<ScreeningReservationInfo> reservations { get; set; }
+
+        public float price { get; set; }
         public int screeningid { get; set; }
         public string title { get; set; }
         public DateTime s_hour { get; set; }

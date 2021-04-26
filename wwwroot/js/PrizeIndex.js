@@ -1,7 +1,6 @@
 ﻿
-   
-
-    let theWheel = new Winwheel({
+var segments = Object.keys(model).length;
+ let theWheel = new Winwheel({
 
         'numSegments': segments,
         'lineWidth': 3,
@@ -21,11 +20,39 @@
     });
 
 
-        let wheelPower = 0;
+window.onload = function () {
+    colors = ["#CC2609", "#0923CC", "#CCC609", "#0ECD17", "#CD0E70", "#0EC0CD"]
+    j = 0;
+    for (let i = 1; i <= segments; i++) {
+        theWheel.segments[i].text = model[i - 1].name;
+        if (j >= colors.length) {
+            j = 0
+            theWheel.segments[i].fillStyle = colors[j];
+            j++
+        } else {
+            theWheel.segments[i].fillStyle = colors[j];
+            j++
+        }
+    } document.getElementById("spinbutton").disabled = true;
+
+    var height = document.getElementById('canvas').offsetHeight;
+    height = height + 146;
+    var width = document.getElementById('canvas').offsetWidth;
+
+    document.getElementById('the_wheel').setAttribute("style", "height:" + height + "px;width: " + width + "px");
+
+    theWheel.draw();
+};
 
 
 
-        let wheelSpinning = false;
+let wheelPower = 0;
+
+let wheelSpinning = false;
+
+
+
+       
 
       function  startSpin() {
 
@@ -38,11 +65,9 @@
                 } else if (wheelPower == 3) {
         theWheel.animation.spins = 10;
                 }
-                wheelSpinning == true;
+            wheelSpinning = true;
             document.getElementById('spinbutton').disabled = true;
             theWheel.startAnimation();
-
-
         }
         }
 

@@ -14,5 +14,6 @@ namespace Licenta.ViewModels
        public DateTime date_added { get; set; }
        public DateTime release_date { get; set; }
        public int  active { get; set; }
+    
     }
 }

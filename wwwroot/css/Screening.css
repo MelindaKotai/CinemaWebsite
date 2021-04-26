@@ -11,6 +11,8 @@
     height: 43px;
     display: inline-block;
     padding: 0px;
+    font-size: 1.2vw;
+
 }
 
 .reserved {
@@ -21,6 +23,7 @@
     text-align: center;
     vertical-align: middle;
     border: 1.5px solid #343a40;
+    border-radius: 3px;
     padding: 0px;
 }
 

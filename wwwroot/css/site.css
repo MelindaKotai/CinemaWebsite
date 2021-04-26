@@ -212,3 +212,28 @@ body {
     }
 
 
+    /* responsive tables */
+
+.pagining a{
+    text-decoration:none;
+    color:white;
+}
+
+.pagining {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+
+
+.video {
+    display: block;
+    margin: 0 auto;
+    width: 70%;
+    height: 300px;
+
+}
+
+.ofx {
+    overflow-x: auto;
+}

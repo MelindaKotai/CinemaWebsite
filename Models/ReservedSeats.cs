@@ -16,6 +16,8 @@ namespace Licenta.Models
         [Required]
         public int reservationId { get; set; }
 
+        public int claimed { get; set; }
+
         [Required]
         public int TicketTypeid { get; set; }
 

@@ -4,7 +4,7 @@
 @{
 }
 @model Licenta.ViewModels.UpdateMovieViewModel
-<div class="container col-7 p-5 form" >
+<div class="container col-sm-7 p-5 form" >
     <form asp-action="Update" asp-controller="Movie" method="post" enctype='multipart/form-data'>
 
         <div class="form-group">
@@ -42,7 +42,7 @@
         <div class="form-group">
             <label>Trailer actual:</label>
             <br />
-            <video poster="~/@Model.img1" width="400" height="300" controls style="display: block;margin: 0 auto;">
+            <video poster="~/@Model.img1"  controls class="video">
                 <source src="~/@Model.video1" type="video/mp4">
 
                 Your browser does not support the video tag.

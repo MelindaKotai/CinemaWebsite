@@ -13,16 +13,25 @@ namespace Licenta.Models
         [Required]
         public int id { get; set; }
         
-        
+        [Required]
+        public string phone { get; set; }
         [Required]
         public int screeningId { get; set; }
         [Required]
         public int payed { get; set; }
 
-       
+        [Required]
         public string firstName { get; set; }
+        [Required]
         public string lastName { get; set; }
+
+
+        [Required]
         public string email { get; set; }
+
+        [Required]
+        public DateTime date { get; set; }
+        public bool online { get; set; }
 
         [ForeignKey("User")]
         public string UserId { get; set; }

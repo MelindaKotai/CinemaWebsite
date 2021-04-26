@@ -19,7 +19,7 @@
 {
     <div class="alert alert-success">@ViewBag.SuccesMessage</div>
 }
-<div class="container bg-dark p-5" style="border-radius:15px;">
+<div class="container bg-dark p-5 bw" style="border-radius:15px;">
 
     <h2 class="text-center">Detalii utilizator</h2>
     Nume:@Model.FirstName
@@ -36,49 +36,53 @@
     @if (Model.userprizes.Count > 0)
     {
         <div class="row mt-4" style="cursor:pointer"><div class="col " id="claimedp">Premii revendicate</div><div class="col active" id="unclaimedp">Premii nerevendicate</div></div>
-        <table class="table table-dark table-bordered hide" id="claimed">
-            <thead><tr><th scope="col">Premiu</th><th class="text-center" scope="col">Cod</th></tr></thead>
+        <div class="ofx">
+            <table class="table table-dark table-bordered hide" id="claimed">
+                <thead><tr><th scope="col">Premiu</th><th class="text-center" scope="col">Cod</th></tr></thead>
 
-            @foreach (var prize in Model.userprizes)
-            {
-                if (prize.claimed == 1)
+                @foreach (var prize in Model.userprizes)
                 {
-                    <tr>
-                        <td>@prize.name </td>
+                    if (prize.claimed == 1)
+                    {
+                        <tr style="word-break:normal;">
+                            <td>@prize.name </td>
 
-                        <td>@prize.code </td>
+                            <td>@prize.code </td>
 
-                    </tr>
+                        </tr>
+
+                    }
+                }
+            </table>
+        </div>
+        <div class="ofx">
+            <table class="table table-dark table-bordered" id="unclaimed">
+                <thead><tr><th scope="col">Premiu</th><th class="text-center" scope="col">Cod</th><th>Actiune</th></tr></thead>
+
+                @foreach (var prize in Model.userprizes)
+                {
+                    if (prize.claimed == 0)
+                    {
+                        <tr style="word-break:normal;">
+                            <td>@prize.name </td>
+
+                            <td>@prize.code </td>
+                            <td> <a class="btn btn-danger" href="/User/ClaimPrize/@prize.id">Revendica</a></td>
+                        </tr>
+                    }
 
                 }
+            </table>
+        </div>
             }
-        </table>
-        <table class="table table-dark table-bordered" id="unclaimed">
-            <thead><tr><th scope="col">Premiu</th><th class="text-center" scope="col">Cod</th><th>Actiune</th></tr></thead>
-
-            @foreach (var prize in Model.userprizes)
+            else
             {
-                if (prize.claimed == 0)
-                {
-                    <tr>
-                        <td>@prize.name </td>
 
-                        <td>@prize.code </td>
-                        <td> <a class="btn btn-danger" href="/User/ClaimPrize/@prize.id">Revendica</a></td>
-                    </tr>
-                }
-
+            <span>Nu exista premii disponibile</span>
             }
-        </table>
-    }
-    else
-    {
 
-        <span>Nu exista premii disponibile</span>
-    }
+        </div>
 
-</div>
-
-@section Scripts{
-    <script type="text/javascript" src="~/js/UserDetail.js" asp-append-version="true"></script>
-}
+        @section Scripts{
+            <script type="text/javascript" src="~/js/UserDetail.js" asp-append-version="true"></script>
+        }

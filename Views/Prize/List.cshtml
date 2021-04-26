@@ -34,50 +34,50 @@
 
 
 
+        <div class="ofx">
+            <table class="table table-dark table-bordered">
+                <thead><tr><th scope="col">Nume</th><th class="text-center" scope="col">Activ</th><th class="text-center" scope="col">Actiune</th></tr></thead>
 
-        <table class="table table-dark table-bordered">
-            <thead><tr><th scope="col">Nume</th><th class="text-center" scope="col">Activ</th><th class="text-center" scope="col">Actiune</th></tr></thead>
+                @foreach (var prize in Model)
+                {
 
-            @foreach (var prize in Model)
-            {
+                    <tr>
+                        <td>
+                            @prize.name
+                        </td>
 
-                <tr class="bw">
-                    <td>
-                        @prize.name
-                    </td>
+                        <td>
+                            @if (prize.active == 0)
+                            {
+                                <select class="status" name="active">
+                                    <option value="@prize.Id">Activ</option>
+                                    <option value="@prize.Id" selected>Inactiv</option>
+                                </select>
 
-                    <td>
-                        @if (prize.active == 0)
-                        {
-                            <select class="status" name="active">
-                                <option value="@prize.Id">Activ</option>
-                                <option value="@prize.Id" selected>Inactiv</option>
-                            </select>
+                            }
+                            else
+                            {
+                                <select class="status" name="active">
+                                    <option value="@prize.Id" selected>Activ</option>
+                                    <option value="@prize.Id">Inactiv</option>
+                                </select>
 
-                        }
-                        else
-                        {
-                            <select class="status" name="active">
-                                <option value="@prize.Id" selected>Activ</option>
-                                <option value="@prize.Id">Inactiv</option>
-                            </select>
+                            }
+                        </td>
+                        <td>
 
-                        }
-                    </td>
-                    <td>
-
-                        <a class="btn btn-danger" href="/Prize/Update/@prize.Id">Editeaza denumirea premiului</a>
-
-
-                    </td>
+                            <a class="btn btn-danger" style="word-break:normal" href="/Prize/Update/@prize.Id">Editeaza</a>
 
 
+                        </td>
 
 
-                </tr>
-            }
-        </table>
 
+
+                    </tr>
+                }
+            </table>
+        </div>
         @section Scripts{
             <script type="text/javascript" src="~/js/PrizeList.js" asp-append-version="true"></script>
         }
