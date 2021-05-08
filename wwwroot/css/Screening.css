@@ -78,3 +78,13 @@
         height: 20px;
     }
 }
+
+.buydiv{
+    position:absolute;
+    width:40%;
+    height:50%;
+    margin:auto;
+    vertical-align:middle;
+    display:none;
+
+}

@@ -10,6 +10,6 @@ namespace Licenta.ViewModels
 
         public int screeningId { get; set; }
         public DateTime hour { get; set; }
-        public int is3D { get; set; }
+        public bool is3D { get; set; }
     }
 }

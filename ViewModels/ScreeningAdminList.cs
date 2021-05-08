@@ -15,7 +15,7 @@ namespace Licenta.ViewModels
         public int sid { get; set; }
         public DateTime shour { get; set; }
         public DateTime fhour { get; set; }
-        public int is3d { get; set; }
+        public bool is3d { get; set; }
         public int hallid { get; set; }
         public Hall hall { get; set; }
     }

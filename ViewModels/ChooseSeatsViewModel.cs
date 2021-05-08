@@ -56,5 +56,8 @@ namespace Licenta.ViewModels
         [Required]
         public string action { get; set; }
 
+
+        public string Token { get; set; }
+       
     }
 }

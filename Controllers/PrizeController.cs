@@ -46,7 +46,7 @@ namespace Licenta.Controllers
         {
             var userId = _userManager.GetUserId(HttpContext.User);
             //numarul de bilete cumparate de utilizator
-            var payedtickets = _context.ReservedSeats.Join(_context.Reservations, s => s.reservationId, r => r.id, (s, r) => new { s, r }).Where(x => x.r.UserId == userId).Where(x => x.r.payed == 1).Count();
+            var payedtickets = _context.ReservedSeats.Join(_context.Reservations, s => s.reservationId, r => r.id, (s, r) => new { s, r }).Where(x => x.r.UserId == userId).Where(x => x.r.payed == true).Count();
             var userprizes =  _context.UserPrizes.Where(x => x.userId == userId).Count();
             var numberofprizes = payedtickets / 5;
             var numberofavailableprizes = numberofprizes - userprizes;
@@ -58,7 +58,7 @@ namespace Licenta.Controllers
         {
             var userId = _userManager.GetUserId(HttpContext.User);
             //numarul de bilete cumparate de utilizator
-            var payedtickets = _context.ReservedSeats.Join(_context.Reservations, s => s.reservationId, r => r.id, (s, r) => new { s, r }).Where(x => x.r.UserId == userId).Where(x => x.r.payed == 1).Count();
+            var payedtickets = _context.ReservedSeats.Join(_context.Reservations, s => s.reservationId, r => r.id, (s, r) => new { s, r }).Where(x => x.r.UserId == userId).Where(x => x.r.payed == true).Count();
             var userprizes = _context.UserPrizes.Where(x => x.userId == userId).Count();
            
             int numberofticketsleft= payedtickets%5;
@@ -74,8 +74,8 @@ namespace Licenta.Controllers
 
             var noofprizes = numberOfPrizes();
             var noofticketsleft = numberOfTicketsLeft();
-            var prizes = await _context.Prizes.Where(x=>x.active==1).ToListAsync();
-            var userprizes =await  _context.UserPrizes.Where(x => x.userId == userId).Where(x=>x.claimed==0).ToListAsync();
+            var prizes = await _context.Prizes.Where(x=>x.active==true).ToListAsync();
+            var userprizes =await  _context.UserPrizes.Where(x => x.userId == userId).Where(x=>x.claimed==false).ToListAsync();
 
             //din user prizes se face o lista de obiecte tip ->nume premiu, cod premiue
             List<PrizesViewModel> unclaimedprizes = new List<PrizesViewModel>();
@@ -120,7 +120,7 @@ namespace Licenta.Controllers
                     UserPrizes up = new UserPrizes();
                     up.prizeId = prizeid.Id;
                     up.userId = user;
-                    up.claimed = 0;
+                    up.claimed = false;
                     up.code= obj;
                     _context.UserPrizes.Add(up);
                     await _context.SaveChangesAsync();
@@ -156,7 +156,7 @@ namespace Licenta.Controllers
 
 
         [HttpPost]
-
+        [Authorize(Roles = "Administrator")]
         [Route("/Prize/ChangeStatus/{id}")]
         public async Task<string> ChangeStatus(int id)
         {
@@ -167,17 +167,17 @@ namespace Licenta.Controllers
                 result = "Premiul nu a fost gasit!";
                 return result;
             }
-            if (prize.active == 0)
-                prize.active = 1;
+            if (prize.active == false)
+                prize.active = true;
             else
-                prize.active = 0;
+                prize.active = false;
             _context.Prizes.Update(prize);
             await _context.SaveChangesAsync();
             result = "Statusul premiului a fost schimbat cu succes!";
             return result;
         }
 
-
+        [Authorize(Roles = "Administrator")]
         [Route("/Prize/Update/{id}")]
         public async Task<IActionResult> Update(int id)
         {
@@ -194,6 +194,7 @@ namespace Licenta.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         [Route("/Prize/Update/{id}")]
         public async Task<IActionResult> Update(int id, string name)
         {
@@ -223,6 +224,7 @@ namespace Licenta.Controllers
 
 
         [Route("/Prize/Create")]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
 
@@ -248,7 +250,7 @@ namespace Licenta.Controllers
             }
             Prize prize = new Prize();
            prize.name = name;
-            prize.active = 1;
+            prize.active = true;
            
             _context.Prizes.Add(prize);
             await _context.SaveChangesAsync();

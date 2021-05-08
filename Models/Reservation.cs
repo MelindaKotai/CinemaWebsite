@@ -14,19 +14,23 @@ namespace Licenta.Models
         public int id { get; set; }
         
         [Required]
+        [MaxLength(12)]
         public string phone { get; set; }
         [Required]
         public int screeningId { get; set; }
         [Required]
-        public int payed { get; set; }
+        public bool payed { get; set; }
 
         [Required]
+        [MaxLength(100)]
         public string firstName { get; set; }
         [Required]
+        [MaxLength(100)]
         public string lastName { get; set; }
 
 
         [Required]
+        [MaxLength(100)]
         public string email { get; set; }
 
         [Required]

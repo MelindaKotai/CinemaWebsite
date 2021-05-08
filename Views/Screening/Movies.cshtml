@@ -13,6 +13,7 @@
 @{
     CultureInfo culture = CultureInfo.CreateSpecificCulture("ro-RO");
 }
+@model List<Licenta.Models.Movie>
 <div class="row border-top-f border-bottom-h s-nav">
     <a class="nav-link text-light screening-nav " href="/Screening?date=@DateTime.Now.ToString("yyyy-MM-dd")"><div class="col">Astazi</div></a>
     <a class="nav-link text-light screening-nav" href="/Screening?date=@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")"><div class="col">@DateTime.Now.AddDays(1).ToString("ddd", culture)</div></a>

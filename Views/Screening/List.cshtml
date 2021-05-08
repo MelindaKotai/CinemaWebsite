@@ -2,6 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "Screening List";
 }
 @section Css{
     <link rel="stylesheet" href="~/css/Program.css" asp-append-version="true">
@@ -11,6 +12,7 @@
 @{
     CultureInfo culture = CultureInfo.CreateSpecificCulture("ro-RO");
 }
+@model List<Licenta.ViewModels.ScreeningAdminList>
 
 @if (ViewBag.Message != null)
 {<div class="alert alert-info">@ViewBag.Message</div>}
@@ -91,7 +93,7 @@
 
                     <a class="nolink" href="/Screening/Reservations/@screening.sid">
                         <div class="bg-danger p-2 hour-link">
-                            @screening.shour.ToString("HH:mm", culture) - @screening.fhour.ToString("HH:mm", culture) @if (screening.is3d != 0)
+                            @screening.shour.ToString("HH:mm", culture) - @screening.fhour.ToString("HH:mm", culture) @if (screening.is3d != false)
                             {<span>3D</span>}
                         </div>
                     </a>

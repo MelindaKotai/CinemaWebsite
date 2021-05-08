@@ -1,6 +1,7 @@
 ﻿using CoreHtmlToImage;
 using Licenta.Data;
 using Licenta.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -24,6 +25,7 @@ namespace Licenta.Controllers
 
         //functia care schimba statusul cliamed al biletelor si returneaza File
         [HttpPost]
+        [Authorize(Roles = "Administrator,Manager,Angajat")]
         public async Task<FileContentResult> Download(string ids)
         {
 
@@ -61,9 +63,9 @@ namespace Licenta.Controllers
 
             foreach (var ticket in tickets)
             {
-                ticket.claimed = 1;
+                ticket.claimed = true;
                 _context.ReservedSeats.Update(ticket);
-                if (ticket.reservation.screening.is3D == 1)
+                if (ticket.reservation.screening.is3D == true)
                     is3d = "3D";
                 else
                     is3d = " ";
@@ -110,6 +112,8 @@ namespace Licenta.Controllers
             return File(bytes, "image/*", "ticket.jpg");
         }
 
+
+        [Authorize(Roles = "Administrator,Manager,Angajat")]
         [Route("ReservedSeats/ChangeStatus/{id}")]
         public async Task<IActionResult> ChangeStatus(int id)
         {
@@ -133,12 +137,12 @@ namespace Licenta.Controllers
             model.type = details.TicketType.name;
 
 
-            if (details.claimed == 1)
+            if (details.claimed == true)
                 ViewBag.ErrorMessage = "Acest bilet a fost deja revendicat!!";
             else
             {
                 var ticket = await _context.ReservedSeats.FindAsync(id);
-                ticket.claimed = 1;
+                ticket.claimed = true;
                 _context.ReservedSeats.Update(ticket);
                 await _context.SaveChangesAsync();
                 ViewBag.SuccesMessage = "Biletul a fost revendicat cu succes!!";

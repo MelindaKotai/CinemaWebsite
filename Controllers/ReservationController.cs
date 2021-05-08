@@ -102,6 +102,7 @@ namespace Licenta.Controllers
 
         [Authorize]
         [HttpPost]
+        [Authorize(Roles = "Client")]
         [Route("/Reservation/Cancel/{id}")]
         public async Task<IActionResult> Cancel(int id)
         {
@@ -131,7 +132,7 @@ namespace Licenta.Controllers
 
 
         [HttpPost]
-
+        [Authorize(Roles = "Administrator,Manager,Angajat")]
         [Route("/Reservation/ChangeStatus/{id}")]
         public async Task<string> ChangeStatus(int id)
         {
@@ -142,10 +143,10 @@ namespace Licenta.Controllers
                  result = "Rezervarea nu a fost gasita!";
                  return result;
             }
-            if (reservation.payed == 0)
-                reservation.payed = 1;
+            if (reservation.payed == false)
+                reservation.payed = true;
             else
-                reservation.payed = 0;
+                reservation.payed = false;
             _context.Reservations.Update(reservation);
             await _context.SaveChangesAsync();
             result = "Statusul a fost schimbat cu succes!";
@@ -154,8 +155,8 @@ namespace Licenta.Controllers
 
 
 
-     
 
+        [Authorize(Roles = "Administrator,Manager,Angajat")]
         [Route("/Reservation/Delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {

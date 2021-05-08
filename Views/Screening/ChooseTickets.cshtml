@@ -6,7 +6,9 @@
 @using Licenta.Extension
 @inject IHttpContextAccessor HttpContextAccessor
 @{
+    ViewData["Title"] = "Choose Tickets";
 }
+@model Licenta.ViewModels.ChooseTicketsViewModel
 @if (Model == null)
 {<div class="alert alert-danger">@ViewBag.ErrorMessage</div>}
 else

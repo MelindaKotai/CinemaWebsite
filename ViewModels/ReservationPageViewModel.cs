@@ -12,9 +12,9 @@ namespace Licenta.ViewModels
         public string movieImg { get; set; }
         public DateTime screeningDate { get; set; }
         public DateTime screeningTime { get; set; }
-        public int is3D { get; set; }
+        public bool is3D { get; set; }
         public float total { get; set; }
-        public int payed { get; set; }
+        public bool payed { get; set; }
         public List<TypeNameNumber> tickets { get; set; }
 
 

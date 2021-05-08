@@ -2,6 +2,7 @@
 
 *@
 @{
+    ViewData["Title"] = "Choose Seats";
 }
 
 @using Microsoft.AspNetCore.Identity;
@@ -94,8 +95,8 @@
                 <form action="/Screening/ChooseSeats/@Model.screeningId" method="POST" id="reserveform">
 
                     <input asp-for="selectedseats" type="hidden" />
-                    <input asp-for="screeningId" type="hidden" />
-                    <input asp-for="userId" type="hidden" />
+                    <input asp-for="screeningId" type="hidden" />  
+                    <input asp-for="userId" type="hidden"/>             
                     <label asp-for="nume"></label>
                     <input asp-for="nume" class="form-control" />
                     <span asp-validation-for="nume" class="text-danger"></span>
@@ -110,6 +111,7 @@
                     <br />
                     <label asp-for="telefon"></label>
                     <input asp-for="telefon" class="form-control" />
+                  
                     <span asp-validation-for="telefon" class="text-danger"></span>
                     <br />
                     <br />
@@ -122,7 +124,7 @@
                         <input type="submit" class="btn btn-danger reserve" name="action" value="Rezerva biletele" />
                         <br />
                         <br />
-                        <input type="submit" class="btn btn-danger reserve" name="action" value="Cumpara bilete" />
+                       <input type="submit" class="btn btn-danger reserve" name="action" value="Cumpara bilete"/>
                     }
                 </form>
 

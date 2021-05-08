@@ -2,8 +2,9 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "Reservations";
 }
-
+@model Licenta.ViewModels.ReservationPageList;
 @if (Model == null)
 {
     <div class="alert alert-danger">Inca nu ati realizat nici o rezervare!</div>
@@ -32,13 +33,13 @@ else
 
             <div class="row border-top-f pt-3 pb-3">
                 <div class="col-sm-2"><img src="~/@reservation.movieImg" height="150" /></div>
-                <div class="col-sm-4"><p>@reservation.movieTitle @if (reservation.is3D == 1)
+                <div class="col-sm-4"><p>@reservation.movieTitle @if (reservation.is3D == true)
                 {<span>3D</span>}</p><p> @reservation.screeningDate.ToString("yyyy-MM-dd") </p><p>Ora: @reservation.screeningTime.ToString("HH:mm") </p></div>
                 <div class="col-sm-6">
                     Pret total: @reservation.total Lei
                     <br />
-                    Biletele @if (reservation.payed == 0)
-                    {<span style="color:red">NU </span>} au fost revendicate
+                    Biletele @if (reservation.payed == false)
+                    {<span style="color:red">NU </span>} au fost platite
                     <br />
                     Bilete: @foreach (var ticket in reservation.tickets)
                     {
@@ -67,15 +68,15 @@ else
                 <div class="col-sm-2"><img src="~/@reservation.movieImg" height="150" /></div>
                 <div class="col-sm-4">
                     <p>
-                        @reservation.movieTitle @if (reservation.is3D == 1)
+                        @reservation.movieTitle @if (reservation.is3D == true)
                         {<span>3D</span>}
                     </p><p> @reservation.screeningDate.ToString("yyyy-MM-dd") </p><p>Ora: @reservation.screeningTime.ToString("HH:mm") </p>
                 </div>
                 <div class="col-sm-6">
                     Pret total: @reservation.total Lei
                     <br />
-                    Biletele @if (reservation.payed == 0)
-                    {<span style="color:red">NU </span>} au fost revendicate
+                    Biletele @if (reservation.payed == false)
+                    {<span style="color:red">NU </span>} au fost platite
                     <br />
                     Bilete: @foreach (var ticket in reservation.tickets)
                     {
@@ -84,7 +85,7 @@ else
                     }
 
 
-                    @if (reservation.payed == 0)
+                    @if (reservation.payed == false)
                     {
                         <form action="/Reservation/Cancel/@reservation.id" method="POST">
                             <button type="submit" class="btn btn-danger mt-2">Anulati rezervarea</button>

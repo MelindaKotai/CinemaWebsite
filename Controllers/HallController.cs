@@ -58,8 +58,11 @@ namespace Licenta.Controllers
             return View(model);
         }
 
-        [HttpPost]
 
+
+
+        [HttpPost]
+        [Authorize(Roles = "Administrator")]
         [Route("/Hall/ChangeStatus/{id}")]
         public async Task<string> ChangeStatus(int id)
         {
@@ -70,10 +73,10 @@ namespace Licenta.Controllers
                 result = "Sala nu a fost gasita!";
                 return result;
             }
-            if (hall.active == 0)
-                hall.active = 1;
+            if (hall.active == false)
+                hall.active = true;
             else
-                hall.active = 0;
+                hall.active = false;
             _context.Halls.Update(hall);
             await _context.SaveChangesAsync();
             result = "Statusul salii a fost schimbat cu succes!";
@@ -82,7 +85,7 @@ namespace Licenta.Controllers
 
 
 
-
+        [Authorize(Roles = "Administrator")]
         [Route("/Hall/Structure/{id}")]
         public async Task<IActionResult> Structure(int id)
         {
@@ -107,7 +110,7 @@ namespace Licenta.Controllers
             return View(model);
         }
 
-
+        [Authorize(Roles = "Administrator")]
         [Route("/Hall/Update/{id}")]
         public async Task<IActionResult> Update(int id)
         {
@@ -122,7 +125,7 @@ namespace Licenta.Controllers
             return View(hall);
         }
 
-
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         [Route("/Hall/Update/{id}")]
         public async Task<IActionResult> Update(int id, string name)
@@ -151,7 +154,7 @@ namespace Licenta.Controllers
 
         }
 
-
+        [Authorize(Roles = "Administrator")]
         [Route("/Hall/Create")]
         public IActionResult Create()
         {
@@ -161,7 +164,7 @@ namespace Licenta.Controllers
             return View(model);
         }
 
-
+        [Authorize(Roles = "Administrator")]
         [Route("/Hall/Create")]
         [HttpPost]
         public async Task<IActionResult> Create(CreateHallViewModel model)
@@ -182,7 +185,7 @@ namespace Licenta.Controllers
                 hall.name = model.name;
                 hall.rows = model.rows;
                 hall.columns = model.cols;
-                hall.active = 1;
+                hall.active = true;
 
                 _context.Halls.Add(hall);
                 await _context.SaveChangesAsync();

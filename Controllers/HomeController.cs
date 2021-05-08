@@ -43,7 +43,7 @@ namespace Licenta.Controllers
 
         public async Task<IActionResult> Index()
         {   //cele mai noi 4 filme adaugate active 
-            var movies = await _context.Movies.Where(x => x.active == 1).OrderByDescending(x => x.release_date).Take(4).ToListAsync();
+            var movies = await _context.Movies.Where(x => x.active == true).OrderByDescending(x => x.release_date).Take(4).ToListAsync();
             List<HomePageViewModel> model = new List<HomePageViewModel>();
             foreach (var movie in movies) { 
              HomePageViewModel result = new HomePageViewModel()

@@ -28,7 +28,7 @@ namespace Licenta.Controllers
             _context = context;
             _userManager = userManager;
         }
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator,Manager,Angajat")]
         public async Task<IActionResult> List(string q,int p)
         {
 
@@ -86,6 +86,7 @@ namespace Licenta.Controllers
 
 
         [Route("/User/Detail/{id}")]
+        [Authorize(Roles = "Administrator,Manager,Angajat")]
         public async Task<IActionResult> Detail(string id)
         {
             UserViewModel model = new UserViewModel();
@@ -145,7 +146,8 @@ namespace Licenta.Controllers
 
 
        [Route("/User/ClaimPrize/{id}")]
-      public async Task<IActionResult> ClaimPrize(int id)
+        [Authorize(Roles = "Administrator,Manager,Angajat")]
+        public async Task<IActionResult> ClaimPrize(int id)
         {
 
 
@@ -157,7 +159,7 @@ namespace Licenta.Controllers
                 return RedirectToAction("Detail");
 
             }
-            prize.claimed = 1;
+            prize.claimed = true;
             _context.UserPrizes.Update(prize);
             await _context.SaveChangesAsync();
             TempData["SuccesMessage"] = "premiul a fost revendicat cu succes !";
@@ -168,6 +170,7 @@ namespace Licenta.Controllers
 
 
         [Route("/User/ConfirmDelete/{id}")]
+        [Authorize(Roles = "Administrator")]
         public IActionResult ConfirmDelete(string id)
         {
             var user = _context.Users.Find(id);
@@ -193,6 +196,7 @@ namespace Licenta.Controllers
 
         [HttpPost]
         [Route("/User/Delete/{id}")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(string id)
         {
 
@@ -216,6 +220,7 @@ namespace Licenta.Controllers
 
         [HttpGet]
         [Route("/User/EditRole/{id}")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> EditRole(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
@@ -251,6 +256,7 @@ namespace Licenta.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> EditRole(string id,string role)
         {
 

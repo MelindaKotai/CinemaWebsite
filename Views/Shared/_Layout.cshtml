@@ -19,26 +19,45 @@
 <body>
     <div class="bg" id="bg">
         <header >
-            <nav class="navbar navbar-expand-sm navbar-dark bg-transparent border-bottom-h box-shadow mb-3 " id="myHeader" >
+            <nav class="navbar navbar-expand-sm navbar-dark bg-transparent border-bottom-h box-shadow mb-3 " id="myHeader">
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    @if (this.User.IsInRole("Administrator"))
+                    @if (this.User.IsInRole("Administrator") || User.IsInRole("Angajat") || User.IsInRole("Manager"))
                     {
                         <div id="Sidenav" class="sidenav">
                             <a class="closebtn" onclick="closeNav()">&times;</a>
                             <div class="sidebar-heading">Optiuni</div>
                             <div>
-
-                                <a href="/Movie/List" class="list-group-item list-group-item-action bg-dark">Filme</a>
                                 <a href="/Screening/List?date=@DateTime.Now.ToString("yyyy-MM-dd")" class="list-group-item list-group-item-action bg-dark">Ecranizari</a>
-                                <a href="/TicketTypes/List" class="list-group-item list-group-item-action bg-dark">Bilete</a>
-                                <a href="/Prize/List" class="list-group-item list-group-item-action bg-dark">Premii</a>
                                 <a href="/User/List" class="list-group-item list-group-item-action bg-dark">Utilizatori</a>
-                                <a href="/Hall/List" class="list-group-item list-group-item-action bg-dark">Sali</a>
+
+                                @if (User.IsInRole("Administrator") || User.IsInRole("Manager"))
+                                {
+                                    <a href="/Reports" class="list-group-item list-group-item-action bg-dark">Rapoarte</a>
+                                }
+
+
+                                @if (User.IsInRole("Administrator"))
+                                {
+                                    <a href="/Movie/List" class="list-group-item list-group-item-action bg-dark">Filme</a>
+
+                                    <a href="/TicketTypes/List" class="list-group-item list-group-item-action bg-dark">Bilete</a>
+                                    <a href="/Prize/List" class="list-group-item list-group-item-action bg-dark">Premii</a>
+                                    <a href="/Hall/List" class="list-group-item list-group-item-action bg-dark">Sali</a>}
+
                             </div>
                         </div>
 
-                        <button class="btn btn-primary" onclick="openNav()">Meniul Administratorului</button>
+                        if (User.IsInRole("Administrator"))
+                        {
+                            <button class="btn btn-primary" onclick="openNav()">Meniul Administratorului</button>
+                        }
+                        if (User.IsInRole("Angajat")||User.IsInRole("Manager"))
+                        {
+                            <button class="btn btn-primary" onclick="openNav()">Meniu</button>
+                        }
+                        
+
                     }
                     else
                     {
@@ -60,7 +79,7 @@
                     <ul class="navbar-nav">
 
                         <li class="nav-item pl-4">
-                            <a class="nav-link text-light" href="/Home/Contact" >Contact</a>
+                            <a class="nav-link text-light" href="/Home/Contact">Contact</a>
                         </li>
                         <li class="nav-item pl-4">
                             <a class="nav-link text-light program" href="/Screening?date=@DateTime.Now.ToString("yyyy-MM-dd")">Program</a>

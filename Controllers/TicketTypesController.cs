@@ -46,7 +46,7 @@ namespace Licenta.Controllers
 
 
         [HttpPost]
-
+        [Authorize(Roles = "Administrator")]
         [Route("/TicketTypes/ChangeStatus/{id}")]
         public async Task<string> ChangeStatus(int id)
         {
@@ -57,17 +57,17 @@ namespace Licenta.Controllers
                 result = "Sala nu a fost gasita!";
                 return result;
             }
-            if (ticket.active == 0)
-                ticket.active = 1;
+            if (ticket.active == false)
+                ticket.active = true;
             else
-                ticket.active = 0;
+                ticket.active = false;
             _context.TicketType.Update(ticket);
             await _context.SaveChangesAsync();
             result = "Statusul biletului a fost schimbat cu succes!";
             return result;
         }
 
-
+        [Authorize(Roles = "Administrator")]
         [Route("/TicketTypes/Update/{id}")]
         public async Task<IActionResult> Update(int id)
         {
@@ -84,6 +84,7 @@ namespace Licenta.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         [Route("/TicketTypes/Update/{id}")]
         public async Task<IActionResult> Update(int id, string name)
         {
@@ -111,7 +112,7 @@ namespace Licenta.Controllers
 
         }
 
-
+        [Authorize(Roles = "Administrator")]
         [Route("/TicketTypes/Create")]
         public async Task<IActionResult> Create()
         {

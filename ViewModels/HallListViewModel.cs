@@ -12,7 +12,7 @@ namespace Licenta.ViewModels
 
         public string name { get; set; }
         public int noseats { get; set; }
-        public int active { get; set; }
+        public bool active { get; set; }
        
 
     }

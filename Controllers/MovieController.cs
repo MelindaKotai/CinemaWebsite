@@ -264,7 +264,7 @@ namespace Licenta.Controllers
                 {
 
                     response = response + "<a style='text-decoration:none;color:white;' href='/Screening/ChooseTickets/id=" + screening.screeningId + "'><div  class='bg-danger p-2 hour-link'>" + screening.hour.ToString("HH:mm") ;
-                    if (screening.is3D != 0)
+                    if (screening.is3D != false)
                     {
                         response = response + "<span> 3D</span></div></a>";
                     }
@@ -304,13 +304,13 @@ namespace Licenta.Controllers
                 switch (f)
                 {
                     case "viitor":
-                        movies = movies.Where(x => x.active == 0).Where(x => x.release_date > DateTime.Now).ToList();
+                        movies = movies.Where(x => x.active == false).Where(x => x.release_date > DateTime.Now).ToList();
                         break;
                     case "prezent":
-                        movies = movies.Where(x => x.active == 1).ToList();
+                        movies = movies.Where(x => x.active == true).ToList();
                         break;
                     case "trecut":
-                        movies = movies.Where(x => x.active == 0).Where(x => x.release_date < DateTime.Now).ToList();
+                        movies = movies.Where(x => x.active == false).Where(x => x.release_date < DateTime.Now).ToList();
                         break;
                     case "toate":
                         break;
@@ -347,7 +347,7 @@ namespace Licenta.Controllers
 
 
         [HttpPost]
-
+        [Authorize(Roles = "Administrator")]
         [Route("/Movie/ChangeStatus/{id}")]
         public async Task<string> ChangeStatus(int id)
         {
@@ -358,10 +358,10 @@ namespace Licenta.Controllers
                 result = "Filmul nu a fost gasita!";
                 return result;
             }
-            if (movie.active == 0)
-                movie.active = 1;
+            if (movie.active == false)
+                movie.active = true;
             else
-               movie.active = 0;
+               movie.active = false;
             _context.Movies.Update(movie);
             await _context.SaveChangesAsync();
             result = "Statusul filmului a fost schimbat cu succes!";
@@ -373,6 +373,7 @@ namespace Licenta.Controllers
 
         //pagina unde se creaza film nou
         [HttpGet]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             CreateMovieViewModel model = new CreateMovieViewModel();
@@ -434,8 +435,9 @@ namespace Licenta.Controllers
 
 
 
-
+        [Authorize(Roles = "Administrator")]
         [Route("/Movie/Update/{id}")]
+
         //pagina unde se creaza film nou
         [HttpGet]
         public async Task<IActionResult> Update(int id)

@@ -12,10 +12,11 @@ namespace Licenta.Models
         [Required]
         public int id { get; set; }
         [Required]
+        [MaxLength(50)]
         public string name { get; set; }
       
         [Required]
-        public int active { get; set; }
+        public bool active { get; set; }
         [Required]
         [Range(0, 100)]
         public float discount { get; set; }

@@ -42,6 +42,6 @@ namespace Licenta.ViewModels
         [Required]
         [DisplayName("Filmul va rula in prezent?")]
         [Range(0, 1)]
-        public int active { get; set; }
+        public bool active { get; set; }
     }
 }

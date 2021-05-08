@@ -2,6 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "Movie List";
 }
 @section Css{
     <link rel="stylesheet" href="~/css/MovieList.css" asp-append-version="true">
@@ -93,7 +94,7 @@
 
                         </td>
                         <td>
-                            @if (movie.active == 1)
+                            @if (movie.active == true)
                             {<select name="active" class="isactive">
                                     <option value="@movie.id" selected>Da</option>
                                     <option value="@movie.id">Nu</option>

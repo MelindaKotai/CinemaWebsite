@@ -17,7 +17,7 @@ namespace Licenta.Models
         public string name { get; set; }
 
         [Required]
-        public int active { get; set; }
+        public bool active { get; set; }
 
         [JsonIgnore]
         public virtual ICollection<UserPrizes> userPrizes { get; set; }

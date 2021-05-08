@@ -28,7 +28,7 @@ namespace Licenta.ViewModels
         public float price { get; set; }
         [Required(ErrorMessage = "Trebuie sa alegeti o optiune!")]
         [Display(Name = "Ecranizare 3D")]
-        public int is3D { get; set; }
+        public bool is3D { get; set; }
 
     }
 }

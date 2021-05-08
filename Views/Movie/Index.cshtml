@@ -2,7 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    ViewData["Title"] = "Detalii Film";
+    ViewData["Title"] = "Movie Details";
 }
 
 @using System.Globalization
@@ -13,7 +13,7 @@
 @section Css{
     <link rel="stylesheet" href="~/css/Program.css" asp-append-version="true">
 }
-
+@model Licenta.ViewModels.MoviePageViewModel
 
 @if (ViewBag.ErrorMessage != null)
 {

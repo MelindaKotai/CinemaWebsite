@@ -2,175 +2,81 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "Reports";
 }
 
 @model Licenta.ViewModels.ReportsViewModel;
-<script src="~/js/chart.min.js"></script>
-<div class="pt-5 pb-5 mb-4" style="background-color:white;border-radius:5px;">
-    <h1 class="text-center m-4" style="color:#454d55">Raport zilnic</h1>
+    <script src="~/js/chart.min.js"></script>
+
 
 
     @if (Model.soldTicketsPerMovies.Count > 0)
-    {<div class="row m-4" >
-         <div  class="col-sm-6" id="table1wrap">
-             <table style="margin:auto;" class="table table-dark table-bordered" id="table1">
-                 <thead><tr><th>Film</th><th>Numar de bilete vandute</th></tr></thead>
-                 <tbody>
-                     @foreach (var result in Model.soldTicketsPerMovies)
-                     {
-                         <tr>
-                             <td>
-                                 @result.title
-                             </td>
-                             <td>
-                                 @result.noTickets
-                             </td>
 
-                         </tr>
-                     }
-                     <tr><td colspan="2" style="text-align:right">Total: @Model.totalTickets </td></tr>
-                 </tbody>
-             </table>
-         </div>
-            <div class="col-md-6">
-                <canvas id="myChart" ></canvas>
-            </div>
-        </div>
-    }
-    else
     {
-        <div class="alert alert-info">Inca nu s-au vandut bilete azi</div>
-    }
+        <div class="pt-5 pb-5 mb-4" style="background-color:white;border-radius:5px;">
+            <h1 class="text-center m-4" style="color:#454d55">Raport zilnic</h1>
+            <div class="row m-4">
+                <div class="col-sm-6" id="table1wrap">
+                    <table style="border-radius:5px" class="table table-dark" id="table1">
+                        <thead><tr><th>Film</th><th>Numar de bilete vandute</th></tr></thead>
+                        <tbody>
+                            @foreach (var result in Model.soldTicketsPerMovies)
+                            {
+                                <tr>
+                                    <td>
+                                        @result.title
+                                    </td>
+                                    <td>
+                                        @result.noTickets
+                                    </td>
 
-
-    @if (Model.revenuePerMovies.Keys.Count > 0)
-    {
-        <div class="row m-4">
-            <div id="table2wrap" class="col-sm-6">
-                <table  class="table table-dark table-bordered" id="table2">
-                    <thead><tr><th>Film</th><th>Venit realizat</th></tr></thead>
-                    <tbody>
-                        @foreach (var result in Model.revenuePerMovies)
-                        {
-                            <tr>
-                                <td>
-                                    @result.Key
-                                </td>
-                                <td>
-                                    @result.Value Lei
-                                </td>
-
-                            </tr>
-                        }
-                        <tr><td colspan="2" style="text-align:right">Total: @Model.totalRevenue Lei</td></tr>
-                    </tbody>
-
-                </table>
+                                </tr>
+                            }
+                            <tr><td colspan="2" style="text-align:right">Total: @Model.totalTickets </td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <canvas id="myChart"></canvas>
+                </div>
             </div>
-            <div style="width:50%;" class="col-md-6">
-                <canvas id="myChart2" stye="width:50%"></canvas>
-            </div>
-        </div>
-    }
-
-
-    <table style="width:100%" class="table table-dark table-bordered m-4">
-        <thead><tr><th>Bilete vandute online</th><th>Bilete vandute la cinema</th></tr></thead>
-        <tbody>
-
-            <tr>
-                <td>
-                    @Model.ticketsSoldOnline
-                </td>
-                <td>
-                    @Model.ticketsSoldAtCinema
-                </td>
-            </tr>
-        </tbody>
-
-    </table>
-
-
-</div>
 
 
 
-    <div class="bg-dark p-4 m-4" style="border-radius:5px;">
+            @if (Model.revenuePerMovies.Keys.Count > 0)
+            {
+                <div class="row m-4">
+                    <div id="table2wrap" class="col-sm-6">
+                        <table style="border-radius:5px" class="table table-dark " id="table2">
+                            <thead><tr><th>Film</th><th>Venit realizat</th></tr></thead>
+                            <tbody>
+                                @foreach (var result in Model.revenuePerMovies)
+                                {
+                                    <tr>
+                                        <td>
+                                            @result.Key
+                                        </td>
+                                        <td>
+                                            @result.Value Lei
+                                        </td>
 
-        <h2 class="text-center mb-3">Generati rapoarte</h2>
-        <div class="row">
-            <div class="col-md-4">
-                TOPURI
-                <select class="form-control">
-                    <option>Top filme preferate(toate filmele)</option>
-                    <option>Top filme preferate(filme care ruleaza)</option>
-                    <option>Top cele mai profitabile filme(toate filmele)</option>
-                    <option>Top cele mai profitabile filme(care ruleaza)</option>
-                    <option>Top clienti</option>
-                    <option>Top zile preferate</option>
-                </select>
-            </div>
-            <div class="col-md-4">
-                RAPOARTE PE LUNA
-                <select class="form-control">
-                    <option>Bilete vandute pe luna</option>
-                    <option>Venituri realizate pe luna</option>
-                </select>
-            </div>
-            <div class="col-md-4">
-                RAPOARTE ZILNICE
-                <br />
-                <select class="form-control mr-3" style="width:40%;display:inline-block">
-                    <option>Bilete vandute</option>
-                    <option>Venituri realizate</option>
-                </select>
-                <input class="form-control" style="width:40%;display:inline-block" type="date" id="datepicker" />
-            </div>
+                                    </tr>
+                                }
+                                <tr><td colspan="2" style="text-align:right">Total: @Model.totalRevenue Lei</td></tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <div style="width:50%;" class="col-md-6">
+                        <canvas id="myChart2" stye="width:50%"></canvas>
+                    </div>
+                </div>
+            }
 
         </div>
-    </div>
+        <script>
+   //primul chart
 
-
-
-    <div class="hide">
-        <table>
-        </table>
-        <table>
-        </table>
-        <table>
-        </table>
-        <table>
-        </table>
-        <tabe>
-        </tabe>
-        <table>
-        </table>
-        <table>
-        </table>
-        <table>
-        </table>
-        <table>
-        </table>
-        <table>
-        </table>
-        test test test
-    </div>
-
-
-    <!--
-        javascript in care cand se schimba selecturile se trimite ajax...
-    cand se schimba selectul se verifica ce s-a schimbat avem un controller se tr cerere la acel controller ??cu un parametru raport=ce s-a selectat
-    in controller avem un case si in functie de case se interogheaza baza de date si se returneaza un json,un string sau "Eroare"
-
-    pe front se preia rezultatul json se transforma in obiect sau nu?
-    se face si in front end case cuce s-o trimis .... in fiecare caz div-ul rezult se completeaza cu un tabel si un chart corespunzator in functie de datele primite
-    se pune si ceva link spre un controller care descarca datele???
-
-    se primesc datele...
-        -->
-
-    <script>
-        // === include 'setup' then 'config' above ===
 
         const labels = [
             @{
@@ -184,7 +90,9 @@
             labels: labels, display: false,
             datasets: [{
                 label: 'Bilete vandute',
-                backgroundColor: ['rgba(255, 99, 132)',
+                backgroundColor: [
+                    'rgb(209, 19, 19)',
+                    'rgba(255, 99, 132)',
                     'rgba(255, 159, 64)',
                     'rgba(255, 205, 86)',
                     'rgba(75, 192, 192)',
@@ -234,7 +142,7 @@
 
 
 
-
+        //al doilea chart
         const labels2 = [
          @{
             foreach (var t in Model.revenuePerMovies)
@@ -254,6 +162,7 @@
             }
            }],
                 backgroundColor: [
+                    'rgb(209, 19, 19)',
                     'rgba(255, 99, 132)',
                     'rgba(255, 159, 64)',
                     'rgba(255, 205, 86)',
@@ -276,6 +185,7 @@
                     'rgb(234, 117, 53)'
                 ],
                 borderColor: [
+                    'rgb(209, 19, 19)',
                     'rgba(255, 99, 132)',
                     'rgba(255, 159, 64)',
                     'rgba(255, 205, 86)',
@@ -317,12 +227,13 @@
             document.getElementById('myChart2'),
             config2
         );
-       
+
         myChart2.options.plugins.legend.display = false;
-       
+
         myChart2.update();
 
 
+        //aliniere verticala
         var height = document.getElementById('table1wrap').offsetHeight;
         var tableHeight = document.getElementById('table1').offsetHeight;
         var tableMarginTop = (height - tableHeight)/2;
@@ -334,8 +245,151 @@
         var tableMarginTop2 = (height2 - tableHeight2) / 2;
         $('#table2').css('margin-top', tableMarginTop2);
 
-    
-        //script care sa trimita ajax si sa aseze date
-    </script>
 
+        </script>
+
+    }
+    else
+    {
+        <div class="alert alert-info">Inca nu s-au vandut bilete azi</div>
+    }
+
+
+
+    <table style="border-radius:5px;width:70%" class="table table-dark m-4">
+        <thead><tr><th>Bilete vandute online</th><th>Bilete vandute la cinema</th></tr></thead>
+        <tbody>
+
+            <tr>
+                <td>
+                    @Model.ticketsSoldOnline
+                </td>
+                <td>
+                    @Model.ticketsSoldAtCinema
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+
+
+
+
+
+    <div class="bg-dark p-4 m-4" style="border-radius:5px;">
+
+        <h2 class="text-center mb-3">Generati rapoarte</h2>
+        <div class="row">
+            <div class="col-md-4">
+                TOPURI
+                <select class="form-control" id="tops">
+                    <option value="" selected>Selectati o optiune</option>
+                    <option value="allmoviest">Top filme preferate(toate filmele)</option>
+                    <option value="presentmoviest">Top filme preferate(filme care ruleaza)</option>
+                    <option value="allmoviesr">Top cele mai profitabile filme(toate filmele)</option>
+                    <option value="presentmoviesr">Top cele mai profitabile filme(care ruleaza)</option>
+                    <option value="clients">Top clienti</option>
+
+                </select>
+            </div>
+            <div class="col-md-4">
+                RAPOARTE PE LUNA
+                <select class="form-control" id="reports">
+                    <option value="" selected>Selectati o optiune</option>
+                    <option value="ticketsm">Bilete vandute pe luna</option>
+                    <option value="revenuem">Venituri realizate pe luna</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                RAPOARTE ZILNICE
+                <br />
+                <select class="form-control mr-3" style="width:40%;display:inline-block" id="dailyreports">
+                    <option value="ticketsd">Bilete vandute</option>
+                    <option value="revenued">Venituri realizate</option>
+                </select>
+                <input class="form-control" style="width:40%;display:inline-block" type="date" id="date" />
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+    <div id="result" class="hide">
+        <div id="downloadlink" class="m-3"></div>
+        <table style="border-radius:5px" class="table table-dark hide " id="allmoviesttable">
+            <thead><tr><th>Nr</th><th>Titlu</th><th>Bilete vandute</th></tr></thead>
+            <tbody id="allmoviestcontent"></tbody>
+        </table>
+
+
+        <table id="presentmoviesttable" style="border-radius:5px" class="table table-dark hide ">
+            <thead><tr><th>Nr</th><th>Titlu</th><th>Bilete vandute</th></tr></thead>
+            <tbody id="presentmoviestcontent"></tbody>
+        </table>
+
+
+        <table id="allmoviesrtable" style="border-radius:5px" class="table table-dark hide ">
+            <thead><tr><th>Nr</th><th>Titlu</th><th>Venit generat</th></tr></thead>
+            <tbody id="allmoviesrcontent"></tbody>
+        </table>
+
+
+        <table id="presentmoviesrtable" style="border-radius:5px" class="table table-dark hide ">
+            <thead><tr><th>Nr</th><th>Titlu</th><th>Venit generat</th></tr></thead>
+            <tbody id="presentmoviesrcontent"></tbody>
+        </table>
+
+
+        <table id="clientstable" style="border-radius:5px" class="table table-dark hide ">
+            <thead><tr><th>Nr</th><th>Client</th><th>Bilete cumparate</th></tr></thead>
+            <tbody id="clientscontent"></tbody>
+        </table>
+
+
+
+
+
+        <table id="ticketsmtable" style="border-radius:5px" class="table table-dark hide ">
+            <thead><tr><th>Luna</th><th>Bilete vandute</th></tr></thead>
+            <tbody id="ticketsmcontent"></tbody>
+        </table>
+
+
+        <table id="revenuemtable" style="border-radius:5px" class="table table-dark hide ">
+            <thead><tr><th>Luna</th><th>Venituri realizate</th></tr></thead>
+            <tbody id="revenuemcontent"></tbody>
+        </table>
+
+
+        <table id="ticketsdtable" style="border-radius:5px" class="table table-dark hide ">
+            <thead><tr><th>Film</th><th>Bilete vandute</th></tr></thead>
+            <tbody id="ticketsdcontent"></tbody>
+        </table>
+
+
+        <table id="revenuedtable" style="border-radius:5px" class="table table-dark hide ">
+            <thead><tr><th>Film</th><th>Venituri generate</th></tr></thead>
+            <tbody id="revenuedcontent"></tbody>
+        </table>
+
+        <div class="alert alert-danger hide" id="errorMessage"></div>
+        <div style="width:60%;">
+            <canvas id="myChart3"></canvas>
+        </div>
+
+    </div>
+
+
+
+
+
+
+    @section Scripts{
+        <script type="text/javascript" src="~/js/ReportsIndex.js" asp-append-version="true"></script>
+
+    }
 

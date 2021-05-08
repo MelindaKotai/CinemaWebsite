@@ -14,7 +14,7 @@
     CultureInfo culture = CultureInfo.CreateSpecificCulture("ro-RO");
 }
 
-
+@model List<Licenta.ViewModels.ScreeningMovies>
 
 
 
@@ -69,7 +69,7 @@
                     {
                         <a class="nolink" href="/Screening/ChooseTickets/@screening.screeningId">
                             <div class="bg-danger p-2 hour-link">
-                                @screening.hour.ToString("HH:mm", culture) @if (screening.is3D != 0)
+                                @screening.hour.ToString("HH:mm", culture) @if (screening.is3D != false)
                                 {<span>3D</span>}
                             </div>
                         </a>

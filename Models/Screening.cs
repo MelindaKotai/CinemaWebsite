@@ -31,7 +31,7 @@ namespace Licenta.Models
         [Required]
         public float price { get; set; }
         [Required]
-        public int is3D{ get; set; }
+        public bool is3D{ get; set; }
 
         public virtual Movie movie { get; set; }
         public virtual Hall hall { get; set; }

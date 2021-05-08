@@ -2,6 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "Win Prize";
 }
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<User> SignInManager
@@ -10,7 +11,7 @@
 @section Css{
     <link rel="stylesheet" href="~/css/PrizeIndex.css" asp-append-version="true">
 }
-
+@model Licenta.ViewModels.PrizePageViewModel
 @if (Model.unclaimedprizes.Count > 0)
 {
     <div class="alert alert-success">Aveti urmatoarele premii disponibile! Puteti sa le revendicati din incinta cinematografului folosind codurile de mai jos!</div>
@@ -39,11 +40,11 @@
 @if (Model.noofprizes <= 0)
 {
 
-    <div class="m-3"> Deocamdata nu aveti premii disponibile. Mai achizitionati @Model.noofticketsleft bilete pentru a castiga un premiu!</div>
+    <div class="m-3"> Deocamdata nu aveti posibilitatea sa castigati premii noi. Mai achizitionati @Model.noofticketsleft bilete pentru a putea castiga un premiu!</div>
 }
 else
 {
-    <div class="alert alert-success">Aveti @Model.noofprizes premii disponibile. Invartiti roata pentru a castiga un premiu!</div>
+    <div class="alert alert-success">Aveti posibilitatea sa castigati @Model.noofprizes premii. Pentru a castiga un premiu invartiti roata!</div>
 
     <div class="container">
 

@@ -22,6 +22,8 @@ using SendGrid;
 using SendGrid.Helpers.Mail;
 using System.Text;
 using System.IO.Compression;
+using Newtonsoft.Json;
+using Stripe;
 
 namespace Licenta.Controllers
 {
@@ -69,7 +71,6 @@ namespace Licenta.Controllers
                         return View();
                     }
                 
-
             if (date == null)
             {
                 ViewBag.UserMessage = "Selectati o zi";
@@ -84,8 +85,6 @@ namespace Licenta.Controllers
 
 
 
-       
-               
                 List<ScreeningMovies> movies = new List<ScreeningMovies>();
                 //se contruieste lista de obiecte ScreeningMovies care vor fi returnate la View
                 var id = filme[0].id;
@@ -176,14 +175,14 @@ namespace Licenta.Controllers
 
        
         public async Task<IActionResult> MoviesAsync() {
-            var movies =await  _context.Movies.Where(x => x.active == 1).ToListAsync();
+            var movies =await  _context.Movies.Where(x => x.active == true).ToListAsync();
             return View(movies);
         }
 
 
         public async Task<IActionResult> ComingSoonAsync()
         {
-            var movies =await  _context.Movies.Where(x => x.active == 0).Where(x => x.release_date > DateTime.Now).ToListAsync();
+            var movies =await  _context.Movies.Where(x => x.active == false).Where(x => x.release_date > DateTime.Now).ToListAsync();
             return View(movies);
         }
 
@@ -194,7 +193,7 @@ namespace Licenta.Controllers
         public async Task<IActionResult> ChooseTickets(int id)
         {
 
-            var types = await _context.TicketType.Where(x=>x.active==1).ToListAsync();
+            var types = await _context.TicketType.Where(x=>x.active==true).ToListAsync();
             var screening = await _context.Screenings.Where(x => x.Id == id).FirstOrDefaultAsync();
             //se verifica daca ecranizarea aleasa exista in bd
             if (screening == null)
@@ -431,18 +430,19 @@ namespace Licenta.Controllers
         }
 
 
-        //metoda apelata pentru rezervarea locurilor selectate
 
-        [HttpPost]
-        [Route("Screening/ChooseSeats/{id}")]
-        public async Task<IActionResult> ChooseSeats(ChooseSeatsViewModel details)
+
+        public async Task<VerifyModelError> VerifyModelAsync(ChooseSeatsViewModel details)
         {
-
             //se verifica daca ecranizarea exista
-            var screening = await _context.Screenings.Where(x => x.Id == details.screeningId).Include(x=>x.hall).FirstOrDefaultAsync();
+            var response = new VerifyModelError();
+            var screening = await _context.Screenings.Where(x => x.Id == details.screeningId).Include(x => x.hall).FirstOrDefaultAsync();
             if (screening == null)
             {
-                return RedirectToAction("ChooseTickets", new { id = details.screeningId });
+                response.action = "ChooseTickets";
+                response.message = "Ecranizarea nu exista!";
+                response.isValid = false;
+                return response;
             }
 
 
@@ -453,8 +453,11 @@ namespace Licenta.Controllers
                 {
                     if (VerifyScreening(details.screeningId))
                     {
-                        TempData["ErrorMessage"] = "Ecranizarea aleasa nu este disponibila!";
-                        return RedirectToAction("ChooseTickets", new { id = details.screeningId });
+                        response.message = "Ecranizarea aleasa nu este disponibila!";
+                        response.action = "ChooseTickets";
+                        response.isValid = false;
+                        return response;
+                        
                     }
                 }
             }
@@ -462,15 +465,18 @@ namespace Licenta.Controllers
             {
                 if (VerifyScreening(details.screeningId))
                 {
-                    TempData["ErrorMessage"] = "Ecranizarea aleasa nu este disponibila!";
-                    return RedirectToAction("ChooseTickets", new { id = details.screeningId });
+                    response.message = "Ecranizarea aleasa nu este disponibila!";
+                    response.action = "ChooseTickets";
+                    response.isValid = false;
+                    return response;
                 }
             }
 
             //la incercarea realizarii unei rezervari se refac verificarile necesare 
             //se verifica daca exista bilete in cos
             List<KVTickets> tickets = HttpContext.Session.Get<List<KVTickets>>(Convert.ToString(details.screeningId));
-          
+
+            //se calculeaza nr total de bilete din cos
             int total = 0;
             foreach (var ticket in tickets)
             {
@@ -478,8 +484,12 @@ namespace Licenta.Controllers
             }
             if (!(total > 0))
             {
-                TempData["ErrorMessage"] = "Nu ati ales suficiente bilete!";
-                return RedirectToAction("ChooseTickets", new { id = details.screeningId });
+
+                response.message = "Nu ati ales suficiente bilete!";
+                response.action = "ChooseTickets";
+                response.isValid = false;
+                return response;
+           
             }
 
             //se verifica daca in sala mai exista suficiente locuri libere 
@@ -488,51 +498,64 @@ namespace Licenta.Controllers
             var noRemaining = noOfSeats - noOfReserved;
             if (total > noRemaining)
             {
-                TempData["ErrorMessage"] = "Nu mai exista suficiente locuri in sala! Mai exista doar " + noRemaining + " locuri disponibile.";
-                return RedirectToAction("ChooseTickets", new { id = details.screeningId });
+
+                response.message = "Nu mai exista suficiente locuri in sala! Mai exista doar " + noRemaining + " locuri disponibile.";
+                response.action = "ChooseTickets";
+                response.isValid = false;
+                return response;
             }
 
             //se verifica daca sa trimis o lista de locuri selectate
             if (details.selectedseats == null)
             {
-                TempData["ErrorMessage"] = "Nu ati ales suficiente locuri";
-                return RedirectToAction("ChooseSeats", new { id = details.screeningId });
+
+                response.message = "Nu ati ales suficiente locuri";
+                response.action = "ChooseSeats";
+                response.isValid = false;
+                return response;
+               
             }
 
             //se verifia daca locurile alese nu au fost intre timp rezervate de altcineva 
             List<string> selectedseats = details.selectedseats.Split(',').ToList();
-            //se ia din baza de date lista de locuri ocupate
             List<int> reservedseats = new List<int>();
             reservedseats = await _context.Seats.Join(_context.ReservedSeats, seat => seat.Id, ReservedSeats => ReservedSeats.seatId, (seat, ReservedSeats) => new { seat, ReservedSeats }).Join(_context.Reservations, x => x.ReservedSeats.reservationId, Reservations => Reservations.id, (x, Reservations) => new { x, Reservations }).Where(x => x.Reservations.screeningId == details.screeningId).Select(x => x.x.seat.Id).ToListAsync();
-          
-            
-            //in loc de foreach un union
+
             foreach (var seat in selectedseats)
             {     //daca locul a fost ocupat intre timp se returneaza inapoi pagina de alegere de locuri updatata
                 if (reservedseats.Contains(Convert.ToInt32(seat)))
                 {
-                    TempData["ErrorMessage"] = "Locurile alese au fost deja ocupate!";
-                    return RedirectToAction("ChooseSeats", details.screeningId);
+
+                    response.message = "Locurile alese au fost deja ocupate!";
+                    response.action = "ChooseSeats";
+                    response.isValid = false;
+                    return response;
+                  
                 }
             }
 
 
             //se verifica daca nr de locuri alese coincide cu nr de locrui din sesiune
-          
             if (selectedseats.Count != total)
             {
-                TempData["ErrorMessage"] = "Numarul de locuri alese nu coincide cu numarul de bilete selectate!";
-                return RedirectToAction("ChooseSeats", new { id = details.screeningId });
+
+                response.message = "Numarul de locuri alese nu coincide cu numarul de bilete selectate!";
+                response.action = "ChooseSeats";
+                response.isValid = false;
+                return response;
             }
 
 
             //se verifica daca utilizatorul care a trimis request-ul e autentificat si daca id-ul trimis e al lui sau incearca sa fraudeze sistemul.
-            if (details.userId != null) {
+            if (details.userId != null)
+            {
                 var user = await _context.Users.Where(x => x.Id == details.userId).FirstOrDefaultAsync();
                 if (user == null)
                 {
-                    TempData["ErrorMessage"] = "Utilizator inexistent!";
-                    return RedirectToAction("ChooseSeats", new { id = details.screeningId });
+                    response.message = "Utilizator inexistent!";
+                    response.action = "ChooseSeats";
+                    response.isValid = false;
+                    return response;
                 }
 
 
@@ -541,15 +564,54 @@ namespace Licenta.Controllers
                 {
                     if (_userManager.GetUserId(User) != details.userId)
                     {
-                        TempData["ErrorMessage"] = "Incercare invalida!";
-                        return RedirectToAction("ChooseSeats", new { id = details.screeningId });
+                        response.message = "Incercare invalida!";
+                        response.action = "ChooseSeats";
+                        response.isValid = false;
+                        return response;
+                      
                     }
                 }
                 else
                 {
-                    TempData["ErrorMessage"] = "Incercare invalida!";
-                    return RedirectToAction("ChooseSeats", new { id = details.screeningId });
+                    response.message = "Incercare invalida!";
+                    response.action = "ChooseSeats";
+                    response.isValid = false;
+                    return response;
                 }
+             
+            }
+            if (details.action == null || (details.action != "Rezerva biletele" && details.action != "Cumpara bilete"))
+            {
+                response.message = "Incercare invalida!";
+                response.action = "ChooseSeats";
+                response.isValid = false;
+                return response;
+            }
+
+
+            response.isValid = true;
+            return response;
+
+
+        }
+
+        //metoda apelata pentru rezervarea locurilor selectate
+
+        [HttpPost]
+        [Route("Screening/ChooseSeats/{id}")]
+        public async Task<IActionResult> ChooseSeats(ChooseSeatsViewModel details)
+        {
+            var screening = await _context.Screenings.Where(x => x.Id == details.screeningId).Include(x => x.hall).FirstOrDefaultAsync();
+
+            List<KVTickets> tickets = HttpContext.Session.Get<List<KVTickets>>(Convert.ToString(details.screeningId));
+
+            List<int> ids = new List<int>();
+
+            List<string> selectedseats = details.selectedseats.Split(',').ToList();
+            int total = 0;
+            foreach (var ticket in tickets)
+            {
+                total = total + ticket.Value;
             }
 
             if (!ModelState.IsValid)
@@ -589,204 +651,57 @@ namespace Licenta.Controllers
                         details.userId = user.Id;
                     }
                 }
-                    return View(details);
+                return View(details);
             }
 
-
-            //aici ar trebui sa fi tranzactie
-            //se creaza o rezervare noua
-            Reservation reservation = new Reservation()
+            VerifyModelError verification = await VerifyModelAsync(details);
+            if (!verification.isValid)
             {
-                screeningId = details.screeningId,
-                firstName = details.prenume,
-                lastName = details.nume,
-                email = details.email,
-                phone = details.telefon,
-                UserId = details.userId == null ? null : details.userId,
-                date = DateTime.Now,
-
-            };
-
-            if (User.Identity.IsAuthenticated)
+                TempData["ErrorMessage"] = verification.message;
+                return RedirectToAction(verification.action, new { id = details.screeningId });
+            }
+           
+            if (details.action == "Cumpara bilete")
             {
-                if (User.IsInRole("Administrator"))
-                {
-                    reservation.payed = 1;
-                    reservation.online = false;
-                }
+                TempData["details"] = JsonConvert.SerializeObject(details);
+                return RedirectToAction("Buy",new { id = details.screeningId });
             }
             else
             {
-                reservation.payed = 0;
-                reservation.online = true;
-            }
-
-            _context.Reservations.Add(reservation);
-            await _context.SaveChangesAsync();
-            var reservationId = reservation.id;
-
-            int k = 0;
-            int val = 0;
-            int i = 0;
-            //daca buy are alta valoare inafara de 0 sau 1
-            if (details.action == null || (details.action != "Rezerva biletele" && details.action != "Cumpara bilete"))
-            {
-                TempData["ErrorMessage"] = "Incercare invalida!";
-                return RedirectToAction("ChooseSeats", new { id = details.screeningId });
-            }
-
-            List<int> ids = new List<int>();
-            if (details.action == "Cumpara bilete")
-            {
-                var movie = await _context.Movies.Where(x => x.id == screening.movieId).FirstOrDefaultAsync();
-                string is3d = " ";
-                float totalSumToPay = 0;
-                //se calculeaza totalul care trebuie platit
-                foreach(var ticket in tickets)
+                int k = 0;
+                int val = 0;
+         
+                //aici ar trebui sa fi tranzactie
+                //se creaza o rezervare noua
+                Reservation reservation = new Reservation()
                 {
-                    var t = await _context.TicketType.FindAsync(ticket.Key);
-                    totalSumToPay = totalSumToPay + (screening.price - screening.price * t.discount) * ticket.Value;
-                }
+                    screeningId = details.screeningId,
+                    firstName = details.prenume,
+                    lastName = details.nume,
+                    email = details.email,
+                    phone = details.telefon,
+                    UserId = details.userId == null ? null : details.userId,
+                    date = DateTime.Now,
 
-                if (screening.is3D == 1)
+                };
+
+                if (User.Identity.IsAuthenticated)
                 {
-                    is3d = "3D";
+                    if (User.IsInRole("Administrator"))
+                    {
+                        reservation.payed = true;
+                        reservation.online = false;
+                    }
                 }
                 else
                 {
-                    is3d = "2D";
-                }
-                var client = new SendGridClient(Options.SendGridKey);
-                //compunere mesaj
-                var mesage = "<h1>Confirmare tranzactie</h1> <br/><br/> <h3>Multumim ca ati achizitionat bilete de la noi!</h3><br/><br/><b>Te așteptăm la film!</b><br/> <br/> Pentru a avea acces la film puteti opta pentru una din cele doua variante: <br/> a) e-ticket ( bilet electronic): prezintă la intrarea în sală biletul atașat email-ului de confirmare și unul dintre plasatorii noștri îți va scana QR code-ul pentru a valida biletul. <br/><br/> b) ridicare din cinema: te rugăm să te prezinți la casierie pentru a - ți ridica biletele pe baza e-mailul de confirmare. <br/><br/>Înainte de film, te invităm să te bucuri de produsele noastre delicioase de la bar! <h2>Detalii</h2><p><b>Data si ora ecranizarii: </b>"+screening.date.ToString("dd-MM-yyyy")+" "+screening.s_hour.ToString("HH:mm")+"</p><p><b>Film: </b>"+movie.title+" "+is3d+"</p><p><b>Sala: </b>"+screening.hall.name+"</p><p><b>Numar bilete: </b>"+selectedseats.Count+"</p><p><b>Total: </b>"+totalSumToPay+" lei </p>";
-                var msg = new SendGridMessage()
-                {
-                    From = new EmailAddress("cinemawebsitelicense@gmail.com", "CinemaWebsite"),
-                    Subject = "Confirmare plata",
-                    PlainTextContent = mesage,
-                    HtmlContent = mesage
-                };
-
-                    msg.AddTo(new EmailAddress(details.email));
-                
-                msg.SetClickTracking(false, false);
-
-                //bibleoteca CoreHtmlToImage , convertor de html-> img
-                var converter = new HtmlConverter();
-
-
-                //se initializeaza un byte array care va contine logo-ul cinematografului sub forma de bytes
-                byte[] fileContent = null;
-
-                //deschide fisierul png care contine logo ul cinematografului in modul read
-                FileStream fs = new FileStream("wwwroot/cinema-logo.png", FileMode.Open, FileAccess.Read);
-
-                //se initializeaza o clasa care citeste bitii fisierului primit ca argument
-                BinaryReader binaryReader = new BinaryReader(fs);
-
-                //se afla lungimea fisirului care contine logo-ul
-                long byteLength = new FileInfo("wwwroot/cinema-logo.png").Length;
-
-                //se citesc bitii fisierului
-                fileContent = binaryReader.ReadBytes((Int32)byteLength);
-
-                //se convertesc bitii to string cre poate fi primit ca argument la src
-                var base64 = Convert.ToBase64String(fileContent);
-                var imgSrc = String.Format("data:image/png;base64,{0}", base64);
-
-                //pt fiecare scaun selectat se creaza scaunul in bd si se creaza cate o imagine si un qr pt fiecare bilet
-                foreach (var seat in selectedseats)
-                {
-                    //sa se genereze biletele electronice si sa se adauge la email
-                    ReservedSeats rs = new ReservedSeats();
-                    rs.seatId = Convert.ToInt32(seat);
-                    rs.reservationId = reservationId;
-                    rs.TicketTypeid = tickets[k].Key;
-                    _context.ReservedSeats.Add(rs);
-                    await _context.SaveChangesAsync();
-                    ids.Add(rs.Id);
-                    //nr de bilete dintr-un tip de bilete 
-                    val++;
-                    //cate bilete s au creat deja 
-                    i++;
-                    var ticket = await _context.TicketType.FindAsync(tickets[k].Key);
-                    var type = ticket.name;
-                    if (val == tickets[k].Value)
-                    { 
-                        //indexul de la lista de bilete 
-                     k++;
-                     val = 0;
-                    }
-                 
-                    var qrimg = CreateQR(rs.Id);
-                        
-               
-                    var s = await _context.Seats.FindAsync(Convert.ToInt32(seat));
-                    int  row = s.row;
-
-
-                    var seatnumber = s.seatNo;
-
-
-
-
-                    //se creaza biletul electronic
-                    var html = "<div style='border:5px solid blue;width:450px;padding:5px;'>";
-                    html = html + "<div style='border-bottom:2px solid blue;overflow:hidden;'>";
-                    html = html + "<img src='" + imgSrc + "' height='60' style='margin: 5px ;display:inline;float:left;'/>";
-                    html = html + "<div style='float:right;margin:5px;'>";
-                    html = html + "<p style='color:blue;display:inline;'><b>Film:</b></p>";
-                    html = html + "<p style='display:inline;'>"+movie.title+" "+is3d+"</p>";
-                    html = html + "<br/>";
-                    html = html + "<p style='color:blue;display:inline;'><b>Data:</b></p>";
-                    html = html + "<p style='display:inline;'>"+screening.date.ToString("dd-MM-yyyy")+"</p>";
-                    html = html + "<br/>";
-                    html = html + "<p style='color:blue;display:inline;'><b>Ora:</b></p>";
-                    html = html + "<p style='display:inline;'>"+screening.s_hour.ToString("HH:mm")+"</p>";
-                    html = html + "</div>";
-                    html = html + "</div>";
-                    html = html + "<div style='padding: 10px 50px 10px 10px;border-bottom:2px solid blue;overflow:hidden;'>";
-                    html = html + "<div style='display:inline;float:left;'>";
-                    html = html + "<p style='color:blue;margin:0;'><b>Sala:</b></p>";
-                    html = html + "<p style='color:blue;margin:0;'><b>Rand:</b></p>";
-                    html = html + "<p style='color:blue;margin:0;'><b>Loc:</b></p>";
-                    html = html + "<p style='color:blue;margin:0;'><b>Tip bilet:</b></p>";
-                    html = html + " </div>";
-                    html = html + " <div style='display:inline;float:left;padding:0 10 0 10'>";
-                    html = html + "<p style='margin:0;'>"+screening.hall.name+"</p>";
-                    html = html + "<p style='margin:0;'>"+row+"</p>";
-                    html = html + "<p style='margin:0;'>"+seatnumber+"</p>";
-                    html = html + "<p style='margin:0;'>"+type+"</p>";
-                    html = html + " </div>";
-                    html = html + "<img src='" + qrimg + "' height='120' style='margin: 0px 20px 0px 0px;display:inline;float:right;'/>";
-                    html = html + "</div>";
-                    html = html + "Biletele cu pret redus permit intrarea doar cu un act doveditor valid. Va rugam sa prezentati actul plasatorilor nostri.";
-                    html = html + "</div>";
-
-
-                    //se converteste html to biti o imagine cu latimea 440
-                    var bytes = converter.FromHtmlString(html, 470);
-                    //se convertesc bitii to string
-                    var img = Convert.ToBase64String(bytes);
-                    msg.AddAttachment("Bilet"+i+".jpg", img);
+                    reservation.payed = false;
+                    reservation.online = true;
                 }
 
-                //se realizeaza plata->daca merge ->totalsumtopay
-
-
-                reservation.payed = 1;
+                _context.Reservations.Add(reservation);
                 await _context.SaveChangesAsync();
-
-                await client.SendEmailAsync(msg);
-                //se goleste sesiunea
-                HttpContext.Session.Set<List<KVTickets>>(Convert.ToString(details.screeningId), null);
-                ViewBag.Succes = "Rezervarea a fost realizata cu succes! Puteti verifica daca ati primit email de confirmare.";
-                //se tr emailul
-                return View("Reserve");
-
-            }
-            else
-            {
+                var reservationId = reservation.id;
                 //se creaza rezervarile de locuri pentru fiecare loc din lista
                 foreach (var seat in selectedseats)
                 {
@@ -840,9 +755,339 @@ namespace Licenta.Controllers
             }
         }
 
+        [Route("Buy/{id}")]
+        public async Task<IActionResult> BuyAsync(int id)
+        {
+            if (TempData["details"] != null)
+            {
+                var jsonstring = (string)TempData["details"];
+
+                ChooseSeatsViewModel details = JsonConvert.DeserializeObject<ChooseSeatsViewModel>(jsonstring);
+                var screening = await  _context.Screenings.Where(x => x.Id == details.screeningId).Include(x => x.hall).FirstOrDefaultAsync();
+
+                List<KVTickets> tickets = HttpContext.Session.Get<List<KVTickets>>(Convert.ToString(details.screeningId));
+             
+                int total = 0;
+                foreach (var ticket in tickets)
+                {
+                    total = total + ticket.Value;
+                }
+                float totalSumToPay = 0;
+                //se calculeaza totalul care trebuie platit
+                foreach (var ticket in tickets)
+                {
+                    var t = await _context.TicketType.FindAsync(ticket.Key);
+                    totalSumToPay = totalSumToPay + (screening.price - screening.price * t.discount) * ticket.Value;
+                }
+                details.notickets = total;
+                details.total = totalSumToPay;
+                return View(details);
+            }
+            else
+                return RedirectToAction("ChooseSeats", new { id = id});
+        }
 
 
-        [Authorize(Roles = "Administrator")]
+        
+        public async Task<IActionResult> ChargeAsync(ChooseSeatsViewModel details)
+        {
+
+            var screening = await _context.Screenings.Where(x => x.Id == details.screeningId).Include(x => x.hall).FirstOrDefaultAsync();
+
+            List<KVTickets> tickets = HttpContext.Session.Get<List<KVTickets>>(Convert.ToString(details.screeningId));
+
+            List<int> ids = new List<int>();
+
+            List<string> selectedseats = details.selectedseats.Split(',').ToList();
+            int total = 0;
+            foreach (var ticket in tickets)
+            {
+                total = total + ticket.Value;
+            }
+
+
+
+
+            float totalSumToPay = 0;
+            //se calculeaza totalul care trebuie platit
+            foreach (var ticket in tickets)
+            {
+                var t = await _context.TicketType.FindAsync(ticket.Key);
+                totalSumToPay = totalSumToPay + (screening.price - screening.price * t.discount) * ticket.Value;
+            }
+
+
+            if (!ModelState.IsValid)
+            {
+                int cols = await _context.Halls.Where(x => x.id == screening.hallId).Select(x => x.columns).FirstOrDefaultAsync();
+
+                //lista de id-uri care reprezinta scaune rezervate
+                List<int> reserved = new List<int>();
+                reserved = await _context.Seats.Join(_context.ReservedSeats, seat => seat.Id, ReservedSeats => ReservedSeats.seatId, (seat, ReservedSeats) => new { seat, ReservedSeats }).Join(_context.Reservations, x => x.ReservedSeats.reservationId, Reservations => Reservations.id, (x, Reservations) => new { x, Reservations }).Where(x => x.Reservations.screeningId == screening.Id).Select(x => x.x.seat.Id).ToListAsync();
+
+                //lista de SCAUNE DIN SALA ECRANIZARII
+                List<Seat> seats = new List<Seat>();
+                seats = await _context.Seats.Where(x => x.hallId == screening.hallId).OrderBy(x => x.Id).ToListAsync();
+
+                var notickets = total;
+
+                float price = 0;
+                //se calculeaza pretul total al biletelor din "cos"
+                foreach (var ticket in tickets)
+                {
+                    var type = await _context.TicketType.Where(x => x.id == ticket.Key).FirstOrDefaultAsync();
+                    price = price + (screening.price - (screening.price * type.discount)) * ticket.Value;
+                }
+             
+
+                details.cols = cols;
+                details.notickets = notickets;
+                details.reserved = reserved;
+                details.seats = seats;
+                details.total = price;
+
+                if (User.Identity.IsAuthenticated)
+                {
+                    var user = await _context.Users.FindAsync(_userManager.GetUserId(User));
+                    if (User.IsInRole("Client"))
+                    {
+                        details.userId = user.Id;
+                    }
+                }
+                return View(details);
+            }
+
+            VerifyModelError verification = await VerifyModelAsync(details);
+            if (!verification.isValid)
+            {
+                TempData["ErrorMessage"] = verification.message;
+                return RedirectToAction(verification.action, new { id = details.screeningId });
+            }
+
+
+            //aici s-au terminat verificarile
+
+            //tranzactie
+            using var transaction = _context.Database.BeginTransaction();
+            try
+            {
+
+
+                //se incearca plata 
+                var customers = new CustomerService();
+                var charges = new ChargeService();
+
+                var customer = customers.Create(new CustomerCreateOptions
+                {
+                    Email = details.email,
+                    Source = details.Token,
+                    Phone = details.telefon,
+                    Name = details.nume + " " + details.prenume
+                });
+
+                var charge = charges.Create(new ChargeCreateOptions
+                {
+                    Amount = (long)(totalSumToPay * 100),
+                    Description = "Plata bilete",
+                    Currency = "ron",
+                    Customer = customer.Id,
+                    ReceiptEmail = details.email,
+
+                });
+
+                //se verifica daca plata s-a realizat cu succes
+                if (charge.Status != "succeeded")
+                {
+                    transaction.Rollback();
+                    TempData["ErrorMessage"] = "Plata a esuat, va rugam sa incercati din nou!";
+                    return RedirectToAction("ChooseSeats", new { id = details.screeningId });
+                }
+
+                //se salveaza rezervarea si se trimite email
+                int k = 0;
+                int val = 0;
+                int i = 0;
+                //aici ar trebui sa fi tranzactie
+                //se creaza o rezervare noua
+                Reservation reservation = new Reservation()
+                {
+                    screeningId = details.screeningId,
+                    firstName = details.prenume,
+                    lastName = details.nume,
+                    email = details.email,
+                    phone = details.telefon,
+                    UserId = details.userId == null ? null : details.userId,
+                    date = DateTime.Now,
+
+                };
+
+                if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("Administrator") || User.IsInRole("Angajat") || User.IsInRole("Manager"))
+                    {
+                        reservation.payed = true;
+                        reservation.online = false;
+                    }
+                }
+                else
+                {
+                    reservation.payed = false;
+                    reservation.online = true;
+                }
+
+                _context.Reservations.Add(reservation);
+                await _context.SaveChangesAsync();
+                var reservationId = reservation.id;
+                var movie = await _context.Movies.Where(x => x.id == screening.movieId).FirstOrDefaultAsync();
+                string is3d = " ";
+
+
+                if (screening.is3D == true)
+                {
+                    is3d = "3D";
+                }
+                else
+                {
+                    is3d = "2D";
+                }
+                var client = new SendGridClient(Options.SendGridKey);
+                //compunere mesaj
+                var mesage = "<h1>Confirmare tranzactie</h1> <br/><br/> <h3>Multumim ca ati achizitionat bilete de la noi!</h3><br/><br/><b>Te așteptăm la film!</b><br/> <br/> Pentru a avea acces la film puteti opta pentru una din cele doua variante: <br/> a) e-ticket ( bilet electronic): prezintă la intrarea în sală biletul atașat email-ului de confirmare și unul dintre plasatorii noștri îți va scana QR code-ul pentru a valida biletul. <br/><br/> b) ridicare din cinema: te rugăm să te prezinți la casierie pentru a - ți ridica biletele pe baza e-mailul de confirmare. <br/><br/>Înainte de film, te invităm să te bucuri de produsele noastre delicioase de la bar! <h2>Detalii</h2><p><b>Data si ora ecranizarii: </b>" + screening.date.ToString("dd-MM-yyyy") + " " + screening.s_hour.ToString("HH:mm") + "</p><p><b>Film: </b>" + movie.title + " " + is3d + "</p><p><b>Sala: </b>" + screening.hall.name + "</p><p><b>Numar bilete: </b>" + selectedseats.Count + "</p><p><b>Total: </b>" + totalSumToPay + " lei </p>";
+                var msg = new SendGridMessage()
+                {
+                    From = new EmailAddress("cinemawebsitelicense@gmail.com", "CinemaWebsite"),
+                    Subject = "Confirmare plata",
+                    PlainTextContent = mesage,
+                    HtmlContent = mesage
+                };
+
+                msg.AddTo(new EmailAddress(details.email));
+
+                msg.SetClickTracking(false, false);
+
+                //bibleoteca CoreHtmlToImage , convertor de html-> img
+                var converter = new HtmlConverter();
+
+
+                //se initializeaza un byte array care va contine logo-ul cinematografului sub forma de bytes
+                byte[] fileContent = null;
+
+                //deschide fisierul png care contine logo ul cinematografului in modul read
+                FileStream fs = new FileStream("wwwroot/cinema-logo.png", FileMode.Open, FileAccess.Read);
+
+                //se initializeaza o clasa care citeste bitii fisierului primit ca argument
+                BinaryReader binaryReader = new BinaryReader(fs);
+
+                //se afla lungimea fisirului care contine logo-ul
+                long byteLength = new FileInfo("wwwroot/cinema-logo.png").Length;
+
+                //se citesc bitii fisierului
+                fileContent = binaryReader.ReadBytes((Int32)byteLength);
+
+                //se convertesc bitii to string cre poate fi primit ca argument la src
+                var base64 = Convert.ToBase64String(fileContent);
+                var imgSrc = String.Format("data:image/png;base64,{0}", base64);
+
+                //pt fiecare scaun selectat se creaza scaunul in bd si se creaza cate o imagine si un qr pt fiecare bilet
+                foreach (var seat in selectedseats)
+                {
+                    //sa se genereze biletele electronice si sa se adauge la email
+                    ReservedSeats rs = new ReservedSeats();
+                    rs.seatId = Convert.ToInt32(seat);
+                    rs.reservationId = reservationId;
+                    rs.TicketTypeid = tickets[k].Key;
+                    _context.ReservedSeats.Add(rs);
+                    await _context.SaveChangesAsync();
+                    ids.Add(rs.Id);
+                    //nr de bilete dintr-un tip de bilete 
+                    val++;
+                    //cate bilete s au creat deja 
+                    i++;
+                    var ticket = await _context.TicketType.FindAsync(tickets[k].Key);
+                    var type = ticket.name;
+                    if (val == tickets[k].Value)
+                    {
+                        //indexul de la lista de bilete 
+                        k++;
+                        val = 0;
+                    }
+
+                    var qrimg = CreateQR(rs.Id);
+
+
+                    var s = await _context.Seats.FindAsync(Convert.ToInt32(seat));
+                    int row = s.row;
+
+
+                    var seatnumber = s.seatNo;
+
+
+
+
+                    //se creaza biletul electronic
+                    var html = "<div style='border:5px solid blue;width:450px;padding:5px;'>";
+                    html = html + "<div style='border-bottom:2px solid blue;overflow:hidden;'>";
+                    html = html + "<img src='" + imgSrc + "' height='60' style='margin: 5px ;display:inline;float:left;'/>";
+                    html = html + "<div style='float:right;margin:5px;'>";
+                    html = html + "<p style='color:blue;display:inline;'><b>Film:</b></p>";
+                    html = html + "<p style='display:inline;'>" + movie.title + " " + is3d + "</p>";
+                    html = html + "<br/>";
+                    html = html + "<p style='color:blue;display:inline;'><b>Data:</b></p>";
+                    html = html + "<p style='display:inline;'>" + screening.date.ToString("dd-MM-yyyy") + "</p>";
+                    html = html + "<br/>";
+                    html = html + "<p style='color:blue;display:inline;'><b>Ora:</b></p>";
+                    html = html + "<p style='display:inline;'>" + screening.s_hour.ToString("HH:mm") + "</p>";
+                    html = html + "</div>";
+                    html = html + "</div>";
+                    html = html + "<div style='padding: 10px 50px 10px 10px;border-bottom:2px solid blue;overflow:hidden;'>";
+                    html = html + "<div style='display:inline;float:left;'>";
+                    html = html + "<p style='color:blue;margin:0;'><b>Sala:</b></p>";
+                    html = html + "<p style='color:blue;margin:0;'><b>Rand:</b></p>";
+                    html = html + "<p style='color:blue;margin:0;'><b>Loc:</b></p>";
+                    html = html + "<p style='color:blue;margin:0;'><b>Tip bilet:</b></p>";
+                    html = html + " </div>";
+                    html = html + " <div style='display:inline;float:left;padding:0 10 0 10'>";
+                    html = html + "<p style='margin:0;'>" + screening.hall.name + "</p>";
+                    html = html + "<p style='margin:0;'>" + row + "</p>";
+                    html = html + "<p style='margin:0;'>" + seatnumber + "</p>";
+                    html = html + "<p style='margin:0;'>" + type + "</p>";
+                    html = html + " </div>";
+                    html = html + "<img src='" + qrimg + "' height='120' style='margin: 0px 20px 0px 0px;display:inline;float:right;'/>";
+                    html = html + "</div>";
+                    html = html + "Biletele cu pret redus permit intrarea doar cu un act doveditor valid. Va rugam sa prezentati actul plasatorilor nostri.";
+                    html = html + "</div>";
+
+
+                    //se converteste html to biti o imagine cu latimea 440
+                    var bytes = converter.FromHtmlString(html, 470);
+                    //se convertesc bitii to string
+                    var img = Convert.ToBase64String(bytes);
+                    msg.AddAttachment("Bilet" + i + ".jpg", img);
+                }
+
+                reservation.payed = true;
+                await _context.SaveChangesAsync();
+                transaction.Commit(); 
+                await client.SendEmailAsync(msg);
+                //se goleste sesiunea
+                HttpContext.Session.Set<List<KVTickets>>(Convert.ToString(details.screeningId), null);
+                ViewBag.Succes = "Rezervarea a fost realizata cu succes! Puteti verifica daca ati primit email de confirmare.";
+                //se tr emailuldwed
+                return View("Reserve");
+            }
+            catch
+            {
+                transaction.Rollback();
+                TempData["ErrorMessage"] = "Plata a esuat, va rugam incercati din nou cu alt card!";
+                return RedirectToAction("ChooseSeats", new { id =details.screeningId});
+            }
+               
+
+         
+          
+        }
+
+        [Authorize(Roles = "Administrator,Manager,Angajat")]
         public async Task<IActionResult> List(DateTime? date, string q)
         {
             List<ScreeningAdminList> filme = new List<ScreeningAdminList>();
@@ -906,13 +1151,13 @@ namespace Licenta.Controllers
 
         }
 
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator,Manager,Angajat")]
         [HttpGet]
         public async Task<IActionResult> Create(DateTime? date)
         {
           
-           var movies = await _context.Movies.Where(x => x.active == 1).ToListAsync();
-           var halls = await _context.Halls.Where(x=>x.active==1).ToListAsync();
+           var movies = await _context.Movies.Where(x => x.active == true).ToListAsync();
+           var halls = await _context.Halls.Where(x=>x.active==true).ToListAsync();
             ViewBag.movies = movies;
             ViewBag.halls = halls;
             
@@ -930,8 +1175,8 @@ namespace Licenta.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var movies = await _context.Movies.Where(x => x.active == 1).ToListAsync();
-                var halls = await _context.Halls.Where(x => x.active == 1).ToListAsync();
+                var movies = await _context.Movies.Where(x => x.active == true).ToListAsync();
+                var halls = await _context.Halls.Where(x => x.active == true).ToListAsync();
                 ViewBag.movies = movies;
                 ViewBag.halls = halls;
                 return View();
@@ -941,8 +1186,8 @@ namespace Licenta.Controllers
                 var movie = await _context.Movies.FindAsync(model.movieId);
                 if(movie==null)
                 {
-                    var movies = await _context.Movies.Where(x => x.active == 1).ToListAsync();
-                    var halls = await _context.Halls.Where(x => x.active == 1).ToListAsync();
+                    var movies = await _context.Movies.Where(x => x.active == true).ToListAsync();
+                    var halls = await _context.Halls.Where(x => x.active == true).ToListAsync();
                     ViewBag.movies = movies;
                     ViewBag.halls = halls;
                     ViewBag.ErrorMessage = "Filmul selectat nu exista in baza de date";
@@ -952,8 +1197,8 @@ namespace Licenta.Controllers
                 var hall = await _context.Halls.FindAsync(model.hallId);
                 if (hall == null)
                 {
-                    var movies = await _context.Movies.Where(x => x.active == 1).ToListAsync();
-                    var halls = await _context.Halls.Where(x => x.active == 1).ToListAsync();
+                    var movies = await _context.Movies.Where(x => x.active == true).ToListAsync();
+                    var halls = await _context.Halls.Where(x => x.active == true).ToListAsync();
                     ViewBag.movies = movies;
                     ViewBag.halls = halls;
                     ViewBag.ErrorMessage = "Sala selectata nu exista in baza de date";
@@ -976,7 +1221,7 @@ namespace Licenta.Controllers
                        || model.date.AddHours(model.s_hour.Hour)> model.date.AddHours(23) || model.date.AddHours(model.s_hour.Hour) < model.date.AddHours(9)
                         )
                     {
-                        var movies = await _context.Movies.Where(x => x.active == 1).ToListAsync();
+                        var movies = await _context.Movies.Where(x => x.active == true).ToListAsync();
                         var halls = await _context.Halls.ToListAsync();
                         ViewBag.movies = movies;
                         ViewBag.halls = halls;
@@ -1006,7 +1251,7 @@ namespace Licenta.Controllers
 
 
 
-
+        [Authorize(Roles = "Administrator,Manager,Angajat")]
         [HttpGet]
         public string GetHours(DateTime date, int hallid)
         {
@@ -1049,7 +1294,7 @@ namespace Licenta.Controllers
 
 
         [Route("Screening/Reservations/{id}")]
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator,Manager,Angajat")]
         public async Task<IActionResult> Reservations(int id, string q, int p)
         {
 
@@ -1158,7 +1403,7 @@ namespace Licenta.Controllers
                     else
                         dict[row].Add((int)seat.seatNo);
 
-                    if(ticket.claimed==0)
+                    if(ticket.claimed==false)
                     ticketsids.Add(ticket.Id);
                 }
               
@@ -1199,7 +1444,7 @@ namespace Licenta.Controllers
 
 
         [Route("Screening/DeleteConfirmation/{id}")]
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator,Manager,Angajat")]
         [HttpGet]
         public async Task<IActionResult> DeleteConfirmation(int id)
         {
@@ -1213,7 +1458,7 @@ namespace Licenta.Controllers
         }
 
         [Route("Screening/Delete/{id}")]
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator,Manager,Angajat")]
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {

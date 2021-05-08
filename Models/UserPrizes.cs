@@ -27,6 +27,6 @@ namespace Licenta.Models
         [Required]
         public string code { get; set; }
         [Required]
-        public int claimed { get; set; }
+        public bool claimed { get; set; }
     }
 }
