@@ -9,63 +9,71 @@
     ViewData["Title"] = "Choose Tickets";
 }
 @model Licenta.ViewModels.ChooseTicketsViewModel
+
+
 @if (Model == null)
-{<div class="alert alert-danger">@ViewBag.ErrorMessage</div>}
+{
+    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>}
 else
 {
-@if (ViewBag.ErrorMessage != null)
-{
-    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
-}
-<table class="table table-dark table-bordered">
-    <thead><tr><th scope="col">Tip bilet</th><th class="text-center" scope="col">Pret</th><th class="text-center" scope="col">Alegeti numarul de bilete</th></tr></thead>
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+    }
 
-    <tbody>
 
-        @foreach (var type in Model.types)
-        {
-            <tr>
-                <td>@type.name</td>
-                @{var price = Model.price - (type.discount * Model.price);
-                    <td class="text-center">@price Lei</td>
-                }
+    <table class="table table-dark table-bordered">
+        <thead><tr><th scope="col">Tip bilet</th><th class="text-center" scope="col">Preț</th><th class="text-center" scope="col">Alegeți numărul de bilete</th></tr></thead>
+        <tbody>
 
-                <td style="text-align: center; vertical-align: middle;">
-                    <input  class="tickets" type="number" name="@type.id" style="width:70px;" align="middle" min="0"
-                           value="@{ List<KVTickets> tickets= HttpContextAccessor.HttpContext.Session.Get<List<KVTickets>>((string)Convert.ToString(Model.id));
-                               if (tickets != null)
-                               {
-                                   bool ticketexists = false;
-                                   foreach (KVTickets ticket in tickets)
+            @foreach (var type in Model.types)
+            {
+                <tr>
+                    <td>@type.name</td>
+                    @{  
+                        var price = Model.price - (type.discount * Model.price);
+                        <td class="text-center">@price Lei</td>
+                    }
+
+                    <td style="text-align: center; vertical-align: middle;">
+                        <input  class="tickets" type="number" name="@type.id" style="width:70px;" align="middle" min="0"
+                               value="@{ 
+                                   //se tin minte bilete selectate in sesiune si se completeaza valoare inputurilor cu valoarea din sesiune
+                                   List<KVTickets> tickets= HttpContextAccessor.HttpContext.Session.Get<List<KVTickets>>((string)Convert.ToString(Model.id));
+                                   if (tickets != null)
                                    {
-                                       if (ticket.Key == type.id)
+                                       bool ticketexists = false;
+                                       foreach (KVTickets ticket in tickets)
                                        {
-                                           ticketexists = true;
-                                           @Html.Raw(ticket.Value);
+                                           if (ticket.Key == type.id)
+                                           {
+                                               ticketexists = true;
+                                               @Html.Raw(ticket.Value);
+                                           }
+                                       }
+                                       if (!ticketexists)
+                                       {
+
+                                           @Html.Raw((int)0);
                                        }
                                    }
-                                   if (!ticketexists)
+                                   else
                                    {
-
                                        @Html.Raw((int)0);
                                    }
-                               }
-                               else
-                               {
-                                   @Html.Raw((int)0);
-                               }
 
-                               }"/>
-                </td>
+                                   }"/>
+                    </td>
 
 
 
 
-            </tr>
+                </tr>
         }
 
         <tr><td colspan="3" style="text-align:right">Total: <span id="price">
-    @{ float total = 0;
+    @{ //se calculeaza pretul total al biletelor selectate pentru ecranizarea aleasa
+        float total = 0;
         List<KVTickets> tickets2 = HttpContextAccessor.HttpContext.Session.Get<List<KVTickets>>((string)Convert.ToString(Model.id));
         if (tickets2 != null)
         {
@@ -83,25 +91,25 @@ else
             @Html.Raw(total);
         }
         else @Html.Raw((int)0);
-
         }
     </span> Lei</td></tr>
-
-
     </tbody>
 </table>
+
+
    <a href="/Screening/ChooseSeats/@Model.id">
-    <div class="btn btn-danger" style="border-radius:10px; float:right;display:inline-block">Pasul urmator</div>
+    <div class="btn btn-danger" style="border-radius:10px; float:right;display:inline-block">Pasul următor</div>
    </a> 
-
 }
-<script type="text/javascript">
 
-
+@section Scripts{ 
+    <script type="text/javascript">
+        //se salveaza bilete in sesiune la schimbarea cantitatii acestora si se actualizeaza pretul afisat
     $(".tickets").on("change", function (e) {
         var model = @Html.Raw(Json.Serialize(Model));
         var total = 0;
         var inputs = document.getElementsByClassName('tickets');
+        //se calculeaza pretul in functie de valorile din inputuri
         for (let i = 0; i < inputs.length; i++) {
             for (let j = 0; j < model.types.length; j++)
                 if (model.types[j].id == inputs[i].getAttribute('name'))
@@ -113,14 +121,11 @@ else
             url: "/Screening/AddTicket",
             contentType: "application/x-www-form-urlencoded",
             data: "key=" + e.target.getAttribute('name') + "&value=" + e.target.value + "&screeningId=" + model.id,
-       
+            error: function () { alert("Nu s-a putut adauga biletul in cosul virtual, va rugam incercati din nou sau contactati-ne!");}
         });
 
 
     });
+    </script>
+}
 
-
-
-
-
-</script>

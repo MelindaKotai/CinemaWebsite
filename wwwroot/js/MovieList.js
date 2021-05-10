@@ -22,5 +22,4 @@ $(".isactive").change(function () {
 
 $("#filter").change(function () {
     $("#filterform").submit();
-
 });

@@ -30,6 +30,8 @@ namespace Licenta.Controllers
 
         private static char[] _base36chars ="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
         private static Random _random = new Random();
+
+        //creaza un cod aleator de o lungime data
         public static string GetRandomCode(int length)
         {
             var sb = new StringBuilder(length);
@@ -47,31 +49,37 @@ namespace Licenta.Controllers
             var userId = _userManager.GetUserId(HttpContext.User);
             //numarul de bilete cumparate de utilizator
             var payedtickets = _context.ReservedSeats.Join(_context.Reservations, s => s.reservationId, r => r.id, (s, r) => new { s, r }).Where(x => x.r.UserId == userId).Where(x => x.r.payed == true).Count();
+            //numarul de premii deja castigate de utilizator
             var userprizes =  _context.UserPrizes.Where(x => x.userId == userId).Count();
+            //numarul de premii care pot fi castigate de utilizator
             var numberofprizes = payedtickets / 5;
+            //numarul de premii disponibile
             var numberofavailableprizes = numberofprizes - userprizes;
           
             return numberofavailableprizes;
         }
 
+
+        //calculeaza cate premii mai trebuie sa cumpere utilizatorul pentru a putea castiga un premiu
         public int numberOfTicketsLeft()
         {
             var userId = _userManager.GetUserId(HttpContext.User);
             //numarul de bilete cumparate de utilizator
             var payedtickets = _context.ReservedSeats.Join(_context.Reservations, s => s.reservationId, r => r.id, (s, r) => new { s, r }).Where(x => x.r.UserId == userId).Where(x => x.r.payed == true).Count();
             var userprizes = _context.UserPrizes.Where(x => x.userId == userId).Count();
-           
             int numberofticketsleft= payedtickets%5;
             numberofticketsleft = 5 - numberofticketsleft;
             return numberofticketsleft;
         }
 
 
+
+
         [Authorize(Roles = "Client")]
+        //pagina cu tombola
         public async Task<IActionResult> IndexAsync()
         {
             var userId = _userManager.GetUserId(HttpContext.User);
-
             var noofprizes = numberOfPrizes();
             var noofticketsleft = numberOfTicketsLeft();
             var prizes = await _context.Prizes.Where(x=>x.active==true).ToListAsync();
@@ -86,7 +94,6 @@ namespace Licenta.Controllers
                 uc.name = name;
                 uc.code = prize.code;
                 unclaimedprizes.Add(uc);
-
             }
 
             PrizePageViewModel model = new PrizePageViewModel();
@@ -95,10 +102,7 @@ namespace Licenta.Controllers
             model.noofprizes = noofprizes;
             model.unclaimedprizes = unclaimedprizes;
 
-
-
-            return View(model);
-        
+            return View(model);   
         }
 
 
@@ -110,49 +114,45 @@ namespace Licenta.Controllers
         public async Task CreatePrize(string prize, string user)
         {
            
-        var noofprizes = numberOfPrizes();
+            var noofprizes = numberOfPrizes();
 
             if (noofprizes > 0) { 
                 var prizeid = await _context.Prizes.Where(x => x.name == prize).FirstOrDefaultAsync();
                 if (prizeid != null)
                 {
-                    string obj = GetRandomCode(7);
                     UserPrizes up = new UserPrizes();
                     up.prizeId = prizeid.Id;
                     up.userId = user;
                     up.claimed = false;
-                    up.code= obj;
+                    up.code= GetRandomCode(7);
                     _context.UserPrizes.Add(up);
-                    await _context.SaveChangesAsync();
-                
+                    await _context.SaveChangesAsync();              
                 }
             
-            }
-           
-           
+            }    
         }
 
 
 
         [Authorize(Roles = "Administrator")]
+        //lista de premii admin page
         public async Task<IActionResult> List()
         {
 
-           
             var model = await _context.Prizes.ToListAsync();
-
             if (model == null)
             {
-                ViewBag.ErrorMessage = "Nu s-au gasit premii!";
+                ViewBag.ErrorMessage = "Nu s-au găsit premii!";
                 return View();
             }
 
             if (TempData["SuccesMessage"] != null)
                 ViewBag.SuccesMessage = TempData["SuccesMessage"];
            
-            
             return View(model);
         }
+
+
 
 
         [HttpPost]
@@ -164,7 +164,7 @@ namespace Licenta.Controllers
             var prize = await _context.Prizes.FindAsync(id);
             if (prize == null)
             {
-                result = "Premiul nu a fost gasit!";
+                result = "Premiul nu a fost găsit!";
                 return result;
             }
             if (prize.active == false)
@@ -177,6 +177,9 @@ namespace Licenta.Controllers
             return result;
         }
 
+
+
+
         [Authorize(Roles = "Administrator")]
         [Route("/Prize/Update/{id}")]
         public async Task<IActionResult> Update(int id)
@@ -185,7 +188,7 @@ namespace Licenta.Controllers
 
             if (prize == null)
             {
-                ViewBag.ErrorMessage = "Premiul nu a fost gasit!";
+                ViewBag.ErrorMessage = "Premiul nu a fost găsit!";
                 return View();
             }
 
@@ -203,7 +206,7 @@ namespace Licenta.Controllers
 
             if (prize == null)
             {
-                ViewBag.ErrorMessage = "Premiul nu a fost gasita!";
+                ViewBag.ErrorMessage = "Premiul nu a fost găsita!";
                 return View();
             }
             if (name == null)
@@ -223,13 +226,11 @@ namespace Licenta.Controllers
         }
 
 
+
         [Route("/Prize/Create")]
         [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
-
-            
-
             return View();
         }
 
@@ -249,14 +250,14 @@ namespace Licenta.Controllers
                 return View();
             }
             Prize prize = new Prize();
-           prize.name = name;
+            prize.name = name;
             prize.active = true;
            
             _context.Prizes.Add(prize);
             await _context.SaveChangesAsync();
            
 
-            TempData["SuccesMessage"] = "Premiul a fost adaugat cu succes!";
+            TempData["SuccesMessage"] = "Premiul a fost adăugat cu succes!";
             return RedirectToAction("List");
         }
 

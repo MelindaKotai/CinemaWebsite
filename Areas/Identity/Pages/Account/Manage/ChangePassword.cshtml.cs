@@ -36,18 +36,18 @@ namespace Licenta.Areas.Identity.Pages.Account.Manage
         {
             [Required]
             [DataType(DataType.Password)]
-            [Display(Name = "Parola curenta")]
+            [Display(Name = "Parola curentă")]
             public string OldPassword { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Parola noua")]
+            [Display(Name = "Parola nouă")]
             public string NewPassword { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirmati parola noua")]
-            [Compare("NewPassword", ErrorMessage = "Noua parola nu se potriveste cu vechea parola.")]
+            [Display(Name = "Confirmați parola nouă")]
+            [Compare("NewPassword", ErrorMessage = "Noua parola nu se potrivește cu vechea parola.")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -93,7 +93,7 @@ namespace Licenta.Areas.Identity.Pages.Account.Manage
 
             await _signInManager.RefreshSignInAsync(user);
             _logger.LogInformation("User changed their password successfully.");
-            StatusMessage = "Parola a fost schimbata cu succes";
+            StatusMessage = "Parola a fost schimbată cu succes";
 
             return RedirectToPage();
         }

@@ -26,6 +26,8 @@ namespace Licenta.Controllers
             _context = context;
         }
 
+
+
         [Authorize(Roles = "Administrator,Manager")]
         public async Task<IActionResult> Index()
         {

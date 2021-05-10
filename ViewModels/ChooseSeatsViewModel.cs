@@ -12,10 +12,8 @@ namespace Licenta.ViewModels
     {
         
         public int screeningId { get; set; }
-      
         public List<Seat> seats{ get;set; }
         public List<int> reserved { get; set; }
-        
         public int cols { get; set; }
         public float total { get; set; }
         public int notickets { get; set; }
@@ -47,10 +45,7 @@ namespace Licenta.ViewModels
         [DisplayName("Telefon")]
         public string telefon { get; set; }
 
-
-
         public string userId { get; set; }
-
 
 
         [Required]

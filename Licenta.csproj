@@ -29,10 +29,6 @@
     <Folder Include="wwwroot\videos\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="wwwroot\image.jpg" />
-  </ItemGroup>
-
 
 
 </Project>

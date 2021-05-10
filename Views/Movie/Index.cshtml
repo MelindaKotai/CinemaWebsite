@@ -4,7 +4,6 @@
 @{
     ViewData["Title"] = "Movie Details";
 }
-
 @using System.Globalization
 @{
     CultureInfo culture = CultureInfo.CreateSpecificCulture("ro-RO");
@@ -14,6 +13,8 @@
     <link rel="stylesheet" href="~/css/Program.css" asp-append-version="true">
 }
 @model Licenta.ViewModels.MoviePageViewModel
+
+
 
 @if (ViewBag.ErrorMessage != null)
 {
@@ -28,21 +29,22 @@
         <h3 class="text-center">@Model.title</h3>
         <hr color="red" />
 
-        <video poster="~/@Model.img"  controls class="video">
+        <video poster="~/@Model.img" controls class="video">
             <source src="~/@Model.video" type="video/mp4">
 
             Your browser does not support the video tag.
         </video>
 
         <br />
+
         <div class="pl-4 pr-4 form" style="border-radius:20px;">
             <div class="row pl-4 pr-4">
-                <div class="col-md-6 pt-4 " >
+                <div class="col-md-6 pt-4 ">
                     <p>@Model.description</p>
                 </div>
 
                 <div class="col-md-6 pr-4 pt-4">
-                    @if (Model.rating != 0 && Model.rating != null)
+                    @if (Model.rating != 0)
                     {
                         <p><b>IMDB rating: </b>@Model.rating</p>
                     }
@@ -51,12 +53,15 @@
                         <p><b>IMDB rating: </b>N/A</p>
                     }
 
-                    <p><b>Durata: </b>@string.Format("{0:00} ore si {1:00} minute", Model.duration / 60, Model.duration % 60) </p>
-                    <p><b>Data lansarii: </b>@Model.release_date.ToString("yyyy-MMMM-dd", culture)</p>
+                    <p><b>Durata: </b>@string.Format("{0:00} H {1:00} Min", Model.duration / 60, Model.duration % 60) </p>
+                    <p><b>Data lansării: </b>@Model.release_date.ToString("yyyy-MMMM-dd", culture)</p>
                     <p>
-                        <b>Actori principali:</b>  @if (Model.actors != null)
-                        {@foreach (var actor in Model.actors)
-                            {@if (Model.actors.IndexOf(actor) == Model.actors.Count - 1)
+                        <b>Actori principali:</b>
+                        @if (Model.actors != null)
+                        {
+                            @foreach (var actor in Model.actors)
+                            {
+                                @if (Model.actors.IndexOf(actor) == Model.actors.Count - 1)
                                 {
                                     <span>@actor </span>
                                 }
@@ -65,8 +70,8 @@
                                     <span>@actor, </span>
                                 }
 
+                            }
                         }
-                    }
                     </p>
                     <p>
                         <b>Genuri:</b>  @foreach (var genre in Model.genres)
@@ -92,13 +97,12 @@
                 <div style="border-top:1px solid red" class="row pb-4">
                     <div class="col-sm-4 pr-5">
                         <br />
-                        <p>Alegeti o data:</p>
+                        <p>Alegeți o dată:</p>
                         <select name="date" class="form-control" id="date">
-                            <option value="" selected>Selectati o data</option>
+                            <option value="" selected>Selectați o dată</option>
                             @foreach (var date in Model.dates)
                             {
                                 <option value="@date.ToString("yyyy-MM-dd")">@date.ToString("yyyy-MM-dd")</option>
-
                             }
                         </select>
                     </div>
@@ -111,32 +115,38 @@
             }
             else
             {
-                <div class="alert alert-danger mt-2">Momentan nu exista ecranizari disponibile</div>
+                <div class="alert alert-danger mt-2">Momentan nu există ecranizări disponibile</div>
             }
 
-
         </div>
+    </div>
 
-        <script type="text/javascript">
+    <script type="text/javascript">
 
             $("#date").on('change', function () {
                 var date = $("#date").val();
+
                 if (date == "") {
                     $("#hours").html(date);
                     return;
                 }
+
                 var model = @Html.Raw(Json.Serialize(Model));
                 var id = model.id;
+
                 $.ajax({
                     type: "GET",
-                    url: "/Movie/GetHours?date="+date+"&id="+id,
+                    url: "/Movie/GetHours?date=" + date + "&id=" + id,
+                    dataType:"html",
                     success: function (data) {
                         $("#hours").html(data);
+                    },
+                    error: function () {
+                        $("#hours").html("O eroare a intervenit la returnarea orelor de ecranizare. Vă rugăm să mai încercați odată sau să ne contactați.");
                     }
                 });
 
             });
 
-        </script>
-    </div>
+    </script>
 }

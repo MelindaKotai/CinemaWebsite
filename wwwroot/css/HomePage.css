@@ -1,5 +1,4 @@
-﻿
-.bg {
+﻿.bg {
     background-image: url('../MovieTheatre2.png');
     background-repeat: no-repeat;
     background-position: bottom;
@@ -68,7 +67,7 @@
 
 
 .description {
-    padding-top:10%; 
+    padding-top:5%; 
     font-size:18px;
 }
 

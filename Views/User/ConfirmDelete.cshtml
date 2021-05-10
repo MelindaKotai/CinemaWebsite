@@ -25,7 +25,7 @@
         <div class="alert alert-success">@ViewBag.SuccesMessage</div>
     }
 
-    <h2 class="text-center">Sunteti sigur ca doriti sa stergeti aceast utilizator?</h2>
+    <h2 class="text-center">Sunteți sigur că doriți să ștergeți aceast utilizator?</h2>
     Nume:@Model.FirstName
     <br />
     Prenume:@Model.LastName
@@ -36,13 +36,13 @@
 
 
     <h5 class="text-center">
-        Daca stergeti acest utilizator toate datele aferente contului vor fi pierdute!
+        Dacă ștergeți acest utilizator toate datele aferente contului vor fi pierdute!
     </h5>
     <br />
     <br />
 
 
-    <h5 class="text-center">Stergeti?</h5>
+    <h5 class="text-center">Ștergeti?</h5>
     <form class="text-center" action="/User/Delete/@Model.id" method="post">
         <button type="submit" class="btn btn-danger">Da</button>
     </form>

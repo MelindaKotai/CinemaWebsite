@@ -7,8 +7,6 @@
 @model List<Licenta.ViewModels.UserViewModel>
 
 
-
-
 @if (ViewBag.ErrorMessage != null)
 {
     <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
@@ -19,25 +17,18 @@
     <div class="alert alert-info">@ViewBag.Message</div>
 }
 
-
 @if (ViewBag.SuccesMessage != null)
 {
     <div class="alert alert-success">@ViewBag.SuccesMessage</div>
 }
 
-
-
 <div class="row">
-
-
     <form action="/User/List" method="get" class="col-sm-6 ">
-        Cautati dupa nume:
+        Căutați după nume:
         <br />
         <br />
         <input name="q" type="text" class="form-control" style="width:30%;display:inline-block; border-top-right-radius:0px;border-bottom-right-radius:0px;" /><button class="btn btn-danger" style="display:inline-block; border-bottom-left-radius:0px;border-top-left-radius:0px;vertical-align:baseline;"><i class="fa fa-search"></i></button>
-
     </form>
-
 </div>
 
 @if (Model != null)
@@ -45,18 +36,13 @@
     @if (Model.Count != 0)
     {
 
-
-
         <br />
         <br />
         <div class="result"></div>
 
-
-
-
         <div class="ofx">
             <table class="table table-dark table-bordered">
-                <thead><tr><th scope="col">Nume</th><th class="text-center" scope="col">Prenume</th><th class="text-center" scope="col">Telefon</th><th class="text-center" scope="col">Email</th><th class="text-center" scope="col">Actiune</th></tr></thead>
+                <thead><tr><th scope="col">Nume</th><th class="text-center" scope="col">Prenume</th><th class="text-center" scope="col">Telefon</th><th class="text-center" scope="col">Email</th><th class="text-center" scope="col">Acțiune</th></tr></thead>
 
                 @foreach (var user in Model)
                 {
@@ -65,76 +51,71 @@
                         <td>
                             @user.FirstName
                         </td>
-                        <td>@user.LastName</td>
+
+                        <td>
+                        @user.LastName
+                        </td>
+
                         <td>
                             @user.PhoneNumber
                         </td>
+
                         <td class="bw">
                             @user.Email
-
-
                         </td>
 
                         <td style="text-align: center; vertical-align: middle;">
-                            <a class="btn btn-danger " href="/User/ConfirmDelete/@user.id">Stergeti</a>
-                            <br />
-                            <br />
                             <a class="btn btn-success " href="/User/Detail/@user.id">Detalii</a>
                             @if (User.IsInRole("Administrator"))
-                            {   
+                            {
                                 <br />
                                 <br />
-                                <a class="btn btn-info " href="/User/EditRole/@user.id">Gestionati rol</a>
+                                <a class="btn btn-danger " href="/User/ConfirmDelete/@user.id">Ștergeți</a>
+                                <br />
+                                <br />
+                                <a class="btn btn-info " href="/User/EditRole/@user.id">Gestionați rol</a>
                             }
-
                         </td>
-
-
-
-
-
-
-
-
-
                     </tr>
                 }
             </table>
         </div>
 
-
         <div class="pagining">
             @{
 
                 string url;
+                //se gasesc parametri de tip query din url, daca in momentul accesarii linkului din paginare nu exista parametrii atunci se va forma un parametru si anume page=:se pune ? dupa url
                 if (Context.Request.Query.Count == 0)
                 {
                     url = Context.Request.Path + "?";
                 }
+
                 else
-                {
+                {   //daca exista parametrii se inlocuieste parametrul care indica pagina curenta cu un string null
                     url = Context.Request.Path + Context.Request.QueryString;
                     url = url.Replace("&p=" + Context.Request.Query["p"].ToString(), "");
                     url = url.Replace("?p=" + Context.Request.Query["p"].ToString(), "");
 
                     if (string.IsNullOrEmpty(Context.Request.Query["p"]))
-                    {
+                    {   //daca mai exist alti parametrii inafara de p se va adauga & la sfarsit de url
                         if (Context.Request.Query.Count >= 1)
                         {
                             url = url + "&";
                         }
+                        //daca nu exista alt parametru se adauga ? pentru a putea adauga primul parametru
                         else
                         {
                             url = url + "?";
-
                         }
                     }
                     else
-                    {
+                    {  //daca exista parametrul p si inc un parametru suplimentar se adauga &
                         if (Context.Request.Query.Count >= 2)
                         {
                             url = url + "&";
                         }
+                        //altfel se adauga ?
                         else
                         {
                             url = url + "?";
@@ -142,19 +123,14 @@
                         }
 
                     }
-
-
                 }
-
-
             }
 
-
             @if (ViewBag.noPages > 6)
-            {
-                if (ViewBag.currPage == 1 || ViewBag.currPage == 2)
+            {  //in functie de numarul de pagini returnate si de pagina curenta se vor afisa diferit link-urile de paginare
+
+                if (ViewBag.currPage == 1)
                 {
-                    <a href="@(url + "p=")@(ViewBag.currPage-1)"> Prev &lt </a>
                     <a href="@(url + "p=")1">1</a>
                     <a href="@(url + "p=")2">2</a>
                     <a href="@(url + "p=")3">3</a>
@@ -162,6 +138,16 @@
                     <a href="@(url + "p=")@ViewBag.noPages">@ViewBag.noPages</a>
                     <a href="@(url + "p=")@(ViewBag.currPage+1)"> &gt Next</a>
 
+                }
+                else
+                if (ViewBag.currPage == 2)
+                { <a href="@(url + "p=")@(ViewBag.currPage-1)"> Prev &lt </a>
+                    <a href="@(url + "p=")1">1</a>
+                    <a href="@(url + "p=")2">2</a>
+                    <a href="@(url + "p=")3">3</a>
+                    <span>...</span>
+                    <a href="@(url + "p=")@ViewBag.noPages">@ViewBag.noPages</a>
+                    <a href="@(url + "p=")@(ViewBag.currPage+1)"> &gt Next</a>
                 }
                 else if (ViewBag.currPage == 3)
                 {
@@ -177,7 +163,7 @@
                 }
 
 
-                else if (ViewBag.currPage == ViewBag.noPages || ViewBag.currPage == ViewBag.noPages - 1)
+                else if (ViewBag.currPage == ViewBag.noPages)
                 {
 
                     <a href="@(url + "p=")@(ViewBag.currPage-1)"> Prev &lt </a>
@@ -186,8 +172,18 @@
                     <a href="@(url + "p=")@(ViewBag.noPages-2)">@(ViewBag.noPages-2)</a>
                     <a href="@(url + "p=")@(ViewBag.noPages-1)">@(ViewBag.noPages-1)</a>
                     <a href="@(url + "p=")@ViewBag.noPages">@ViewBag.noPages</a>
-                    <a href="@(url + "p=")@(ViewBag.currPage+1)"> &gt Next</a>
 
+
+                }
+                else if (ViewBag.currPage == ViewBag.noPages - 1)
+                {
+                    <a href="@(url + "p=")@(ViewBag.currPage-1)"> Prev &lt </a>
+                    <a href="@(url + "p=")1">1</a>
+                    <span>...</span>
+                    <a href="@(url + "p=")@(ViewBag.noPages-2)">@(ViewBag.noPages-2)</a>
+                    <a href="@(url + "p=")@(ViewBag.noPages-1)">@(ViewBag.noPages-1)</a>
+                    <a href="@(url + "p=")@ViewBag.noPages">@ViewBag.noPages</a>
+                    <a href="@(url + "p=")@(ViewBag.currPage+1)"> &gt Next</a>
                 }
                 else if (ViewBag.currPage == ViewBag.noPages - 2)
                 {
@@ -214,30 +210,22 @@
                 }
 
             }
+            //daca edoar o pagina nu se afiseaza meniul de paginare
             else if (ViewBag.noPages == 1)
             {
 
             }
             else
+            // daca e un nr mai mic de 6 pagini se afiseaza toate link-urile
             { <a href="@(url + "p=")@(ViewBag.currPage-1)"> Prev &lt </a>
                 for (var i = 1; i <= ViewBag.noPages; i++)
                 {
-                    if (i == ViewBag.currPage)
-                    {
-
-                        <a href="@(url + "p=")@i">@i</a>
-                    }
-                    else
-                    {
-                        <a href="@(url + "p=")@i">@i</a>
-                    }
+                    <a href="@(url + "p=")@i">@i</a>
                 }
                 <a href="@(url + "p=")@(ViewBag.currPage+1)"> &gt Next</a>
             }
         </div>
-    
-
-
+   
 }
 }
 

@@ -4,7 +4,6 @@
 @{
     ViewData["Title"] = "Choose Seats";
 }
-
 @using Microsoft.AspNetCore.Identity;
 @model Licenta.ViewModels.ChooseSeatsViewModel;
 @inject SignInManager<User> SignInManager;
@@ -21,8 +20,9 @@
 
 
 @if (Model != null)
-{
+{       //se initializeaza variabila rowcu 1 fiind situati initial pe primul rand
         int row = 1;
+        //se calculeaza latimea unui scaun ca procent din latimea ecranului
         float width1 = (float)100 / (float)(Model.cols + 1);
         string width = width1.ToString("0.0000") + "%";
 
@@ -96,35 +96,39 @@
 
                     <input asp-for="selectedseats" type="hidden" />
                     <input asp-for="screeningId" type="hidden" />  
-                    <input asp-for="userId" type="hidden"/>             
+                    <input asp-for="userId" type="hidden"/>  
+                    
+
                     <label asp-for="nume"></label>
                     <input asp-for="nume" class="form-control" />
                     <span asp-validation-for="nume" class="text-danger"></span>
                     <br />
+
                     <label asp-for="prenume"></label>
                     <input asp-for="prenume" class="form-control" />
                     <span asp-validation-for="prenume" class="text-danger"></span>
                     <br />
+
                     <label asp-for="email"></label>
                     <input asp-for="email" class="form-control" />
                     <span asp-validation-for="email" class="text-danger"></span>
                     <br />
+
                     <label asp-for="telefon"></label>
                     <input asp-for="telefon" class="form-control" />
-                  
                     <span asp-validation-for="telefon" class="text-danger"></span>
                     <br />
                     <br />
                     @if (User.IsInRole("Administrator"))
                     {
-                        <input type="submit" class="btn btn-danger reserve" name="action" value="Rezerva biletele" />
+                        <input type="submit" class="btn btn-danger reserve" name="action" value="Rezervă biletele" />
                     }
                     else
                     {
-                        <input type="submit" class="btn btn-danger reserve" name="action" value="Rezerva biletele" />
+                        <input type="submit" class="btn btn-danger reserve" name="action" value="Rezervă biletele" />
                         <br />
                         <br />
-                       <input type="submit" class="btn btn-danger reserve" name="action" value="Cumpara bilete"/>
+                       <input type="submit" class="btn btn-danger reserve" name="action" value="Cumpără bilete"/>
                     }
                 </form>
 
@@ -132,15 +136,15 @@
             <div class="col-md-4 " style="text-align:right;">
                 <br />
                 <p>Total: <b>@Model.total Lei</b></p>
-                <p>Numar bilete: @Model.notickets </p>
+                <p>Număr bilete: @Model.notickets </p>
             </div>
         </div>
     </div>
 
 }
 
-
-<script type="text/javascript">
+@section Scripts{ 
+    <script type="text/javascript">
 
     var model = @Html.Raw(Json.Serialize(Model));
 
@@ -150,54 +154,8 @@
         seats = model.selectedseats.split(",").map(Number);
         selected = seats.count();
     }
+    //numarul de bilete care trebuie selectate
     var noseats = model.notickets - model.selectedseats;
-    $('.seat').click(function (event) {
-
-        //daca este un scaun deja rezervat nu se permite selectarea lui
-
-
-
-
-            if ($(event.target).hasClass('reserved')) {
-                alert('Acest loc este deja rezervat si nu poate fi selectat');
-            }
-
-            //daca este un scaun liber se permite selectarea se adauga in array
-
-
-
-            if ($(event.target).hasClass('free')) {
-                if (noseats > 0) {
-                    $(event.target).removeClass('free');
-                    $(event.target).addClass('selected');
-                    noseats = noseats - 1;
-                    seats.push(event.target.id);
-                } else alert("Ati selectat toate locurile");
-            }
-
-            else if ($(event.target).hasClass('selected')) {
-                $(event.target).removeClass('selected');
-                $(event.target).addClass('free');
-                noseats = noseats + 1;
-                seats = $.grep(seats, function (value) {
-                    return value != event.target.id;
-                });
-
-
-        }
-
-    });
-
-    $('.reserve').click(function (e) {
-        if (noseats == 0) {
-            $('#selectedseats').val(seats.toString());
-
-            $('#reserveform').submit();
-        } else {
-            e.preventDefault();
-            alert("Mai aveti " + noseats + " locuri de selectat!");
-        }
-
-    });
-
-</script>
+    </script>
+<script src="~/js/ChooseSeatsJS.js"></script>
+} 

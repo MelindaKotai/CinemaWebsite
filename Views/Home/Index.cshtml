@@ -4,29 +4,31 @@
 
 @section Css{
     <link rel="stylesheet" href="~/css/HomePage.css" asp-append-version="true">
-
 }
+
 @model List<Licenta.ViewModels.HomePageViewModel>
 @using System.Globalization
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<User> SignInManager
+
 @{
     CultureInfo culture = CultureInfo.CreateSpecificCulture("ro-RO");
 }
 
 @section OuterContainer{
     <div class="text-center efect" style="padding-top:130px;-webkit-text-stroke: 1px black;">
-        <h1>Faceti acum o rezervare la unul din cele mai noi filme aparute!</h1>
-        <h3>Vedeti programul nostru aici si bucurati-va de toate serviciile disponibile</h3>
+        <h1>Faceți acum o rezervare la unul din cele mai noi filme apărute!</h1>
+        <h3>Vedeți programul nostru aici și bucurați-vă de toate serviciile disponibile</h3>
         <br />
         <br />
-        <a href="/Screening"> <div class="btn btn-primary">Program</div></a>
+        <a href="/Screening/date=@DateTime.Now.ToString("yyyy-MM-dd")"> <div class="btn btn-primary" style="-webkit-text-stroke: 0px;">Program</div></a>
     </div>
 }
+
 <div class="text-center">
     <div class="row">
         <div class="col-md-7">
-            <h2>Vedeti cele mai noi filme aparute!</h2>
+            <h2>Vedeți cele mai noi filme apărute!</h2>
             <hr color="red" />
             <div class="slideshow-container">
                 @foreach (var movie in Model)
@@ -37,31 +39,28 @@
                         <div class="text">
                             @movie.title
                             <br />
-                            Data aparitiei: @movie.release_date.ToString("dd-MMMM-yyyy", culture)
+                            Data apariției: @movie.release_date.ToString("dd-MMMM-yyyy", culture)
                         </div>
-
-
                     </div>
-
                 }
                 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                 <a class="next" onclick="plusSlides(1)">&#10095;</a>
             </div>
-            <br>
+            <br/>
         </div>
 
         <div class="col-md-5 description">
             <p>
-                Cinematograful nostru dispune de toate facilitatile necesare pentru o iesire in oras relaxanta si interesanta cu prietenii si cu familia. Salile de cinema sunt dotate cu
-                cele mai noi si performante sisteme de proiectie si de sunet si cu scaune ce ofera maximul de confort si loc suficient pentru a va intinde picioarele.
+                Cinematograful nostru dispune de toate facilitățile necesare pentru o experiență cinematografică inedită sau o ieșire în oras relaxantă și interesantă cu prietenii sau cu familia. Sălile de cinema sunt dotate cu
+                cele mai noi și performante sisteme de proiecție și de sunet și de asemenea cu scaune ce oferă maximul de confort și loc suficient pentru a vă întinde picioarele.
             </p>
 
-            <p> Puteti sa va bucurati de o varietate mare de sucuri, de popcorn si de cele mai delicioase snaks-uri in timpul filmului datorita barului din incinta cinematografului.</p>
+            <p> Puteți să va bucurați de un popcorn proaspăt și cald, de o varietate mare de sucuri și de cele mai delicioase snaks-uri în timpul filmului datorită barului din incinta cinematografului care este deschis în intervalul orar 9:00-23:00.</p>
 
-            <p>Tot ce trebuie sa faci este sa alegi un film si sa iti faci o rezervare!</p>
+            <p> Tehnologia 3D de ultimă generație vă permite să intrați în universul magic al filmelor și să trăiți cu o intensitate mare experiențele personajelor. </p>
+            <p> Tot ce trebuie să faci este să alegi un film și să iți faci o rezervare iar noi te vom aștepta cu toate aceste lucruri pregătite! </p>
             <br />
             <br />
-            
         </div>
     </div>
     <div style="clear:both;margin-top:50px;"></div>
@@ -76,32 +75,26 @@
 
     <div class="slideshow-container">
         <div class="mySlides2 efect">
-
             <img src="~/cinema.jpg" style="width:100%" class="align-self-center">
         </div>
 
         <div class="mySlides2 efect">
-
             <img src="~/cinema2.jpg" style="width:100%">
         </div>
 
         <div class="mySlides2 efect">
-
             <img src="~/cinema6.jpg" style="width:100%">
         </div>
 
         <div class="mySlides2 efect">
-
             <img src="~/cinema4.jpg" style="width:100%">
         </div>
 
         <div class="mySlides2 efect">
-
             <img src="~/MovieTheatre.png" style="width:100%">
         </div>
 
         <div class="mySlides2 efect">
-
             <img src="~/cinema7.jpeg" style="width:100%">
         </div>
 
@@ -109,16 +102,13 @@
         <a class="next" onclick="plusSlides2(1)">❯</a>
     </div>
 
-
-
-
     <br />
     <br />
     <br />
 
     @if (!SignInManager.IsSignedIn(User))
     {
-        <h6 class="alert alert-danger"> Noi rasplatim clientii fideli de aceea daca iti faci un cont poti de asemenea beneficia de tombola noastra de premii! </h6>
+        <h6 class="alert alert-danger"> Noi răsplătim clienții fideli, de aceea dacă iți faci un cont poți de asemenea beneficia de tombola noastră de premii! </h6>
     }
 </div>
 

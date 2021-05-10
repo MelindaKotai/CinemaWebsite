@@ -28,6 +28,9 @@ namespace Licenta.Controllers
             _context = context;
             _userManager = userManager;
         }
+
+
+
         [Authorize(Roles = "Administrator,Manager,Angajat")]
         public async Task<IActionResult> List(string q,int p)
         {
@@ -36,6 +39,7 @@ namespace Licenta.Controllers
             {
                 p = 1;
             }
+
             List<UserViewModel> model = new List<UserViewModel>();
 
             var users = await _context.Users.ToListAsync();
@@ -69,7 +73,7 @@ namespace Licenta.Controllers
             ViewBag.currPage = p;
             if (model.Count == 0)
             {
-                ViewBag.ErrorMessage = "Nu a fost gasit nici un utilizator!";
+                ViewBag.ErrorMessage = "Nu a fost găsit nici un utilizator!";
                 return View();
             }
             if (TempData["SuccesMessage"] != null)
@@ -92,9 +96,6 @@ namespace Licenta.Controllers
             UserViewModel model = new UserViewModel();
 
             var user = await _context.Users.Include(x => x.UserPrizes).ThenInclude(p => p.prize).FirstOrDefaultAsync(x => x.Id == id);
-
-
-
 
             model.id = user.Id;
             model.FirstName = user.FirstName;
@@ -126,7 +127,7 @@ namespace Licenta.Controllers
             
             if (user == null)
             {
-                ViewBag.ErrorMessage = "Nu a fost gasit utilizatorul!";
+                ViewBag.ErrorMessage = "Nu a fost găsit utilizatorul!";
                 return View();
             }
             if (TempData["SuccesMessage"] != null)
@@ -155,14 +156,14 @@ namespace Licenta.Controllers
             var prize = await _context.UserPrizes.FindAsync(id);
             if (prize == null)
             {
-                TempData["ErrorMessage"] = "premiul nu a fost gasit !";
+                TempData["ErrorMessage"] = "Premiul nu a fost găsit !";
                 return RedirectToAction("Detail");
 
             }
             prize.claimed = true;
             _context.UserPrizes.Update(prize);
             await _context.SaveChangesAsync();
-            TempData["SuccesMessage"] = "premiul a fost revendicat cu succes !";
+            TempData["SuccesMessage"] = "Premiul a fost revendicat cu succes !";
             return RedirectToAction("Detail", new { id=prize.userId});
 
         }
@@ -177,7 +178,7 @@ namespace Licenta.Controllers
            
             if (user == null)
             {
-                TempData["ErrorMessage"] = "premiul nu a fost gasit !";
+                TempData["ErrorMessage"] = "Premiul nu a fost găsit !";
                 return RedirectToAction("List");
 
             }
@@ -204,14 +205,14 @@ namespace Licenta.Controllers
 
             if (user == null)
             {
-                TempData["ErrorMessage"] = "Utilizatorul nu a fost gasit !";
+                TempData["ErrorMessage"] = "Utilizatorul nu a fost găsit !";
                 return RedirectToAction("List");
 
             }
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
 
-            TempData["SuccesMessage"] = "Utilizatorul a fost sters cu succes! !";
+            TempData["SuccesMessage"] = "Utilizatorul a fost șters cu succes! !";
             return RedirectToAction("List");
 
 
@@ -226,7 +227,7 @@ namespace Licenta.Controllers
             var user = await _userManager.FindByIdAsync(id);
             if (user == null)
             {
-                TempData["ErrorMessage"] = "Utilizatorul nu a fost gasit !";
+                TempData["ErrorMessage"] = "Utilizatorul nu a fost găsit !";
                 return RedirectToAction("List");
             }
             var userroles = await _userManager.GetRolesAsync(user);
@@ -264,13 +265,13 @@ namespace Licenta.Controllers
           var user = await _userManager.FindByIdAsync(id);
             if (user == null)
             {
-                TempData["ErrorMessage"] = "Utilizatorul nu a fost gasit !";
+                TempData["ErrorMessage"] = "Utilizatorul nu a fost găsit !";
                 return RedirectToAction("List");
             }
 
             if(!(await _roleManager.RoleExistsAsync(role)))
             {
-                TempData["ErrorMessage"] = "Rolul selectat nu exista !";
+                TempData["ErrorMessage"] = "Rolul selectat nu există !";
                 return RedirectToAction("EditRole");
             }
             var userroles = await _userManager.GetRolesAsync(user);

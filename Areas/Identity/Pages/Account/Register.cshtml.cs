@@ -49,34 +49,34 @@ namespace Licenta.Areas.Identity.Pages.Account
 
 
             [Required]
-            [RegularExpression("^[A-Za-z ,.'-]+$", ErrorMessage = "The first name can only contain letters")]
+            [RegularExpression("^[A-Za-z ,.'-]+$", ErrorMessage = "Prenumele poate conține doar litere")]
             [Display(Name = "Prenume")]
             public string FirstName { get; set; }
 
             [Required]
-            [RegularExpression("^[A-Za-z ,.'-]+$", ErrorMessage = "The last name can only contain letters")]
+            [RegularExpression("^[A-Za-z ,.'-]+$", ErrorMessage = "Numele poate conține doar litere")]
             [Display(Name = "Nume")]
             public string LastName { get; set; }
 
             [Required]
-            [Phone(ErrorMessage = "Invalid phone number format")]
-            [Display(Name = "Numar de telefon")]
+            [Phone(ErrorMessage = "Format greșit")]
+            [Display(Name = "Număr de telefon")]
             public string PhoneNumber { get; set; }
 
             [Required]
-            [EmailAddress]
+            [EmailAddress(ErrorMessage = "Format greșit")]
             [Display(Name = "Email")]
             public string Email { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "{0} trebuie sa fie de cel puțin {2} și cel mult {1} caractere.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Parola")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirmati parola")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Confirmați parola")]
+            [Compare("Password", ErrorMessage = "Parola si confirmarea parolei nu se potrivesc.")]
             public string ConfirmPassword { get; set; }
         }
 

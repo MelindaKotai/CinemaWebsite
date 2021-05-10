@@ -5,17 +5,20 @@
 
     ViewData["Title"] = "Program";
 }
+
 @section Css{
     <link rel="stylesheet" href="~/css/Program.css" asp-append-version="true">
 }
-@using System.Globalization
 
+@using System.Globalization
 @{
     CultureInfo culture = CultureInfo.CreateSpecificCulture("ro-RO");
 }
+
 @model List<Licenta.Models.Movie>
+
 <div class="row border-top-f border-bottom-h s-nav">
-    <a class="nav-link text-light screening-nav " href="/Screening?date=@DateTime.Now.ToString("yyyy-MM-dd")"><div class="col">Astazi</div></a>
+    <a class="nav-link text-light screening-nav " href="/Screening?date=@DateTime.Now.ToString("yyyy-MM-dd")"><div class="col">Astăzi</div></a>
     <a class="nav-link text-light screening-nav" href="/Screening?date=@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")"><div class="col">@DateTime.Now.AddDays(1).ToString("ddd", culture)</div></a>
     <a class="nav-link text-light screening-nav" href="/Screening?date=@DateTime.Now.AddDays(2).ToString("yyyy-MM-dd")"><div class="col">@DateTime.Now.AddDays(2).ToString("ddd", culture)</div></a>
     <a class="nav-link text-light screening-nav" href="/Screening?date=@DateTime.Now.AddDays(3).ToString("yyyy-MM-dd")"><div class="col">@DateTime.Now.AddDays(3).ToString("ddd", culture)</div></a>

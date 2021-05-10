@@ -1,25 +1,30 @@
 ﻿
+    //se initializeaza variabila currtable
     var currTable = $('#allmoviesttable');
 
-
+   //se initializeaza variabila chart
     var myChart3 = new Chart(
     document.getElementById('myChart3')
     
     );
 
-    //script care sa trimita ajax si sa aseze date
+    //scripts care sa trimita ajax si sa aseze date
+    //selectul pentru topuri
         $("#tops").on('change', function () {
-        myChart3.destroy();
+            //se distruge chartul xistent in vanvas pt a se crea altul
+            myChart3.destroy();
+            //daca nu s-a selectat nici o optiune nu se intampla nimic
             var option = $("#tops").val();
             if (option == "") {
                 return;
             }
             $.get("/Reports/GetTop?option=" + option, function (data) {
 
-        $("#result").removeClass("hide");
+                $("#result").removeClass("hide");
                 var content = "";
+                //se verifica daca s-a reusit returnarea datelor
                 if (data == "Error") {
-        content = "Generarea raportului a esuat!";
+                    content = "Generarea raportului a esuat!";
                     currTable.removeClass('hide');
                     currTable.addClass('hide');
                     $('#errorMessage').removeClass('hide');
@@ -27,15 +32,13 @@
                     $('#errorMessage').html(content);
                     return;
                 }
-
+                //se contruieste obiectul js din stringul json returnat
                 data = JSON.parse(data);
                 currTable.removeClass('hide');
                 currTable.addClass('hide');
                 $("#" + option + "table").removeClass('hide');
                 currTable = $("#" + option + "table");
-
                 var contentid = "#" + option + "content";
-
 
                 var datalabels = new Array();
                 var datadata = new Array();
@@ -49,13 +52,11 @@
                 }
                 $(contentid).html(content);
 
-                $('#downloadlink').html("<a class='nolink' href='/Reports/ExportTop?option="+option+"'>Descarcati datele in format csv</a>");
-
+                $('#downloadlink').html("<a class='nolink' href='/Reports/ExportTop?option="+option+"'>Descărcași datele în format csv</a>");
 
                 const labels3 = datalabels;
-
                 const data3 = {
-        labels: labels3,
+                    labels: labels3,
                     datasets: [{
       
                         data: datadata,
@@ -111,13 +112,13 @@
                 };
 
                 const config3 = {
-        type: 'bar',
+                    type: 'bar',
                     data: data3,
                     options: {
-        scales: {
-        y: {
-        beginAtZero: true
-                            }
+                    scales: {
+                        y: {
+                        beginAtZero: true
+                           }
                         }
                     },
                 };
@@ -137,13 +138,11 @@
 
         function destroyChart() {
         myChart3.destroy();
-}
+        }
 
 
-
+        //la modificarea selectului rapoarte
         $("#reports").on('change', function () {
-
-          
                 myChart3.destroy();
                 var option = $("#reports").val();
                 if (option == "") {
@@ -230,10 +229,8 @@
 
 
 
-
+        //la modificarea datei la care se doreste sa se afle det5alii legate de vanzari
         $("#date").on('change', function () {
-
-
             myChart3.destroy();
             var option = $("#dailyreports").val();
             date = $("#date").val();
@@ -328,8 +325,6 @@
                 myChart3.options.plugins.legend.display = false;
 
                 myChart3.update();
-
-
             });
         });
 

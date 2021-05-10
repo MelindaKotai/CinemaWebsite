@@ -15,37 +15,35 @@
 }
 
 
-
 @if (Model != null)
 {
-    <h1>Structura salii de cinema </h1>
+    <h1>Structura sălii de cinema </h1>
     <h3>@Model.name</h3>
 
     <div class="container bg-dark pt-4 pb-3 pl-5 pr-5" style="border-radius:10px;">
 
         <div class="screen">Ecran</div>
 
-        @{  
-            //rand de scaune
+        @{
+            //primul rand al salii
             int row = 1;
+            //se calculeaza latimea unui scauna ca si procent fata de latimea ecranului
             float width1 = (float)100 / (float)(Model.cols + 1);
             string width = width1.ToString("0.0000") + "%";
-
         }
         <div class="row">
             <div class="path" style="width:@width;"><b>R1</b></div>
-          
+
             @foreach (var seat in Model.seats)
             {
-                //se verifica daca s-a trecut pe rand nou
+                //se verifica daca s-a trecut pe rand nou ca sa se stie cand sa se afiseze numarul randului curent
                 @if (seat.row != row)
-                {   
-                    //tot timpul un scaun cu rand=0 marcheaza inceputul unui rand de tip culoar, acesta nu se marcheaza ca rand
+                {
+                    //tot timpul un scaun cu rand=0 marcheaza inceputul unui rand de tip culoar, acesta nu se marcheaza ca rand de scaune, nu are numar
                     @if (seat.row == 0)
                     {
                         @Html.Raw("</div><div class='row'>");
                         row = seat.row;
-
                     }
                     else
                     {
@@ -67,11 +65,11 @@
 
             }
         </div>
-        </div>
-    }
-    
+    </div>
+}
 
-     
 
-            
-            
+
+
+
+

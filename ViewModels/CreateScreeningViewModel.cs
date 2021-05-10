@@ -23,10 +23,10 @@ namespace Licenta.ViewModels
         [Display(Name = "Ora")]
         public DateTime s_hour { get; set; }
 
-        [Required(ErrorMessage = "Pretul este obligatoriu")]
-        [Display(Name = "Pret")]
+        [Required(ErrorMessage = "Prețul este obligatoriu")]
+        [Display(Name = "Preț")]
         public float price { get; set; }
-        [Required(ErrorMessage = "Trebuie sa alegeti o optiune!")]
+        [Required(ErrorMessage = "Trebuie să alegeți o opțiune!")]
         [Display(Name = "Ecranizare 3D")]
         public bool is3D { get; set; }
 

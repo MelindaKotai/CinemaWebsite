@@ -4,6 +4,8 @@ const dateParam = urlParams.get('date');
 document.getElementById('hiddendate').value = dateParam;
 document.getElementById('datepicker').value = dateParam;
 
+
+//la selectarea unei date se schimba url-ul
 function changedate() {
     var date = document.getElementById('datepicker').value;
     var queryParams = new URLSearchParams(window.location.search);

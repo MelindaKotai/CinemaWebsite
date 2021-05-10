@@ -13,8 +13,9 @@
 @{
     CultureInfo culture = CultureInfo.CreateSpecificCulture("ro-RO");
 }
+
 <div class="row border-top-f border-bottom-h s-nav">
-    <a class="nav-link text-light screening-nav " href="/Screening?date=@DateTime.Now.ToString("yyyy-MM-dd")"><div class="col">Astazi</div></a>
+    <a class="nav-link text-light screening-nav " href="/Screening?date=@DateTime.Now.ToString("yyyy-MM-dd")"><div class="col">Astăzi</div></a>
     <a class="nav-link text-light screening-nav" href="/Screening?date=@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")"><div class="col">@DateTime.Now.AddDays(1).ToString("ddd", culture)</div></a>
     <a class="nav-link text-light screening-nav" href="/Screening?date=@DateTime.Now.AddDays(2).ToString("yyyy-MM-dd")"><div class="col">@DateTime.Now.AddDays(2).ToString("ddd", culture)</div></a>
     <a class="nav-link text-light screening-nav" href="/Screening?date=@DateTime.Now.AddDays(3).ToString("yyyy-MM-dd")"><div class="col">@DateTime.Now.AddDays(3).ToString("ddd", culture)</div></a>
@@ -22,7 +23,7 @@
     <a class="nav-link text-light screening-nav" href="/Screening?date=@DateTime.Now.AddDays(5).ToString("yyyy-MM-dd")"><div class="col">@DateTime.Now.AddDays(5).ToString("ddd", culture)</div></a>
     <a class="nav-link text-light screening-nav" href="/Screening?date=@DateTime.Now.AddDays(6).ToString("yyyy-MM-dd")"><div class="col">@DateTime.Now.AddDays(6).ToString("ddd", culture)</div></aclass="nav-link></a>
     <a class="nav-link text-light screening-nav" href="/Screening/Movies"><div class="col">Toate filmele</div></a>
-    <a class="nav-link text-light screening-nav" href="/Screening/ComingSoon"><div class="col">In curand!</div></a>
+    <a class="nav-link text-light screening-nav" href="/Screening/ComingSoon"><div class="col">În curând!</div></a>
 </div>
 
 <div class="container mt-5 mb-5">

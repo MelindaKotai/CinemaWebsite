@@ -9,6 +9,6 @@
 });
 
 $('.deletebtn').on('click', function () {
-    return confirm('Sunteti sigur ca doriti sa stergeti aceasta rezervare ?');
+    return confirm('Sunteți sigur ca doriti sa ștergeți această rezervare ?');
 });
 

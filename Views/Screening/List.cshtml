@@ -4,44 +4,50 @@
 @{
     ViewData["Title"] = "Screening List";
 }
+
 @section Css{
     <link rel="stylesheet" href="~/css/Program.css" asp-append-version="true">
 }
-@using System.Globalization
 
+@using System.Globalization
 @{
     CultureInfo culture = CultureInfo.CreateSpecificCulture("ro-RO");
 }
+
 @model List<Licenta.ViewModels.ScreeningAdminList>
 
 @if (ViewBag.Message != null)
-{<div class="alert alert-info">@ViewBag.Message</div>}
+{
+    <div class="alert alert-info">@ViewBag.Message</div>
+}
+
 @if (ViewBag.SuccesMessage != null)
-{<div class="alert alert-success">@ViewBag.SuccesMessage</div>}
+{
+    <div class="alert alert-success">@ViewBag.SuccesMessage</div>
+}
 
 <div class="row">
     <div class="col-sm-8">
         <div class="mt-2 mb-2">
-            Pentru a vedea ecranizarile programate, alegeti o data:
+            Pentru a vedea ecranizările programate, alegeți o dată:
             <br />
             <br />
             <input class="form-control" style="width: 300px" type="date" id="datepicker" onchange="changedate()" />
         </div>
+
         <form action="/Screening/Create" method="get">
 
             <input type="hidden" name="date" id="hiddendate" value="" required />
 
-            <button type="submit" class="btn btn-danger mt-2 mb-2">Creati ecranizare noua</button>
+            <button type="submit" class="btn btn-danger mt-2 mb-2">Creeați o ecranizare nouă</button>
         </form>
 
 
     </div>
     <div class="container p-4 col-sm-4" style="display:inline-block;">
-
-        Cautati ecranizare dupa titlul filmului:
+        Cautați o ecranizare după titlul filmului:
         <br />
         <input name="q" type="text" class="form-control" id="searchinput" style="width:70%;display:inline-block; border-top-right-radius:0px;border-bottom-right-radius:0px;" /><button class="btn btn-danger" style="display:inline-block; border-bottom-left-radius:0px;border-top-left-radius:0px;vertical-align:baseline;" id="search" onclick="search()"><i class="fa fa-search"></i></button>
-
     </div>
 </div>
 
@@ -58,13 +64,14 @@
 </div>
 
 @if (ViewBag.ErrorMessage != null)
-{<div class="alert alert-info">@ViewBag.ErrorMessage</div>}
+{
+    <div class="alert alert-info">@ViewBag.ErrorMessage</div>
+}
 
 @if (Model != null)
 {
-
+    //se afiseaza sala in care este programata ecranizarea
     var hallid = Model[0].hallid;
-
     <div class="container mt-5 mb-5">
         <div class="m-3 p-3 bg-dark" style="border-radius:10px">@Model[0].hall.name</div>
         @foreach (var screening in Model)
@@ -74,38 +81,27 @@
                 <div class="m-3 p-3 bg-dark" style="border-radius:10px">@screening.hall.name</div>
                 hallid = screening.hallid;
             }
+
             <div class="row mt-5 pb-5 box-shadow border-bottom-h">
                 <a href="/Movie/@screening.mid?date=@screening.date" class="nolink">
                     <div class="col-md-5 col-sm-6 ">
-
                         <img src="~/@screening.img" height="150" width="80" class="img" />
-
-
                     </div>
                 </a>
                 <div class="col-md-7 col-sm-6 pl-5 ">
-
                     <a href="/Movie?id=@screening.mid&date=@screening.date" class="nolink">
                         <h6 class="mt-3">@screening.title</h6>
                     </a>
-                    <p>Ora ecranizarii:</p>
+                    <p>Ora ecranizării:</p>
                     <br />
-
                     <a class="nolink" href="/Screening/Reservations/@screening.sid">
                         <div class="bg-danger p-2 hour-link">
-                            @screening.shour.ToString("HH:mm", culture) - @screening.fhour.ToString("HH:mm", culture) @if (screening.is3d != false)
-                            {<span>3D</span>}
+                            @screening.shour.ToString("HH:mm", culture) - @screening.fhour.ToString("HH:mm", culture) @if (screening.is3d != false)   {<span>3D</span>}
                         </div>
                     </a>
-
-
-
                 </div>
-
             </div>
-
         }
-
     </div>
 }
 

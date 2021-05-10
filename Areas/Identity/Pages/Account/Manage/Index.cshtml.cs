@@ -38,17 +38,17 @@ namespace Licenta.Areas.Identity.Pages.Account.Manage
         public class InputModel
         {
             [Phone]
-            [Display(Name = "Numar de telefon")]
+            [Display(Name = "Număr de telefon")]
             public string PhoneNumber { get; set; }
 
 
             [Required]
-            [RegularExpression("^[A-Za-z ,.'-]+$", ErrorMessage = "Prenumele poate contine doar litere")]
+            [RegularExpression("^[A-Za-z ,.'-]+$", ErrorMessage = "Prenumele poate conține doar litere")]
             [Display(Name = "Prenume")]
             public string FirstName { get; set; }
 
             [Required]
-            [RegularExpression("^[A-Za-z ,.'-]+$", ErrorMessage = "Numele poate contine doar litere")]
+            [RegularExpression("^[A-Za-z ,.'-]+$", ErrorMessage = "Numele poate conține doar litere")]
             [Display(Name = "Nume")]
             public string LastName { get; set; }
         }

@@ -27,6 +27,7 @@ namespace Licenta.Controllers
 
 
         [Authorize(Roles = "Client")]
+        //pagina de rezervari ale clientului
         public async Task<IActionResult> Index()
         {
             var allreservations = await _context.Reservations.Join(_context.Screenings,r=>r.screeningId,s=>s.Id,(r,s)=>new {r,s}).
@@ -109,7 +110,7 @@ namespace Licenta.Controllers
             var reservation = await _context.Reservations.Where(x => x.id == id).FirstOrDefaultAsync();
             if (reservation == null)
             {
-                TempData["errormessage"] = "Rezervarea nu a fost gasita";
+                TempData["errormessage"] = "Rezervarea nu a fost găsita";
                 return RedirectToAction("Index");
 
             }
@@ -124,7 +125,7 @@ namespace Licenta.Controllers
                 _context.Reservations.Remove(reservation);
                 await _context.SaveChangesAsync();
 
-                TempData["succesmessage"] = "Rezervarea a fost anulata cu succes!";
+                TempData["succesmessage"] = "Rezervarea a fost anulată cu succes!";
                 return RedirectToAction("Index");
 
             }
@@ -163,12 +164,12 @@ namespace Licenta.Controllers
             var reservation = await _context.Reservations.FindAsync(id);
             if (reservation == null)
             {
-                TempData["ErrorMessage"]= "Rezervarea nu a fost gasita!";
+                TempData["ErrorMessage"]= "Rezervarea nu a fost găsită!";
                 return RedirectToAction("List","Screening" ,new { date = DateTime.Now });
             }
             _context.Reservations.Remove(reservation);
             await _context.SaveChangesAsync();
-            TempData["SuccesMessage"] = "Rezervarea a fost stearsa cu succes!";
+            TempData["SuccesMessage"] = "Rezervarea a fost ștearsă cu succes!";
             return RedirectToAction("Reservations","Screening",new { id = reservation.screeningId });
 
         }

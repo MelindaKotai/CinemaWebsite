@@ -4,6 +4,7 @@
 @{
     ViewData["Title"] = "Screening Reservations";
 }
+
 @model Licenta.ViewModels.ScreeningReservations;
 
 @if (ViewBag.ErrorMessage != null)
@@ -18,8 +19,6 @@
 
 @if (Model != null)
 {
-
-
     <h2 style="display:inline-block">@Model.title</h2>
 
     <div class="bg-danger p-2" style="border-radius:15px;display:inline-block"> @Model.s_hour.ToString("HH:mm") -  @Model.f_hour.ToString("HH:mm") </div>
@@ -34,17 +33,18 @@
 
 
     <form action="/Screening/Reservations/@Model.screeningid" method="get" class="m-3">
-        Cautati o rezervare dupa numele clientului:
+        Căutați o rezervare după numele clientului:
         <input name="q" type="text" class="form-control" style="width:30%;display:inline-block; border-top-right-radius:0px;border-bottom-right-radius:0px;" /><button class="btn btn-danger" style="display:inline-block; border-bottom-left-radius:0px;border-top-left-radius:0px;vertical-align:baseline;"><i class="fa fa-search"></i></button>
-
     </form>
 
-    <a class="btn btn-danger mb-3" href="/Screening/ChooseTickets/@Model.screeningid">Creati rezervare noua</a>
-    <a class="btn btn-danger mb-3" href="/Screening/DeleteConfirmation/@Model.screeningid">Stergeti ecranizarea</a>
+    <a class="btn btn-danger mb-3" href="/Screening/ChooseTickets/@Model.screeningid">Creați o rezervare nouă</a>
+    <a class="btn btn-danger mb-3" href="/Screening/DeleteConfirmation/@Model.screeningid">Ștergeți ecranizarea</a>
+
     @if (Model.reservations != null)
-    {<div class="ofx">
+    {
+        <div class="ofx">
             <table class="table table-dark table-bordered">
-                <thead><tr><th scope="col">Nume</th><th class="text-center" scope="col">Email</th><th class="text-center" scope="col">Sumar Bilete</th><th class="text-center" scope="col">Revendicare bilete</th><th class="text-center" scope="col">Total</th><th class="text-center" scope="col">Stare</th><th class="text-center" scope="col">Actiune</th></tr></thead>
+                <thead><tr><th scope="col">Nume</th><th class="text-center" scope="col">Email</th><th class="text-center" scope="col">Sumar Bilete</th><th class="text-center" scope="col">Revendicare bilete</th><th class="text-center" scope="col">Total</th><th class="text-center" scope="col">Stare</th><th class="text-center" scope="col">Acțiune</th></tr></thead>
 
                 @foreach (var reservation in Model.reservations)
                 {
@@ -53,9 +53,13 @@
                         <td>
                             <span>@reservation.FirstName </span> @reservation.LastName
                         </td>
-                        <td class="bw">@reservation.email</td>
+
+                        <td class="bw">
+                            @reservation.email
+                        </td>
+
                         <td>
-                            <b style="text-decoration:underline;">Numar de bilete: </b>@reservation.totaltickets
+                            <b style="text-decoration:underline;">Număr de bilete: </b>@reservation.totaltickets
                             <br />
                             <b style="text-decoration:underline;">Tipuri de bilete: </b><br />
                             @foreach (var ticket in reservation.ticketTypes)
@@ -66,9 +70,7 @@
                             <br />
                             @foreach (var seat in reservation.seats)
                             {
-
-
-                                <span>Rand @seat.Key, Locuri: </span>
+                                <span>Rând @seat.Key, Locuri: </span>
 
                                 @foreach (var s in seat.Value)
                                 {
@@ -78,13 +80,13 @@
 
                             }
                         </td>
+
                         <td class="tickets">
                             @if (reservation.ticketsids.Count == 0) { }
                             else
                             {
                                 <form action="/ReservedSeats/Download" method="post">
-
-                                    <button class="btn btn-danger" name="ids" value="@string.Join( ",", reservation.ticketsids)">Printeaza toate biletele</button>
+                                    <button class="btn btn-danger" name="ids" value="@string.Join( ",", reservation.ticketsids)">Printează toate biletele</button>
                                 </form>
                                 <br />
                                 <br />
@@ -93,7 +95,7 @@
                             @foreach (var ticket in reservation.tickets)
                             {
                                 <div>
-                                    <b>Tip: </b>@ticket.type<b>, Rand: </b>@ticket.row<b>, Loc: </b>@ticket.seatNo @if (ticket.claimed == false)
+                                    <b>Tip: </b>@ticket.type<b>, Rând: </b>@ticket.row<b>, Loc: </b>@ticket.seatNo @if (ticket.claimed == false)
                                     {
                                         <form action="/ReservedSeats/Download" method="post" class="float-right">
                                             <button class="btn btn-danger float-right" name="ids" value="@ticket.id">P</button>
@@ -106,63 +108,71 @@
                                 <br />
                             }
                         </td>
-                        <td>@reservation.total</td>
+
+                        <td>
+                            @reservation.total
+                        </td>
+
                         <td>
                             @if (reservation.payed == false)
                             {
                                 <select name="state" class="state">
 
-                                    <option value="@reservation.id">Platit</option>
+                                    <option value="@reservation.id">Plătit</option>
 
-                                    <option value="@reservation.id" selected>Neplatit</option>
+                                    <option value="@reservation.id" selected>Neplătit</option>
                                 </select>
                             }
                             else
                             {
                                 <select name="state" class="state">
-                                    <option value="@reservation.id" selected>Platit</option>
-                                    <option value="@reservation.id">Neplatit</option>
+                                    <option value="@reservation.id" selected>Plătit</option>
+                                    <option value="@reservation.id">Neplătit</option>
                                 </select>
                             }
                         </td>
-                        <td><a class="btn btn-danger deletebtn" href="/Reservation/Delete/@reservation.id">Sterge Rezervare</a></td>
 
+                        <td><a class="btn btn-danger deletebtn" href="/Reservation/Delete/@reservation.id">Șterge Rezervare</a></td>
                     </tr>
                 }
             </table>
         </div>
+
         <div class="pagining">
             @{
 
                 string url;
+                //se gasesc parametri de tip query din url, daca in momentul accesarii linkului din paginare nu exista parametrii atunci se va forma un parametru si anume page=:se pune ? dupa url
                 if (Context.Request.Query.Count == 0)
                 {
                     url = Context.Request.Path + "?";
                 }
+
                 else
-                {
+                {   //daca exista parametrii se inlocuieste parametrul care indica pagina curenta cu un string null
                     url = Context.Request.Path + Context.Request.QueryString;
                     url = url.Replace("&p=" + Context.Request.Query["p"].ToString(), "");
                     url = url.Replace("?p=" + Context.Request.Query["p"].ToString(), "");
 
                     if (string.IsNullOrEmpty(Context.Request.Query["p"]))
-                    {
+                    {   //daca mai exist alti parametrii inafara de p se va adauga & la sfarsit de url
                         if (Context.Request.Query.Count >= 1)
                         {
                             url = url + "&";
                         }
+                        //daca nu exista alt parametru se adauga ? pentru a putea adauga primul parametru
                         else
                         {
                             url = url + "?";
-
                         }
                     }
                     else
-                    {
+                    {  //daca exista parametrul p si inc un parametru suplimentar se adauga &
                         if (Context.Request.Query.Count >= 2)
                         {
                             url = url + "&";
                         }
+                        //altfel se adauga ?
                         else
                         {
                             url = url + "?";
@@ -170,19 +180,14 @@
                         }
 
                     }
-
-
                 }
-
-
             }
 
-
             @if (ViewBag.noPages > 6)
-            {
-                if (ViewBag.currPage == 1 || ViewBag.currPage == 2)
+            {  //in functie de numarul de pagini returnate si de pagina curenta se vor afisa diferit link-urile de paginare
+
+                if (ViewBag.currPage == 1)
                 {
-                    <a href="@(url + "p=")@(ViewBag.currPage-1)"> Prev &lt </a>
                     <a href="@(url + "p=")1">1</a>
                     <a href="@(url + "p=")2">2</a>
                     <a href="@(url + "p=")3">3</a>
@@ -190,6 +195,16 @@
                     <a href="@(url + "p=")@ViewBag.noPages">@ViewBag.noPages</a>
                     <a href="@(url + "p=")@(ViewBag.currPage+1)"> &gt Next</a>
 
+                }
+                else
+                if (ViewBag.currPage == 2)
+                { <a href="@(url + "p=")@(ViewBag.currPage-1)"> Prev &lt </a>
+                    <a href="@(url + "p=")1">1</a>
+                    <a href="@(url + "p=")2">2</a>
+                    <a href="@(url + "p=")3">3</a>
+                    <span>...</span>
+                    <a href="@(url + "p=")@ViewBag.noPages">@ViewBag.noPages</a>
+                    <a href="@(url + "p=")@(ViewBag.currPage+1)"> &gt Next</a>
                 }
                 else if (ViewBag.currPage == 3)
                 {
@@ -205,7 +220,7 @@
                 }
 
 
-                else if (ViewBag.currPage == ViewBag.noPages || ViewBag.currPage == ViewBag.noPages - 1)
+                else if (ViewBag.currPage == ViewBag.noPages)
                 {
 
                     <a href="@(url + "p=")@(ViewBag.currPage-1)"> Prev &lt </a>
@@ -214,8 +229,18 @@
                     <a href="@(url + "p=")@(ViewBag.noPages-2)">@(ViewBag.noPages-2)</a>
                     <a href="@(url + "p=")@(ViewBag.noPages-1)">@(ViewBag.noPages-1)</a>
                     <a href="@(url + "p=")@ViewBag.noPages">@ViewBag.noPages</a>
-                    <a href="@(url + "p=")@(ViewBag.currPage+1)"> &gt Next</a>
 
+
+                }
+                else if (ViewBag.currPage == ViewBag.noPages - 1)
+                {
+                    <a href="@(url + "p=")@(ViewBag.currPage-1)"> Prev &lt </a>
+                    <a href="@(url + "p=")1">1</a>
+                    <span>...</span>
+                    <a href="@(url + "p=")@(ViewBag.noPages-2)">@(ViewBag.noPages-2)</a>
+                    <a href="@(url + "p=")@(ViewBag.noPages-1)">@(ViewBag.noPages-1)</a>
+                    <a href="@(url + "p=")@ViewBag.noPages">@ViewBag.noPages</a>
+                    <a href="@(url + "p=")@(ViewBag.currPage+1)"> &gt Next</a>
                 }
                 else if (ViewBag.currPage == ViewBag.noPages - 2)
                 {
@@ -242,23 +267,17 @@
                 }
 
             }
+            //daca edoar o pagina nu se afiseaza meniul de paginare
             else if (ViewBag.noPages == 1)
             {
 
             }
             else
+            // daca e un nr mai mic de 6 pagini se afiseaza toate link-urile
             { <a href="@(url + "p=")@(ViewBag.currPage-1)"> Prev &lt </a>
                 for (var i = 1; i <= ViewBag.noPages; i++)
                 {
-                    if (i == ViewBag.currPage)
-                    {
-
-                        <a href="@(url + "p=")@i">@i</a>
-                    }
-                    else
-                    {
-                        <a href="@(url + "p=")@i">@i</a>
-                    }
+                    <a href="@(url + "p=")@i">@i</a>
                 }
                 <a href="@(url + "p=")@(ViewBag.currPage+1)"> &gt Next</a>
             }
@@ -266,15 +285,14 @@
     }
 
 
-    @section Scripts{
-        <script type="text/javascript" src="~/js/ScreeningReservations.js" asp-append-version="true"></script>
-    }
+@section Scripts{
+    <script type="text/javascript" src="~/js/ScreeningReservations.js" asp-append-version="true"></script>
     @if (@ViewBag.ids != null)
     {
         <script type="text/javascript">
-    $(document).ready(function () {
+         $(document).ready(function () {
 
-            //sa se creeze un form  invizibil care merge spre
+        //sa se creeze un form  invizibil care merge spre actiunea care printeaza biletele care tocmai au fost create de admin
         var f = document.createElement("form");
         f.setAttribute('method', "post");
         f.setAttribute('action', "/ReservedSeats/Download");
@@ -285,16 +303,14 @@
         s.setAttribute('name', "ids");
         s.setAttribute('class', "hide");
         f.appendChild(s);
-
         document.getElementsByTagName('body')[0].appendChild(f);
         f.submit();
         $("#generatedform").remove();
-
         });
-
-
         </script>
     }
+}
+
 
 
 

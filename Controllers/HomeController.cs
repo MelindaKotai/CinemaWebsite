@@ -57,13 +57,14 @@ namespace Licenta.Controllers
              model.Add(result);
             
             }
-               
-               
+                        
             //return list of movies
             return View(model);       
 
             }
 
+
+        //returneaza pagina de contact
         public IActionResult Contact()
         {
             if (TempData["SuccesMessage"] != null)
@@ -77,6 +78,7 @@ namespace Licenta.Controllers
 
 
         [HttpPost]
+        //se trimite mail cu mesajul transmis de utilizator
         public async Task<IActionResult> ContactAsync(ContactFormViewModel model)
         {
 
@@ -86,8 +88,8 @@ namespace Licenta.Controllers
             var telefon= model.phone;
             var mesaj=model.mesage;
 
-            mesaj = "<h1> Acest mesaj este trimis de catre un client de pe pagina de contact! </h1> <br/> Nume: " + nume + "<br/> Email: " + email + "<br/> Telefon: " + telefon + "<br/><br/> <b>Mesajul transmis este:</b><br/> " + mesaj;
-            TempData["SuccesMessage"]="Mesajul a fost trimis cu succes. Daca este necesar, unul din operatorii nostri va va contacta prin email sau telefon pentru a va raspunde. Multumim!";
+            mesaj = "<h1> Acest mesaj este trimis de către un client de pe pagina de contact! </h1> <br/> Nume: " + nume + "<br/> Email: " + email + "<br/> Telefon: " + telefon + "<br/><br/> <b>Mesajul transmis este:</b><br/> " + mesaj;
+            TempData["SuccesMessage"]="Mesajul a fost trimis cu succes. Dacă este necesar, unul din operatorii noștri vă va contacta prin email sau telefon pentru a vă raspunde. Mulțumim!";
             await  _emailSender.SendEmailAsync("cinemawebsitelicense@gmail.com", "UserMessage", mesaj);
             return RedirectToAction("Contact", new ContactFormViewModel());
         }
@@ -100,6 +102,7 @@ namespace Licenta.Controllers
         {
             return View();
         }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

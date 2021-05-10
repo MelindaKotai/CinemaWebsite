@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Licenta</title>
+    <title>@ViewData["Title"] - Licență</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -26,9 +26,9 @@
                     {
                         <div id="Sidenav" class="sidenav">
                             <a class="closebtn" onclick="closeNav()">&times;</a>
-                            <div class="sidebar-heading">Optiuni</div>
+                            <div class="sidebar-heading">Opțiuni</div>
                             <div>
-                                <a href="/Screening/List?date=@DateTime.Now.ToString("yyyy-MM-dd")" class="list-group-item list-group-item-action bg-dark">Ecranizari</a>
+                                <a href="/Screening/List?date=@DateTime.Now.ToString("yyyy-MM-dd")" class="list-group-item list-group-item-action bg-dark">Ecranizări</a>
                                 <a href="/User/List" class="list-group-item list-group-item-action bg-dark">Utilizatori</a>
 
                                 @if (User.IsInRole("Administrator") || User.IsInRole("Manager"))
@@ -43,7 +43,7 @@
 
                                     <a href="/TicketTypes/List" class="list-group-item list-group-item-action bg-dark">Bilete</a>
                                     <a href="/Prize/List" class="list-group-item list-group-item-action bg-dark">Premii</a>
-                                    <a href="/Hall/List" class="list-group-item list-group-item-action bg-dark">Sali</a>}
+                                    <a href="/Hall/List" class="list-group-item list-group-item-action bg-dark">Săli</a>}
 
                             </div>
                         </div>
@@ -90,10 +90,10 @@
                             {
 
                                 <li class="nav-item pl-4">
-                                    <a class="nav-link text-light" asp-area="" asp-controller="Prize" asp-action="Index">Tombola</a>
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Prize" asp-action="Index">Tombolă</a>
                                 </li>
                                 <li class="nav-item pl-4">
-                                    <a class="nav-link text-light" href="/Reservation">Rezervari</a>
+                                    <a class="nav-link text-light" href="/Reservation">Rezervări</a>
                                 </li>
 
 
@@ -101,7 +101,7 @@
                             else if (User.IsInRole("Administrator"))
                             {
                                 <li class="nav-item pl-4">
-                                    <a class="nav-link text-light" href="/">Acasa</a>
+                                    <a class="nav-link text-light" href="/">Acasă</a>
                                 </li>
                             }
 
@@ -144,7 +144,7 @@
 
             </div> 
             <div class="m-1 text-right" style="font-size:11px;">
-                <a class="nolink" href="/Home/Privacy">Politica de confidentialitate</a>
+                <a class="nolink" href="/Home/Privacy">Politica de confidențialitate</a>
             </div>
         </footer>
 

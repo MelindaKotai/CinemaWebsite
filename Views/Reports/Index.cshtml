@@ -18,7 +18,7 @@
             <div class="row m-4">
                 <div class="col-sm-6" id="table1wrap">
                     <table style="border-radius:5px" class="table table-dark" id="table1">
-                        <thead><tr><th>Film</th><th>Numar de bilete vandute</th></tr></thead>
+                        <thead><tr><th>Film</th><th>Număr de bilete vândute</th></tr></thead>
                         <tbody>
                             @foreach (var result in Model.soldTicketsPerMovies)
                             {
@@ -76,8 +76,7 @@
         </div>
         <script>
    //primul chart
-
-
+         
         const labels = [
             @{
             foreach (var t in Model.soldTicketsPerMovies)
@@ -90,6 +89,7 @@
             labels: labels, display: false,
             datasets: [{
                 label: 'Bilete vandute',
+                //lista lunga de culori, depinzaând de numarul de sectiuni din grafic se iau pe rand culorile
                 backgroundColor: [
                     'rgb(209, 19, 19)',
                     'rgba(255, 99, 132)',
@@ -123,7 +123,8 @@
                     }
                 ],
             }]
-        };
+            };
+
         const config = {
             type: 'pie',
             data,
@@ -132,14 +133,10 @@
         var myChart = new Chart(
             document.getElementById('myChart'),
             config
-        );
+            );
+
         myChart.options.plugins.legend.display = false;
         myChart.update();
-
-
-
-
-
 
 
         //al doilea chart
@@ -229,7 +226,6 @@
         );
 
         myChart2.options.plugins.legend.display = false;
-
         myChart2.update();
 
 
@@ -251,15 +247,14 @@
     }
     else
     {
-        <div class="alert alert-info">Inca nu s-au vandut bilete azi</div>
+        <div class="alert alert-info">Inca nu s-au vândut bilete azi</div>
     }
 
 
 
     <table style="border-radius:5px;width:70%" class="table table-dark m-4">
-        <thead><tr><th>Bilete vandute online</th><th>Bilete vandute la cinema</th></tr></thead>
+        <thead><tr><th>Bilete vândute online</th><th>Bilete vândute la cinema</th></tr></thead>
         <tbody>
-
             <tr>
                 <td>
                     @Model.ticketsSoldOnline
@@ -279,38 +274,37 @@
 
     <div class="bg-dark p-4 m-4" style="border-radius:5px;">
 
-        <h2 class="text-center mb-3">Generati rapoarte</h2>
+        <h2 class="text-center mb-3">Generați rapoarte</h2>
         <div class="row">
             <div class="col-md-4">
                 TOPURI
                 <select class="form-control" id="tops">
-                    <option value="" selected>Selectati o optiune</option>
-                    <option value="allmoviest">Top filme preferate(toate filmele)</option>
-                    <option value="presentmoviest">Top filme preferate(filme care ruleaza)</option>
-                    <option value="allmoviesr">Top cele mai profitabile filme(toate filmele)</option>
-                    <option value="presentmoviesr">Top cele mai profitabile filme(care ruleaza)</option>
-                    <option value="clients">Top clienti</option>
+                    <option value="" selected>Selectați o opțiune</option>
+                    <option value="allmoviest">Top filme preferate (toate filmele)</option>
+                    <option value="presentmoviest">Top filme preferate (filme care ruleaza)</option>
+                    <option value="allmoviesr">Top cele mai profitabile filme (toate filmele)</option>
+                    <option value="presentmoviesr">Top cele mai profitabile filme (care ruleaza)</option>
+                    <option value="clients">Top clienți</option>
 
                 </select>
             </div>
             <div class="col-md-4">
-                RAPOARTE PE LUNA
+                RAPOARTE PE LUNĂ
                 <select class="form-control" id="reports">
-                    <option value="" selected>Selectati o optiune</option>
-                    <option value="ticketsm">Bilete vandute pe luna</option>
-                    <option value="revenuem">Venituri realizate pe luna</option>
+                    <option value="" selected>Selectați o opțiune</option>
+                    <option value="ticketsm">Bilete vândute pe lună</option>
+                    <option value="revenuem">Venituri realizate pe lună</option>
                 </select>
             </div>
             <div class="col-md-4">
                 RAPOARTE ZILNICE
                 <br />
                 <select class="form-control mr-3" style="width:40%;display:inline-block" id="dailyreports">
-                    <option value="ticketsd">Bilete vandute</option>
+                    <option value="ticketsd">Bilete vândute</option>
                     <option value="revenued">Venituri realizate</option>
                 </select>
                 <input class="form-control" style="width:40%;display:inline-block" type="date" id="date" />
             </div>
-
         </div>
     </div>
 
@@ -321,13 +315,13 @@
     <div id="result" class="hide">
         <div id="downloadlink" class="m-3"></div>
         <table style="border-radius:5px" class="table table-dark hide " id="allmoviesttable">
-            <thead><tr><th>Nr</th><th>Titlu</th><th>Bilete vandute</th></tr></thead>
+            <thead><tr><th>Nr</th><th>Titlu</th><th>Bilete vândute</th></tr></thead>
             <tbody id="allmoviestcontent"></tbody>
         </table>
 
 
         <table id="presentmoviesttable" style="border-radius:5px" class="table table-dark hide ">
-            <thead><tr><th>Nr</th><th>Titlu</th><th>Bilete vandute</th></tr></thead>
+            <thead><tr><th>Nr</th><th>Titlu</th><th>Bilete vândute</th></tr></thead>
             <tbody id="presentmoviestcontent"></tbody>
         </table>
 
@@ -345,16 +339,12 @@
 
 
         <table id="clientstable" style="border-radius:5px" class="table table-dark hide ">
-            <thead><tr><th>Nr</th><th>Client</th><th>Bilete cumparate</th></tr></thead>
+            <thead><tr><th>Nr</th><th>Client</th><th>Bilete cumpărate</th></tr></thead>
             <tbody id="clientscontent"></tbody>
         </table>
 
-
-
-
-
         <table id="ticketsmtable" style="border-radius:5px" class="table table-dark hide ">
-            <thead><tr><th>Luna</th><th>Bilete vandute</th></tr></thead>
+            <thead><tr><th>Luna</th><th>Bilete vândute</th></tr></thead>
             <tbody id="ticketsmcontent"></tbody>
         </table>
 
@@ -366,7 +356,7 @@
 
 
         <table id="ticketsdtable" style="border-radius:5px" class="table table-dark hide ">
-            <thead><tr><th>Film</th><th>Bilete vandute</th></tr></thead>
+            <thead><tr><th>Film</th><th>Bilete vândute</th></tr></thead>
             <tbody id="ticketsdcontent"></tbody>
         </table>
 
@@ -384,12 +374,7 @@
     </div>
 
 
-
-
-
-
     @section Scripts{
         <script type="text/javascript" src="~/js/ReportsIndex.js" asp-append-version="true"></script>
-
     }
 

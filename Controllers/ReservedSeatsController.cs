@@ -23,6 +23,8 @@ namespace Licenta.Controllers
 
         }
 
+
+
         //functia care schimba statusul cliamed al biletelor si returneaza File
         [HttpPost]
         [Authorize(Roles = "Administrator,Manager,Angajat")]
@@ -33,10 +35,9 @@ namespace Licenta.Controllers
             List<int> idlist = listofIDs.Select(int.Parse).ToList();
 
 
-            //lista de tickettypes care sa aiba incluse ->seats, tickettypes, reservation,screening,movie
-
+            //lista de bilete cu id-ul transmis ca parametru
             var tickets = await _context.ReservedSeats.Where(x => idlist.Contains(x.Id)).Include(x => x.TicketType).Include(x => x.seat).Include(x => x.reservation).ThenInclude(x => x.screening).Include(x => x.reservation.screening.movie).Include(x => x.reservation.screening.hall).ToListAsync();
-            //id-ruile reserved seats-urilor->titlu,daca e 3d,data,ora,sala,randul,numarul,tipul
+          
             var converter = new HtmlConverter();
             string is3d;
 
@@ -49,13 +50,13 @@ namespace Licenta.Controllers
             //se initializeaza o clasa care citeste bitii fisierului primit ca argument
             BinaryReader binaryReader = new BinaryReader(fs);
 
-            //se afla lungimea fisirului care contine logo-ul
+            //se afla lungimea in biti a fisirului care contine logo-ul
             long byteLength = new FileInfo("wwwroot/cinema-logo.png").Length;
 
             //se citesc bitii fisierului
             fileContent = binaryReader.ReadBytes((Int32)byteLength);
 
-            //se convertesc bitii to string cre poate fi primit ca argument la src
+            //se convertesc bitii to string, acest string poate fi primit ca argument la src in tagul img
             var base64 = Convert.ToBase64String(fileContent);
             var imgSrc = String.Format("data:image/png;base64,{0}", base64);
             string html = "";
@@ -87,7 +88,7 @@ namespace Licenta.Controllers
                 html = html + "<div style='padding: 10px 50px 10px 10px;border-bottom:2px solid blue;overflow:hidden;'>";
                 html = html + "<div style='display:inline;float:left;'>";
                 html = html + "<p style='color:blue;margin:0;'><b>Sala:</b></p>";
-                html = html + "<p style='color:blue;margin:0;'><b>Rand:</b></p>";
+                html = html + "<p style='color:blue;margin:0;'><b>Rând:</b></p>";
                 html = html + "<p style='color:blue;margin:0;'><b>Loc:</b></p>";
                 html = html + "<p style='color:blue;margin:0;'><b>Tip bilet:</b></p>";
                 html = html + " </div>";
@@ -98,18 +99,17 @@ namespace Licenta.Controllers
                 html = html + "<p style='margin:0;'>" + ticket.TicketType.name + "</p>";
                 html = html + " </div>";
                 html = html + "</div>";
-                html = html + "Biletele cu pret redus permit intrarea doar cu un act doveditor valid. Va rugam sa prezentati actul plasatorilor nostri.";
+                html = html + "Biletele cu preț redus permit intrarea doar cu un act doveditor valid. Va rugam sa prezentati actul plasatorilor nostri.";
                 html = html + "</div>";
 
 
             }
 
+            
             var bytes = converter.FromHtmlString(html);
 
             await _context.SaveChangesAsync();
-
-
-            return File(bytes, "image/*", "ticket.jpg");
+            return File(bytes, "image/*", "tickets.jpg");
         }
 
 
@@ -119,6 +119,7 @@ namespace Licenta.Controllers
         {
             ChangeStatusViewModel model = new ChangeStatusViewModel();
 
+            //se gaseste biletul cautat
             var details = await _context.ReservedSeats.Where(x => x.Id == id).Include(x => x.seat).Include(x => x.TicketType).Include(x => x.seat.hall).Include(x => x.reservation.screening).Include(x => x.reservation.screening.movie).FirstOrDefaultAsync();
 
             if (details == null)

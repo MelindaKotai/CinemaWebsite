@@ -5,19 +5,22 @@
     ViewData["Title"] = "Create Screening";
 }
 @model Licenta.ViewModels.CreateScreeningViewModel
+
+
 <div class="container col-sm-6 p-5 form">
     @if (ViewBag.ErrorMessage != null)
     {
         <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
     }
+
     <form asp-controller="Screening" asp-action="Create" method="post">
 
         <div class="form-group">
             <label asp-for="hallId"></label>
             <select asp-for="hallId" class="form-control" required>
-
                 @foreach (var hall in ViewBag.halls)
-                {@if (ViewBag.halls.IndexOf(hall) == ViewBag.halls.Count - 1)
+                {
+                    @if (ViewBag.halls.IndexOf(hall) == ViewBag.halls.Count - 1)
                     {
                         <option value="@hall.id" selected>@hall.name</option>
                     }
@@ -25,7 +28,6 @@
                     {
                         <option value="@hall.id">@hall.name</option>
                     }
-
             }
             </select>
             <span asp-validation-for="hallId" class="text-danger"></span>
@@ -50,10 +52,7 @@
 
         <div class="alert alert-success">
             Intervale orare disponibile:
-
             <div id="intervals"></div>
-
-
         </div>
 
 
@@ -74,20 +73,17 @@
 
         <div class="form-group">
             <label asp-for="date"></label>
-
-
             <input type="date" asp-for="date" class="form-control" />
-
-
-
             <span asp-validation-for="date" class="text-danger" required></span>
         </div>
-        <button tyepe="submit" class="btn btn-danger">Creaza</button>
+
+
+        <button tyepe="submit" class="btn btn-danger">Creează</button>
 
 
     </form>
-
-    @section Scripts{
-        <script type="text/javascript" src="~/js/ScreeningCreate.js" asp-append-version="true"></script>
-    }
 </div>
+
+@section Scripts{
+    <script type="text/javascript" src="~/js/ScreeningCreate.js" asp-append-version="true"></script>
+}

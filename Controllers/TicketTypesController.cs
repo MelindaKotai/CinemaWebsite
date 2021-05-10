@@ -23,17 +23,17 @@ namespace Licenta.Controllers
 
         }
 
+
+
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> List()
         {
-
-            
+           
             var model = await _context.TicketType.ToListAsync();
-
 
             if (model == null)
             {
-                ViewBag.ErrorMessage = "Nu s-au gasit tipuri de bilete!";
+                ViewBag.ErrorMessage = "Nu s-au găsit tipuri de bilete!";
                 return View();
             }
 
@@ -54,7 +54,7 @@ namespace Licenta.Controllers
             var ticket = await _context.TicketType.FindAsync(id);
             if (ticket == null)
             {
-                result = "Sala nu a fost gasita!";
+                result = "Biletul nu a fost găsit!";
                 return result;
             }
             if (ticket.active == false)
@@ -75,7 +75,7 @@ namespace Licenta.Controllers
 
             if (ticket == null)
             {
-                ViewBag.ErrorMessage = "Tipul de bilet selectat nu a fost gasit!";
+                ViewBag.ErrorMessage = "Tipul de bilet selectat nu a fost găsit!";
                 return View();
             }
 
@@ -93,7 +93,7 @@ namespace Licenta.Controllers
 
             if (ticket == null)
             {
-                ViewBag.ErrorMessage = "Tipul de bilet selectat nu a fost gasit!";
+                ViewBag.ErrorMessage = "Tipul de bilet selectat nu a fost găsit!";
                 return View();
             }
             if (ticket == null)
@@ -114,7 +114,7 @@ namespace Licenta.Controllers
 
         [Authorize(Roles = "Administrator")]
         [Route("/TicketTypes/Create")]
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
 
             TicketTypesViewModel model = new TicketTypesViewModel();

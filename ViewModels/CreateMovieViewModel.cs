@@ -16,11 +16,11 @@ namespace Licenta.ViewModels
         public string title { get; set; }
         
         [Required]
-        [DisplayName("Incarcati o imagine")]
+        [DisplayName("Încărcați o imagine")]
         public IFormFile img { get; set; }
        
         [Required]
-        [DisplayName("Incarcati un trailer")]
+        [DisplayName("Încărcați un trailer")]
         public IFormFile video { get; set; }
       
         [Required]
@@ -28,19 +28,19 @@ namespace Licenta.ViewModels
         public string description { get; set; }
        
         [Required]
-        [DisplayName("Durata in minute")]
+        [DisplayName("Durata în minute")]
         
         public int duration { get; set; }
        
      
         [Required]
-        [DisplayName("Data aparitiei")]
+        [DisplayName("Data apariției")]
         [DataType(DataType.Date)]
 
         public DateTime release_date { get; set; }
         
         [Required]
-        [DisplayName("Filmul va rula in prezent?")]
+        [DisplayName("Filmul va rula în prezent?")]
         [Range(0, 1)]
         public bool active { get; set; }
     }

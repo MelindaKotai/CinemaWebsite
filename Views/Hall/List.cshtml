@@ -12,32 +12,25 @@
 }
 
 
-
 @if (ViewBag.SuccesMessage != null)
 {
     <div class="alert alert-success">@ViewBag.SuccesMessage</div>
 }
 
-
-<a href="/Hall/Create" class="btn btn-danger">Creaza sala noua</a>
+<a href="/Hall/Create" class="btn btn-danger">Creează o sală noua</a>
 
 @if (Model != null)
 {
     @if (Model.Count != 0)
     {
 
-
-
         <br />
         <br />
         <div class="result"></div>
 
-
-
-
         <div class="ofx">
             <table class="table table-dark table-bordered">
-                <thead><tr><th scope="col">Nume</th><th class="text-center" scope="col">Numar de locuri</th><th class="text-center" scope="col">Activa</th><th class="text-center" scope="col">Actiune</th></tr></thead>
+                <thead><tr><th scope="col">Nume</th><th class="text-center" scope="col">Număr de locuri</th><th class="text-center" scope="col">Activă</th><th class="text-center" scope="col">Acțiune</th></tr></thead>
 
                 @foreach (var hall in Model)
                 {
@@ -46,15 +39,16 @@
                         <td>
                             @hall.name
                         </td>
-                        <td>@hall.noseats</td>
+                        <td>
+                            @hall.noseats
+                        </td>
                         <td>
                             @if (hall.active == false)
                             {
                                 <select class="status" name="active">
                                     <option value="@hall.id">Activa</option>
-                                    <option value="@hall.id" selected>Inactiva</option>
+                                    <option value="@hall.id" selected>Inactivă</option>
                                 </select>
-
                             }
                             else
                             {
@@ -62,31 +56,32 @@
                                     <option value="@hall.id" selected>Activa</option>
                                     <option value="@hall.id">Inactiva</option>
                                 </select>
-
                             }
                         </td>
                         <td>
-                            <a class="btn btn-danger" href="/Hall/Structure/@hall.id">Vezi structura salii</a>
+                            <a class="btn btn-danger" href="/Hall/Structure/@hall.id">Vezi structura sălii</a>
                             <br />
                             <br />
-                            <a class="btn btn-success" href="/Hall/Update/@hall.id">Editeaza numele salii</a>
-
-
+                            <a class="btn btn-success" href="/Hall/Update/@hall.id">Editează numele sălii</a>
                         </td>
-
-
-
-
                     </tr>
                 }
             </table>
         </div>
-        @section Scripts{
-            <script type="text/javascript" src="~/js/HallList.js" asp-append-version="true"></script>
-        }
+
     }
+    else
+    {
+        <div class="alert alert-info">Nu există săli în baza de date</div>
+    }
+}
+else
+{
+    <div class="alert alert-info">Nu există săli în baza de date</div>
 }
 
 
-
+@section Scripts{
+    <script type="text/javascript" src="~/js/HallList.js" asp-append-version="true"></script>
+}
 

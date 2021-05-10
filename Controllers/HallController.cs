@@ -25,11 +25,11 @@ namespace Licenta.Controllers
 
 
         [Authorize(Roles = "Administrator")]
+        //actiune care returneaza pagina cu lista de sali
         public async Task<IActionResult> List()
         {
             List<HallListViewModel> model = new List<HallListViewModel>();
             var halls = await _context.Halls.ToListAsync();
-
 
             foreach(var hall in halls)
             {
@@ -37,16 +37,14 @@ namespace Licenta.Controllers
                 h.id = hall.id;
                 h.name = hall.name;
                 h.active = hall.active;
-
                 var noseats = await _context.Seats.Where(x => x.seatNo != null).Where(x => x.hallId == hall.id).CountAsync();
                 h.noseats = noseats;
                 model.Add(h);
-
             }
 
             if (model == null)
             {
-                ViewBag.ErrorMessage = "Nu s-au gasit sali!";
+                ViewBag.ErrorMessage = "Nu s-au găsit săli!";
                 return View();
             }
 
@@ -55,6 +53,7 @@ namespace Licenta.Controllers
 
             if (TempData["ErrorMessage"] != null)
                 ViewBag.ErrorMessage = TempData["ErrorMessage"];
+
             return View(model);
         }
 
@@ -64,13 +63,14 @@ namespace Licenta.Controllers
         [HttpPost]
         [Authorize(Roles = "Administrator")]
         [Route("/Hall/ChangeStatus/{id}")]
+        //se schimba statusul unei sali
         public async Task<string> ChangeStatus(int id)
         {
             var result = "";
             var hall = await _context.Halls.FindAsync(id);
             if (hall == null)
             {
-                result = "Sala nu a fost gasita!";
+                result = "Sala nu a fost găsită!";
                 return result;
             }
             if (hall.active == false)
@@ -79,7 +79,7 @@ namespace Licenta.Controllers
                 hall.active = false;
             _context.Halls.Update(hall);
             await _context.SaveChangesAsync();
-            result = "Statusul salii a fost schimbat cu succes!";
+            result = "Statusul sălii a fost schimbat cu succes!";
             return result;
         }
 
@@ -87,20 +87,20 @@ namespace Licenta.Controllers
 
         [Authorize(Roles = "Administrator")]
         [Route("/Hall/Structure/{id}")]
+        //returneaza pagina cu structura salii
         public async Task<IActionResult> Structure(int id)
         {
 
             var hall = await _context.Halls.FindAsync(id);
             if (hall == null)
             {
-                ViewBag.ErrorMessage = "Sala nu a fost gasita!";
+                ViewBag.ErrorMessage = "Sala nu a fost găsită!";
                 return View();
             }
 
             HallStructureViewModel model = new HallStructureViewModel();
             model.hallid = hall.id;
             model.cols = hall.columns;
-        
             model.name = hall.name;
 
             //locurile sunt returnate in ordinea lor din matrice
@@ -110,24 +110,29 @@ namespace Licenta.Controllers
             return View(model);
         }
 
+
         [Authorize(Roles = "Administrator")]
         [Route("/Hall/Update/{id}")]
+        //crearea paginii de update
         public async Task<IActionResult> Update(int id)
         {
             var hall = await _context.Halls.FindAsync(id);
           
             if (hall == null)
             {
-                ViewBag.ErrorMessage = "Sala nu a fost gasita!";
+                ViewBag.ErrorMessage = "Sala nu a fost găsită!";
                 return View();
             }
 
             return View(hall);
         }
 
+
+
         [Authorize(Roles = "Administrator")]
         [HttpPost]
         [Route("/Hall/Update/{id}")]
+        //se actualizeaza sala
         public async Task<IActionResult> Update(int id, string name)
         {
 
@@ -135,7 +140,7 @@ namespace Licenta.Controllers
 
             if (hall == null)
             {
-                ViewBag.ErrorMessage = "Sala nu a fost gasita!";
+                ViewBag.ErrorMessage = "Sala nu a fost găsită!";
                 return View();
             }
             if (name == null)
@@ -149,31 +154,32 @@ namespace Licenta.Controllers
             await _context.SaveChangesAsync();
 
 
-            TempData["SuccesMessage"] = "Numele salii a fost actualizat cu succes!";
+            TempData["SuccesMessage"] = "Numele sălii a fost actualizat cu succes!";
             return RedirectToAction("List");
 
         }
 
         [Authorize(Roles = "Administrator")]
         [Route("/Hall/Create")]
+        //returneaza pagina de creare sala
         public IActionResult Create()
         {
-          
             CreateHallViewModel model = new CreateHallViewModel();
-
             return View(model);
         }
+
+
 
         [Authorize(Roles = "Administrator")]
         [Route("/Hall/Create")]
         [HttpPost]
+        //se creaza sala
         public async Task<IActionResult> Create(CreateHallViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
-
 
 
             //tranzactie->ori se creaza sala cu toate locurile ori nimic
@@ -190,7 +196,7 @@ namespace Licenta.Controllers
                 _context.Halls.Add(hall);
                 await _context.SaveChangesAsync();
 
-                //lista de culoare
+                //lista de culoare-: se transforma string-ul trimis intr-o lista de ints
                 List<int> paths = model.paths.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
 
                 //primul rand de scaune
@@ -200,7 +206,7 @@ namespace Licenta.Controllers
                     //numarul de ordine al primului element al matricii de pe randul curent
                     int firstRowElement = i * model.cols - model.cols + 1;
 
-                    //lista numeelor de ordine a elementelor din matrice de pe randul curent
+                    //lista numerelor de ordine a elementelor din matrice de pe randul curent
                     List<int> rowElementsNumbers = Enumerable.Range(firstRowElement, model.cols).ToList();
 
                     //se verifica daca in lista de elemenete exista doar culoare
@@ -264,11 +270,11 @@ namespace Licenta.Controllers
             catch (Exception)
             {
                 transaction.Rollback();
-                TempData["ErrorMessage"] = "O eroare a intervenit in crearea sălii și procesul a eșuat! Mai încercați odată!";
+                TempData["ErrorMessage"] = "O eroare a intervenit în crearea sălii și procesul a eșuat! Mai încercați odată!";
                 return RedirectToAction("List");
             }
 
-            TempData["SuccesMessage"] = "Sala a fost creata cu succes!";
+            TempData["SuccesMessage"] = "Sala a fost creată cu succes!";
             return RedirectToAction("List");
         }
 

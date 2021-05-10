@@ -5,9 +5,10 @@
     ViewData["Title"] = "Reservations";
 }
 @model Licenta.ViewModels.ReservationPageList;
+
 @if (Model == null)
 {
-    <div class="alert alert-danger">Inca nu ati realizat nici o rezervare!</div>
+    <div class="alert alert-danger">Încă nu ați realizat nici o rezervare!</div>
 }
 else
 {
@@ -15,16 +16,18 @@ else
     {
         <div class="alert alert-danger">@TempData["errormessage"]</div>
     }
+
     @if (TempData["succesmessage"] != null)
     {
         <div class="alert alert-success">@TempData["succesmessage"]</div>
     }
-    <div class="row mt-4" style="cursor:pointer"><div class="col " id="pastreservations">Rezervari trecute</div><div class="col active" id="futurereservations">Rezervari viitoare</div></div>
+
+    <div class="row mt-4" style="cursor:pointer"><div class="col " id="pastreservations">Rezervări trecute</div><div class="col active" id="futurereservations">Rezervări viitoare</div></div>
 
     <div class="container bg-dark mt-3 hide" style="border-radius:15px" id="pasttable">
         @if (Model.past == null || !(Model.past.Count > 0))
         {
-            @Html.Raw("<div class='p-3'>Inca nu ati realizat nici o rezervare!</div>");
+            @Html.Raw("<div class='p-3'>Încă nu ați realizat nici o rezervare!</div>");
         }
         else
         {
@@ -33,13 +36,16 @@ else
 
             <div class="row border-top-f pt-3 pb-3">
                 <div class="col-sm-2"><img src="~/@reservation.movieImg" height="150" /></div>
-                <div class="col-sm-4"><p>@reservation.movieTitle @if (reservation.is3D == true)
-                {<span>3D</span>}</p><p> @reservation.screeningDate.ToString("yyyy-MM-dd") </p><p>Ora: @reservation.screeningTime.ToString("HH:mm") </p></div>
+                <div class="col-sm-4">
+                    <p>@reservation.movieTitle @if (reservation.is3D == true){<span>3D</span>}</p>
+                    <p> @reservation.screeningDate.ToString("yyyy-MM-dd") </p>
+                    <p>Ora: @reservation.screeningTime.ToString("HH:mm") </p>
+                </div>
                 <div class="col-sm-6">
-                    Pret total: @reservation.total Lei
+                    Preț total: @reservation.total Lei
                     <br />
                     Biletele @if (reservation.payed == false)
-                    {<span style="color:red">NU </span>} au fost platite
+                    {<span style="color:red">NU </span>} au fost plătite
                     <br />
                     Bilete: @foreach (var ticket in reservation.tickets)
                     {
@@ -57,7 +63,7 @@ else
 
     <div class="container bg-dark mt-3 " style="border-radius:15px" id="futuretable">
         @if (Model.future == null || !(Model.future.Count > 0)) { 
-        @Html.Raw("<div class='p-3'>Inca nu ati realizat nici o rezervare!</div>");
+        @Html.Raw("<div class='p-3'>Încă nu ați realizat nici o rezervare!</div>");
     }
     else
     {
@@ -70,13 +76,15 @@ else
                     <p>
                         @reservation.movieTitle @if (reservation.is3D == true)
                         {<span>3D</span>}
-                    </p><p> @reservation.screeningDate.ToString("yyyy-MM-dd") </p><p>Ora: @reservation.screeningTime.ToString("HH:mm") </p>
+                    </p>
+                    <p> @reservation.screeningDate.ToString("yyyy-MM-dd") </p>
+                    <p>Ora: @reservation.screeningTime.ToString("HH:mm") </p>
                 </div>
                 <div class="col-sm-6">
-                    Pret total: @reservation.total Lei
+                    Preț total: @reservation.total Lei
                     <br />
                     Biletele @if (reservation.payed == false)
-                    {<span style="color:red">NU </span>} au fost platite
+                    {<span style="color:red">NU </span>} au fost plătite
                     <br />
                     Bilete: @foreach (var ticket in reservation.tickets)
                     {
@@ -88,7 +96,7 @@ else
                     @if (reservation.payed == false)
                     {
                         <form action="/Reservation/Cancel/@reservation.id" method="POST">
-                            <button type="submit" class="btn btn-danger mt-2">Anulati rezervarea</button>
+                            <button type="submit" class="btn btn-danger mt-2">Anulați rezervarea</button>
                         </form>
                     }
                 </div>
@@ -96,7 +104,6 @@ else
         }
     }
     </div>
-
 
     @section Scripts{
         <script type="text/javascript" src="~/js/ReservationIndex.js" asp-append-version="true"></script>

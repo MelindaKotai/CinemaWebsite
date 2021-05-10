@@ -5,6 +5,8 @@
     ViewData["Title"] = "Movie Update";
 }
 @model Licenta.ViewModels.UpdateMovieViewModel
+
+
 <div class="container col-sm-7 p-5 form" >
     <form asp-action="Update" asp-controller="Movie" method="post" enctype='multipart/form-data'>
 
@@ -13,16 +15,19 @@
             <input asp-for="title" class="form-control" required />
             <span asp-validation-for="title" class="text-danger"></span>
         </div>
+
         <div class="form-group">
             <label asp-for="description" class="control-label"></label>
             <textarea asp-for="description" class="form-control" required></textarea>
             <span asp-validation-for="description" class="text-danger"></span>
         </div>
+
         <div class="form-group">
             <label asp-for="release_date" class="control-label"></label>
             <input asp-for="release_date" class="form-control" required />
             <span asp-validation-for="release_date" class="text-danger"></span>
         </div>
+
         <div class="form-group">
             <label asp-for="duration" class="control-label"></label>
             <input asp-for="duration" class="form-control" required />
@@ -30,7 +35,7 @@
         </div>
 
         <div class="form-group">
-            <label>Imaginea actuala:</label>
+            <label>Imaginea actuală:</label>
             <br />
             <img src="~/@Model.img1" height="300" width="170" />
             <br />
@@ -40,6 +45,7 @@
             <input asp-for="img" accept="image/*" />
             <span asp-validation-for="img" class="text-danger"></span>
         </div>
+
         <div class="form-group">
             <label>Trailer actual:</label>
             <br />
@@ -64,7 +70,8 @@
             <input value="0" type="radio" asp-for="active" />NU
             <span asp-validation-for="active" class="text-danger"></span>
         </div>
+
         <input type="hidden" name="id" value="@Model.id" />
-        <button type="submit" class="btn btn-danger">Actualizati</button>
+        <button type="submit" class="btn btn-danger">Actualizați</button>
     </form>
 </div>

@@ -11,10 +11,14 @@
 @section Css{
     <link rel="stylesheet" href="~/css/PrizeIndex.css" asp-append-version="true">
 }
+
+
 @model Licenta.ViewModels.PrizePageViewModel
+
+
 @if (Model.unclaimedprizes.Count > 0)
 {
-    <div class="alert alert-success">Aveti urmatoarele premii disponibile! Puteti sa le revendicati din incinta cinematografului folosind codurile de mai jos!</div>
+    <div class="alert alert-success">Aveți următoarele premii disponibile! Puteți să le revendicați din incinta cinematografului folosind codurile de mai jos!</div>
     <table class="table table-dark table-bordered">
         <thead><tr><th scope="col">Premiu</th><th class="text-center" scope="col">Cod</th></tr></thead>
         @foreach (var prize in Model.unclaimedprizes)
@@ -24,35 +28,27 @@
 
                 <td>@prize.code </td>
             </tr>
-
         }
-
 
     </table>
 
 }
 
 
-
-
-
-
 @if (Model.noofprizes <= 0)
 {
-
-    <div class="m-3"> Deocamdata nu aveti posibilitatea sa castigati premii noi. Mai achizitionati @Model.noofticketsleft bilete pentru a putea castiga un premiu!</div>
+    <div class="m-3"> Deocamdata nu aveți posibilitatea să câștigați premii noi. Mai achiziționați @Model.noofticketsleft bilete pentru a putea câștiga un premiu!</div>
 }
 else
 {
-    <div class="alert alert-success">Aveti posibilitatea sa castigati @Model.noofprizes premii. Pentru a castiga un premiu invartiti roata!</div>
+    <div class="alert alert-success">Aveți posibilitatea să câștigați premii noi! Număr de premii care le puteți câștiga: @Model.noofprizes. Pentru a obține premiul și codul aferent învârtiți roata!</div>
 
     <div class="container">
-
-
         <div class="row">
             <div class="power_controls">
                 <br />
                 <br />
+              
                 <table class="power" cellpadding="10" cellspacing="0">
                     <tr>
                         <th align="center">Putere</th>
@@ -64,13 +60,16 @@ else
                         <td align="center" id="pw2" onClick="powerSelected(2);">Medie</td>
                     </tr>
                     <tr>
-                        <td align="center" id="pw1" onClick="powerSelected(1);">Mica</td>
+                        <td align="center" id="pw1" onClick="powerSelected(1);">Mică</td>
                     </tr>
                 </table>
+
                 <br />
-                <div><button class="btn btn-danger" onClick="startSpin()" id="spinbutton">Invarte roata!</button></div>
+
+                <div><button class="btn btn-danger" onClick="startSpin()" id="spinbutton">Învârte roata!</button></div>
                 <br />
-                <div><a href="/Prize"><div class="btn btn-danger" style="margin:0 auto;">Resetati roata</div></a></div>
+
+                <div><a href="/Prize"><div class="btn btn-danger" style="margin:0 auto;">Resetează roata.</div></a></div>
             </div>
 
             <div id="the_wheel" class="the_wheel" align="center">
@@ -87,26 +86,22 @@ else
 
         var model = @Html.Raw(Json.Serialize(Model.prizes));
         function alertPrize(indicatedSegment) {
-
-    alert("You have won " + indicatedSegment.text);
-
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-
-        }
-    };
-    var userid = '@UserManager.GetUserId(User)';
-    xhttp.open("POST", "/Prize/CreatePrize", false);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("prize=" + indicatedSegment.text + "&user=" + userid);
-}
-
-    </script>
-    @section Scripts{
-        <script src="~/js/Winwheel.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
-        <script type="text/javascript" src="~/js/PrizeIndex.js" asp-append-version="true"></script>
-
+        alert("Ai câștigat " + indicatedSegment.text);
+        var userid = '@UserManager.GetUserId(User)';
+            $.ajax({type: "POST",
+            url: "/Prize/CreatePrize",
+            data: "prize=" + indicatedSegment.text + "&user=" + userid,
+            dataType: "application/x-www-form-urlencoded",
+            error: function(){
+                    alert("Nu s-a reusit introducerea premiului in baza de date. Va rugam incercati din nou sau contanctati-ne!");
+                }
+            });       
     }
+    </script>
+
+        @section Scripts{
+            <script src="~/js/Winwheel.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+            <script type="text/javascript" src="~/js/PrizeIndex.js" asp-append-version="true"></script>
+        }
 }

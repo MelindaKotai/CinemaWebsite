@@ -24,7 +24,7 @@
 
 
     <form asp-action="EditRole" asp-controller="User" method="post" class="m-5">
-        Selectati noul rol :
+        Selectați noul rol :
         <br />
         @foreach (var role in Model.roles)
         {
@@ -41,7 +41,7 @@
         }
         <input type="hidden" name="id" value="@Model.userId" />
         <br />
-        <button type="submit" class="btn btn-danger">Modificati rolul</button>
+        <button type="submit" class="btn btn-danger">Modificați rolul</button>
     </form>
 
 </div>

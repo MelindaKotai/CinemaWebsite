@@ -7,7 +7,7 @@ $("#generate").click(function () {
     if (rows == 0 || cols == 0) {
         $(".error").addClass("alert");
         $(".error").addClass("alert-danger");
-        $(".error").html("Alegeti un numar de randuri si de coloane!");
+        $(".error").html("Alegeți un număr de rânduri și de coloane!");
 
     } else {
         $(".error").removeClass("alert");
@@ -16,10 +16,8 @@ $("#generate").click(function () {
         var p = $("#paths").val().split(",");
         var width = 100 / cols;
 
-        //for i de la 1 la nr randuri//i nr randuri coloane se adauga la un string html//pt fiecare element se verifica daca se afla in p si daca da i se pune clasa path
 
-
-        var html = "Selectati culoarele din sala: ";
+        var html = "Selectați culoarele din sală: ";
         for (var i = 0; i < rows; i++) {
             html = html + "<div class='row mt-2 mb-2'>"
             for (var j = 0; j < cols; j++) {
@@ -36,7 +34,7 @@ $("#generate").click(function () {
             }
             html = html + "</div>";
         }
-        html = html + "<div id='create' class='btn btn-danger'>Creati sala </div>";
+        html = html + "<div id='create' class='btn btn-danger'>Creați sala </div>";
 
         $("#matrix").html(html);
 
@@ -67,9 +65,9 @@ $("#generate").click(function () {
 
 
         $("#create").click(function () {
-
+  //se verifica daca lista de culoare e goala si daca este se trimite un alert de confirmare a actiunii
             if (paths.length == 0) {
-                confirm("Nu ati selectat nici un culoar. Sunteti sigur ca doriti sa creati sala cu aceasta structura?");
+                confirm("Nu ați selectat nici un culoar. Sunteți sigur ca doriți să creați sala cu această structură?");
             }
             else {
 
@@ -77,7 +75,7 @@ $("#generate").click(function () {
                 $("#createhallform").submit();
             }
 
-            //se verifica daca lista de culoare e goala si daca este se trimite un alert de confirmare a actiunii
+          
 
 
         });

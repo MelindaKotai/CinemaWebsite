@@ -31,9 +31,12 @@ namespace Licenta
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //conexiunea la baza de date
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
+            //identity
             services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true).AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
            
@@ -44,8 +47,7 @@ namespace Licenta
 
             services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromMinutes(60);
-               
+                options.IdleTimeout = TimeSpan.FromMinutes(60); 
             });
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
 
@@ -55,6 +57,7 @@ namespace Licenta
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             StripeConfiguration.ApiKey=Configuration.GetSection("Stripe")["SecretKey"];
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

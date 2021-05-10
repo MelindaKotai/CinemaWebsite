@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="~/css/MovieList.css" asp-append-version="true">
 }
 
+@using System.Globalization
+@{
+    CultureInfo culture = CultureInfo.CreateSpecificCulture("ro-RO");
+}
 @model List<Licenta.ViewModels.MovieListViewModel>
 
 
@@ -21,7 +25,6 @@
 {
     <div class="alert alert-info">@ViewBag.Message</div>
 }
-
 
 @if (ViewBag.SuccesMessage != null)
 {
@@ -37,23 +40,21 @@
         <br />
         <select name="f" id="filter" class="form-control w-50">
             <option value="toate">Toate filmele</option>
-            <option value="prezent">Filme care ruleaza</option>
+            <option value="prezent">Filme care rulează</option>
             <option value="trecut">Filme care au rulat</option>
             <option value="viitor">Filme care vor rula</option>
         </select>
     </form>
 
     <form action="/Movie/List" method="get" class="col-sm-6 m-2">
-        Cautati un film dupa titlu:
+        Căutați un film după titlu:
         <br />
         <br />
         <input name="q" type="text" class="form-control" style="width:30%;display:inline-block; border-top-right-radius:0px;border-bottom-right-radius:0px;" /><button class="btn btn-danger" style="display:inline-block; border-bottom-left-radius:0px;border-top-left-radius:0px;vertical-align:baseline;"><i class="fa fa-search"></i></button>
-
     </form>
 
 </div>
-
-<a class="btn btn-danger float-right" href="/Movie/Create">Adaugati un film nou</a>
+<a class="btn btn-danger float-right" href="/Movie/Create">Adăugați un film nou</a>
 
 @if (Model != null)
 {
@@ -64,38 +65,37 @@
         <br />
         <div class="result"></div>
 
-
-
-
         <div class="ofx">
-            <table class="table table-dark table-bordered " id="dtHorizontalVerticalExample">
-                <thead><tr><th scope="col">Imagine</th><th class="text-center" scope="col">Titlu</th><th class="text-center" scope="col">Data adaugarii</th><th class="text-center" scope="col">Data lansarii</th><th class="text-center" scope="col">Ruleaza</th><th class="text-center" scope="col">Actiune</th></tr></thead>
+            <table class="table table-dark table-bordered" id="dtHorizontalVerticalExample">
+                <thead><tr><th scope="col">Imagine</th><th class="text-center" scope="col">Titlu</th><th class="text-center" scope="col">Data adăugării</th><th class="text-center" scope="col">Data lansării</th><th class="text-center" scope="col">Rulează</th><th class="text-center" scope="col">Acțiune</th></tr></thead>
 
                 @foreach (var movie in Model)
                 {
-
                     <tr>
                         <td>
                             <a href="/Movie/@movie.id">
                                 <div class="col-md-5 col-sm-6 ">
-
                                     <img src="~/@movie.img" height="150" width="90" class="img" />
-
                                 </div>
                             </a>
                         </td>
-                        <td>@movie.title</td>
-                        <td class="bw">
-                            @movie.date_added.ToString("yyyy-MMM-dd")
-                        </td>
+
                         <td>
-                            @movie.release_date.ToString("yyyy-MMM-dd")
-
-
+                            @movie.title
                         </td>
+
+                        <td class="bw">
+                            @movie.date_added.ToString("yyyy-MMMM-dd",culture)
+                        </td>
+
+                        <td>
+                            @movie.release_date.ToString("yyyy-MMMM-dd",culture)
+                        </td>
+
                         <td>
                             @if (movie.active == true)
-                            {<select name="active" class="isactive">
+                            {
+                                <select name="active" class="isactive">
                                     <option value="@movie.id" selected>Da</option>
                                     <option value="@movie.id">Nu</option>
                                 </select>
@@ -109,52 +109,54 @@
 
                             }
                         </td>
+
                         <td style="text-align: center; vertical-align: middle;">
-                            <a class="btn btn-danger " href="/Movie/Update/@movie.id">Actualizati</a>
+                            <a class="btn btn-danger " href="/Movie/Update/@movie.id">Actualizați</a>
                             <br />
                             <br />
                             <a class="btn btn-info " href="/Movie/@movie.id">Detalii</a>
                         </td>
-
                     </tr>
                 }
             </table>
 
-
-
         </div>
+
         <div class="pagining">
             @{
 
                 string url;
+                //se gasesc parametri de tip query din url, daca in momentul accesarii linkului din paginare nu exista parametrii atunci se va forma un parametru si anume page=:se pune ? dupa url
                 if (Context.Request.Query.Count == 0)
                 {
                     url = Context.Request.Path + "?";
                 }
+
                 else
-                {
+                {   //daca exista parametrii se inlocuieste parametrul care indica pagina curenta cu un string null
                     url = Context.Request.Path + Context.Request.QueryString;
                     url = url.Replace("&p=" + Context.Request.Query["p"].ToString(), "");
                     url = url.Replace("?p=" + Context.Request.Query["p"].ToString(), "");
 
                     if (string.IsNullOrEmpty(Context.Request.Query["p"]))
-                    {
+                    {   //daca mai exist alti parametrii inafara de p se va adauga & la sfarsit de url
                         if (Context.Request.Query.Count >= 1)
                         {
                             url = url + "&";
                         }
+                        //daca nu exista alt parametru se adauga ? pentru a putea adauga primul parametru
                         else
                         {
                             url = url + "?";
-
                         }
                     }
                     else
-                    {
+                    {  //daca exista parametrul p si inc un parametru suplimentar se adauga &
                         if (Context.Request.Query.Count >= 2)
                         {
                             url = url + "&";
                         }
+                        //altfel se adauga ?
                         else
                         {
                             url = url + "?";
@@ -162,19 +164,14 @@
                         }
 
                     }
-
-
                 }
-
-
             }
 
-
             @if (ViewBag.noPages > 6)
-            {
-                if (ViewBag.currPage == 1 || ViewBag.currPage == 2)
+            {  //in functie de numarul de pagini returnate si de pagina curenta se vor afisa diferit link-urile de paginare
+
+                if (ViewBag.currPage == 1)
                 {
-                    <a href="@(url + "p=")@(ViewBag.currPage-1)"> Prev &lt </a>
                     <a href="@(url + "p=")1">1</a>
                     <a href="@(url + "p=")2">2</a>
                     <a href="@(url + "p=")3">3</a>
@@ -182,6 +179,16 @@
                     <a href="@(url + "p=")@ViewBag.noPages">@ViewBag.noPages</a>
                     <a href="@(url + "p=")@(ViewBag.currPage+1)"> &gt Next</a>
 
+                }
+                else
+                if (ViewBag.currPage == 2)
+                { <a href="@(url + "p=")@(ViewBag.currPage-1)"> Prev &lt </a>
+                    <a href="@(url + "p=")1">1</a>
+                    <a href="@(url + "p=")2">2</a>
+                    <a href="@(url + "p=")3">3</a>
+                    <span>...</span>
+                    <a href="@(url + "p=")@ViewBag.noPages">@ViewBag.noPages</a>
+                    <a href="@(url + "p=")@(ViewBag.currPage+1)"> &gt Next</a>
                 }
                 else if (ViewBag.currPage == 3)
                 {
@@ -197,7 +204,7 @@
                 }
 
 
-                else if (ViewBag.currPage == ViewBag.noPages || ViewBag.currPage == ViewBag.noPages - 1)
+                else if (ViewBag.currPage == ViewBag.noPages)
                 {
 
                     <a href="@(url + "p=")@(ViewBag.currPage-1)"> Prev &lt </a>
@@ -206,8 +213,18 @@
                     <a href="@(url + "p=")@(ViewBag.noPages-2)">@(ViewBag.noPages-2)</a>
                     <a href="@(url + "p=")@(ViewBag.noPages-1)">@(ViewBag.noPages-1)</a>
                     <a href="@(url + "p=")@ViewBag.noPages">@ViewBag.noPages</a>
-                    <a href="@(url + "p=")@(ViewBag.currPage+1)"> &gt Next</a>
+                   
 
+                }
+                else if (ViewBag.currPage == ViewBag.noPages - 1)
+                {
+                    <a href="@(url + "p=")@(ViewBag.currPage-1)"> Prev &lt </a>
+                    <a href="@(url + "p=")1">1</a>
+                    <span>...</span>
+                    <a href="@(url + "p=")@(ViewBag.noPages-2)">@(ViewBag.noPages-2)</a>
+                    <a href="@(url + "p=")@(ViewBag.noPages-1)">@(ViewBag.noPages-1)</a>
+                    <a href="@(url + "p=")@ViewBag.noPages">@ViewBag.noPages</a>
+                    <a href="@(url + "p=")@(ViewBag.currPage+1)"> &gt Next</a>
                 }
                 else if (ViewBag.currPage == ViewBag.noPages - 2)
                 {
@@ -234,39 +251,29 @@
                 }
 
             }
+            //daca edoar o pagina nu se afiseaza meniul de paginare
             else if (ViewBag.noPages == 1)
             {
 
             }
             else
+            // daca e un nr mai mic de 6 pagini se afiseaza toate link-urile
             { <a href="@(url + "p=")@(ViewBag.currPage-1)"> Prev &lt </a>
                 for (var i = 1; i <= ViewBag.noPages; i++)
-                {     
-                        <a href="@(url + "p=")@i">@i</a>     
+                {
+                    <a href="@(url + "p=")@i">@i</a>
                 }
                 <a href="@(url + "p=")@(ViewBag.currPage+1)"> &gt Next</a>
             }
 
+        </div>        
+     }
+   
+ }
 
-
-
-
-
-
-
-
-        </div>
-
-    }
-}
 
 
 
 @section Scripts{
     <script type="text/javascript" src="~/js/MovieList.js" asp-append-version="true"></script>
-    <script type="text/javascript">
-
-
-    </script>
-
 }
