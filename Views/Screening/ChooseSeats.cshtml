@@ -21,12 +21,12 @@
 
 @if (Model != null)
 {       //se initializeaza variabila rowcu 1 fiind situati initial pe primul rand
-        int row = 1;
-        //se calculeaza latimea unui scaun ca procent din latimea ecranului
-        float width1 = (float)100 / (float)(Model.cols + 1);
-        string width = width1.ToString("0.0000") + "%";
+    int row = 1;
+    //se calculeaza latimea unui scaun ca procent din latimea ecranului
+    float width1 = (float)100 / (float)(Model.cols + 1);
+    string width = width1.ToString("0.0000") + "%";
 
-    
+
 
     <div class="container bg-dark pt-4 pb-3 pl-5 pr-5" style="border-radius:10px;">
 
@@ -79,7 +79,7 @@
                     @if (Model.selectedseats.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList().Contains(seat.Id))
                     {
 
-                        <div class="seat selected" style="width:@width;">@seat.seatNo</div>
+                        <div id="@seat.Id" class="seat selected" style="width:@width;">@seat.seatNo</div>
                         continue;
                     }
                 }
@@ -95,9 +95,9 @@
                 <form action="/Screening/ChooseSeats/@Model.screeningId" method="POST" id="reserveform">
 
                     <input asp-for="selectedseats" type="hidden" />
-                    <input asp-for="screeningId" type="hidden" />  
-                    <input asp-for="userId" type="hidden"/>  
-                    
+                    <input asp-for="screeningId" type="hidden" />
+                    <input asp-for="userId" type="hidden" />
+
 
                     <label asp-for="nume"></label>
                     <input asp-for="nume" class="form-control" />
@@ -128,7 +128,7 @@
                         <input type="submit" class="btn btn-danger reserve" name="action" value="Rezervă biletele" />
                         <br />
                         <br />
-                       <input type="submit" class="btn btn-danger reserve" name="action" value="Cumpără bilete"/>
+                        <input type="submit" class="btn btn-danger reserve" name="action" value="Cumpără bilete" />
                     }
                 </form>
 
@@ -143,19 +143,22 @@
 
 }
 
-@section Scripts{ 
+@section Scripts{
     <script type="text/javascript">
-
     var model = @Html.Raw(Json.Serialize(Model));
 
     var seats = new Array();
     var selected = 0;
     if (model.selectedseats != null) {
-        seats = model.selectedseats.split(",").map(Number);
-        selected = seats.count();
+        seats = model.selectedseats.split(",");
+
+        selected = seats.length;
     }
     //numarul de bilete care trebuie selectate
-    var noseats = model.notickets - model.selectedseats;
+        var noseats = model.notickets - selected;
     </script>
-<script src="~/js/ChooseSeatsJS.js"></script>
-} 
+
+   <script type="text/javascript" src="~/js/ChooseSeatsJS.js" asp-append-version="true"></script>
+   
+
+}

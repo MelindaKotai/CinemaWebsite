@@ -12,6 +12,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 }
 
+@if (Model == null)
+{
+    if (ViewBag.ErrorMessage != null)
+    {
+                    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+    }
+}
+else
+{
 <div class="row">
     <div class="col-sm-6 " style="padding-top:100px;">
         <b style="font-size:30px">Detalii plată</b>
@@ -26,7 +35,7 @@
         <br />
         Număr de bilete: @Model.notickets
         <br />
-
+        
         <br />
         <b style="font-size:30px">Total:@Model.total lei</b>
 
@@ -45,15 +54,6 @@
         <br />
         <br />
         <form asp-action="Charge" asp-controller="Screening" method="POST" id="payment-form">
-            <input asp-for="selectedseats" type="hidden" />
-            <input asp-for="screeningId" type="hidden" />
-            <input asp-for="userId" type="hidden" />
-            <input asp-for="nume" type="hidden" />
-            <input asp-for="prenume" type="hidden" />
-            <input asp-for="email" type="hidden" />
-            <input asp-for="telefon" type="hidden" />
-            <input asp-for="action" type="hidden" />
-
 
             Numarul cardului:
             <span id="card-number" class="form-control"></span>
@@ -64,7 +64,7 @@
             <span id="card-exp" class="form-control"></span>
 
             <input asp-for="Token" class="StripeToken" hidden />
-            <input type="hidden" name="action" value="Rezerva biletele" />
+            <input type="hidden" name="id" value="@Model.screeningId" />
             <br />
 
             <button class="btn btn-danger">Plateste</button>
@@ -80,4 +80,4 @@
     <script src="~/js/BuyPageJS.js"></script>
 }
 
-
+}

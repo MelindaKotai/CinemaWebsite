@@ -39,29 +39,33 @@ else
                         <input  class="tickets" type="number" name="@type.id" style="width:70px;" align="middle" min="0"
                                value="@{ 
                                    //se tin minte bilete selectate in sesiune si se completeaza valoare inputurilor cu valoarea din sesiune
-                                   List<KVTickets> tickets= HttpContextAccessor.HttpContext.Session.Get<List<KVTickets>>((string)Convert.ToString(Model.id));
-                                   if (tickets != null)
+                                   SessionObject so = HttpContextAccessor.HttpContext.Session.Get<SessionObject>((string)Convert.ToString(Model.id));
+                                   if (so != null)
                                    {
-                                       bool ticketexists = false;
-                                       foreach (KVTickets ticket in tickets)
+                                       if (so.tickets != null)
                                        {
-                                           if (ticket.Key == type.id)
+                                           bool ticketexists = false;
+                                           foreach (KVTickets ticket in so.tickets)
                                            {
-                                               ticketexists = true;
-                                               @Html.Raw(ticket.Value);
+                                               if (ticket.Key == type.id)
+                                               {
+                                                   ticketexists = true;
+                                                   @Html.Raw(ticket.Value);
+                                               }
                                            }
-                                       }
-                                       if (!ticketexists)
-                                       {
+                                           if (!ticketexists)
+                                           {
 
-                                           @Html.Raw((int)0);
+                                               @Html.Raw((int)0);
+                                           }
+                                       } else {
+                                            @Html.Raw((int)0);
                                        }
                                    }
                                    else
                                    {
-                                       @Html.Raw((int)0);
+                                           @Html.Raw((int)0);
                                    }
-
                                    }"/>
                     </td>
 
@@ -69,30 +73,34 @@ else
 
 
                 </tr>
-        }
+                                   }
 
         <tr><td colspan="3" style="text-align:right">Total: <span id="price">
     @{ //se calculeaza pretul total al biletelor selectate pentru ecranizarea aleasa
         float total = 0;
-        List<KVTickets> tickets2 = HttpContextAccessor.HttpContext.Session.Get<List<KVTickets>>((string)Convert.ToString(Model.id));
-        if (tickets2 != null)
+        SessionObject so2 = HttpContextAccessor.HttpContext.Session.Get<SessionObject>((string)Convert.ToString(Model.id));
+        if (so2 != null)
         {
-            foreach (var type in Model.types)
+            if (so2.tickets != null)
             {
-                foreach (KVTickets ticket in tickets2)
+                foreach (var type in Model.types)
                 {
-                    if (type.id == ticket.Key)
+                    foreach (KVTickets ticket in so2.tickets)
                     {
-                        total = total + (Model.price - (Model.price * type.discount)) * ticket.Value;
-                    }
+                        if (type.id == ticket.Key)
+                        {
+                            total = total + (Model.price - (Model.price * type.discount)) * ticket.Value;
+                        }
 
+                    }
                 }
+                @Html.Raw(total);
             }
-            @Html.Raw(total);
+            else @Html.Raw((int)0);
         }
         else @Html.Raw((int)0);
-        }
-    </span> Lei</td></tr>
+    }
+</span> Lei</td></tr>
     </tbody>
 </table>
 

@@ -81,7 +81,7 @@
             @{
             foreach (var t in Model.soldTicketsPerMovies)
             {
-                @Html.Raw("'"+t.title+"',");
+                @Html.Raw("\""+t.title+"\",");
             }
            }
         ];
@@ -144,7 +144,7 @@
          @{
             foreach (var t in Model.revenuePerMovies)
             {
-                @Html.Raw("'"+t.Key+"',");
+                @Html.Raw('"'+t.Key+"\","); 
             }
            }
         ];

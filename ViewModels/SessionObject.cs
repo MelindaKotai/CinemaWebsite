@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace Licenta.ViewModels
 {
-    public class KVTickets
+    public class SessionObject
     {
-        public int Key { get; set; }
-        public int Value { get; set; }
-        
+
+        public List<KVTickets> tickets { get; set; }
+        public ChooseSeatsViewModel details { get; set; }
     }
 }

@@ -86,16 +86,14 @@ else
 
         var model = @Html.Raw(Json.Serialize(Model.prizes));
         function alertPrize(indicatedSegment) {
-        alert("Ai câștigat " + indicatedSegment.text);
-        var userid = '@UserManager.GetUserId(User)';
-            $.ajax({type: "POST",
-            url: "/Prize/CreatePrize",
-            data: "prize=" + indicatedSegment.text + "&user=" + userid,
-            dataType: "application/x-www-form-urlencoded",
-            error: function(){
-                    alert("Nu s-a reusit introducerea premiului in baza de date. Va rugam incercati din nou sau contanctati-ne!");
-                }
-            });       
+            alert("Ai câștigat " + indicatedSegment.text);
+            var userid = '@UserManager.GetUserId(User)';
+                $.ajax({type: "POST",
+                url: "/Prize/CreatePrize",
+                data: "prize=" + indicatedSegment.text + "&user=" + userid,
+                dataType: "application/x-www-form-urlencoded"
+               
+                });       
     }
     </script>
 

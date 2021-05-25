@@ -12,6 +12,7 @@
             $(event.target).addClass('selected');
             noseats = noseats - 1;
             seats.push(event.target.id);
+            
         } else alert("Ati selectat toate locurile");
     }
 
@@ -19,19 +20,22 @@
         $(event.target).removeClass('selected');
         $(event.target).addClass('free');
         noseats = noseats + 1;
-        seats = $.grep(seats, function (value) {
-            return value != event.target.id;
-        });
+        for (var i = 0; i < seats.length; i++) {
+            if (seats[i] == event.target.id) {
+                seats.splice(i, 1);
+            }
+        }
 
+       
     }
 });
 
 $('.reserve').click(function (e) {
     if (noseats == 0) {
         $('#selectedseats').val(seats.toString());
-        $('#reserveform').submit();
+        $('#reserveform').submit(); 
     } else {
         e.preventDefault();
-        alert("Mai aveti " + noseats + " locuri de selectat!");
+        alert("Mai aveti " + noseats + " locuri de selectat!"); 
     }
 });

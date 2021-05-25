@@ -52,7 +52,7 @@ namespace Licenta.Controllers
             //numarul de premii deja castigate de utilizator
             var userprizes =  _context.UserPrizes.Where(x => x.userId == userId).Count();
             //numarul de premii care pot fi castigate de utilizator
-            var numberofprizes = payedtickets / 5;
+            int numberofprizes = payedtickets / 5;
             //numarul de premii disponibile
             var numberofavailableprizes = numberofprizes - userprizes;
           
