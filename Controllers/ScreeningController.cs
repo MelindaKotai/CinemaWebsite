@@ -729,7 +729,7 @@ namespace Licenta.Controllers
                         rs.reservationId = reservationId;
                         rs.TicketTypeid = so.tickets[k].Key;
                         _context.ReservedSeats.Add(rs);
-
+                        _context.SaveChanges();
                         ids.Add(rs.Id);
                         val++;
                         if (val == so.tickets[k].Value)
@@ -897,38 +897,7 @@ namespace Licenta.Controllers
             //tranzactie
             using var transaction = _context.Database.BeginTransaction();
             try
-            {
-
-
-                //se incearca plata 
-                var customers = new CustomerService();
-                var charges = new ChargeService();
-
-                var customer = customers.Create(new CustomerCreateOptions
-                {
-                    Email = details.email,
-                    Source = Token,
-                    Phone = details.telefon,
-                    Name = details.nume + " " + details.prenume
-                });
-
-                var charge = charges.Create(new ChargeCreateOptions
-                {
-                    Amount = (long)(totalSumToPay * 100),
-                    Description = "Plata bilete",
-                    Currency = "ron",
-                    Customer = customer.Id,
-                    ReceiptEmail = details.email,
-
-                });
-
-                //se verifica daca plata s-a realizat cu succes
-                if (charge.Status != "succeeded")
-                {
-                    transaction.Rollback();
-                    TempData["ErrorMessage"] = "Plata a esuat, va rugam sa incercati din nou!";
-                    return RedirectToAction("ChooseSeats", new { id = details.screeningId });
-                }
+            { 
 
                 //se salveaza rezervarea si se trimite email
                 int k = 0;
@@ -1093,6 +1062,39 @@ namespace Licenta.Controllers
                 }
 
                 reservation.payed = true;
+
+
+                //se incearca plata 
+                var customers = new CustomerService();
+                var charges = new ChargeService();
+
+                var customer = customers.Create(new CustomerCreateOptions
+                {
+                    Email = details.email,
+                    Source = Token,
+                    Phone = details.telefon,
+                    Name = details.nume + " " + details.prenume
+                });
+
+                var charge = charges.Create(new ChargeCreateOptions
+                {
+                    Amount = (long)(totalSumToPay * 100),
+                    Description = "Plata bilete",
+                    Currency = "ron",
+                    Customer = customer.Id,
+                    ReceiptEmail = details.email,
+
+                });
+
+                //se verifica daca plata s-a realizat cu succes
+                if (charge.Status != "succeeded")
+                {
+                    transaction.Rollback();
+                    TempData["ErrorMessage"] = "Plata a esuat, va rugam sa incercati din nou!";
+                    return RedirectToAction("ChooseSeats", new { id = details.screeningId });
+                }
+
+
                 await _context.SaveChangesAsync();
                 transaction.Commit(); 
                 await client.SendEmailAsync(msg);
@@ -1253,7 +1255,7 @@ namespace Licenta.Controllers
                         )
                     {
                         var movies = await _context.Movies.Where(x => x.active == true).ToListAsync();
-                        var halls = await _context.Halls.ToListAsync();
+                        var halls = await _context.Halls.Where(x => x.active == true).ToListAsync();
                         ViewBag.movies = movies;
                         ViewBag.halls = halls;
                         ViewBag.ErrorMessage = "Ora selectata se suprapune cu alte ecranizări sau nu se potrivește cu orarul de funcționare al cinematografului, alegeți altă oră!";
@@ -1284,16 +1286,20 @@ namespace Licenta.Controllers
 
 
 
-        [Authorize(Roles = "Administrator,Manager,Angajat")]
+        //[Authorize(Roles = "Administrator,Manager,Angajat")]
         [HttpGet]
+        [Route("Screening/GetHours")]
         //se returneaza intervalele orare la care poate fi creata o ecranizare noua
-        public string GetHours(DateTime date, int hallid)
+        public ActionResult<List<KeyValuePair<string,string>>> GetHours(DateTime date, int hallid)
         {
             //select toate ecranizarile de genu ordonate dupa ora la care incep
             var screenings = _context.Screenings.Where(x => x.hallId == hallid).Where(x => x.date.Date == date.Date).OrderBy(x => x.s_hour.Hour).ToList();
+            List<KeyValuePair<string, string>> response = new List<KeyValuePair<string, string>>();
             if (screenings.Count == 0)
             {
-                return "09:00-23:00";
+              
+                response.Add(new KeyValuePair<string, string>("09:00", "23:00"));
+                return Ok(response);
 
             }
             int i = 0;
@@ -1306,23 +1312,21 @@ namespace Licenta.Controllers
                 fh[i] = screening.f_hour.ToString("HH:mm"); ;
                 i++;
            }
-            string result = "";
+
             if (date.AddHours(screenings[0].s_hour.Hour) > date.AddHours(9))
-                result = result+"09:00-" + sh[0]+"</br>";
+                response.Add(new KeyValuePair<string, string>("9:00",sh[0])); 
            
             for (var j = 0; j < screenings.Count-1; j++)
             {
-             if(j== screenings.Count - 2)
-                    result = result + fh[j] + "-" + sh[j + 1];
-             else
-                result = result + fh[j] + "-" + sh[j + 1] + "</br>";
+                response.Add(new KeyValuePair<string, string>(fh[j],sh[j+1]));
             }
            
              if(date.AddHours(screenings[screenings.Count-1].f_hour.Hour).AddMinutes(screenings[screenings.Count - 1].f_hour.Minute) < date.AddHours(23))
                         {
-                            result = result + "</br>"+fh[screenings.Count - 1] + "-" + "23:00";
+                         response.Add(new KeyValuePair<string, string>(fh[screenings.Count - 1], "23:00"));
+              
                         }
-            return result;
+            return Ok(response);
            
         }
 

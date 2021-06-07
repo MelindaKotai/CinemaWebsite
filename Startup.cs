@@ -39,16 +39,21 @@ namespace Licenta
             //identity
             services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true).AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-           
+            //specifice frameworkului
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            //pentru serviciul de trimitere de email-uri
             services.AddTransient<IEmailSender, EmailSender>();
             services.Configure<MessageSender>(Configuration);
 
+            //
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(60); 
             });
+
+            //stripe
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
 
         }

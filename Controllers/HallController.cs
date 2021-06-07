@@ -159,6 +159,8 @@ namespace Licenta.Controllers
 
         }
 
+
+        [HttpGet]
         [Authorize(Roles = "Administrator")]
         [Route("/Hall/Create")]
         //returneaza pagina de creare sala

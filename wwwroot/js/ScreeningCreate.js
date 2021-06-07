@@ -7,7 +7,12 @@ var hallid = $('#hallId').val();
 $(document).ready(function () {
     $.get("/Screening/GetHours?date=" + date + "&hallid=" + hallid,
         function (data) {
-            $("#intervals").html(data);
+           
+            var result = "";
+            for (let i = 0; i < data.length; i++) {
+                result = result+ data[i].Key + "-" + data[i].Value + "<br/>";
+            }
+            $("#intervals").html(result);
         });
 });
 
@@ -17,7 +22,12 @@ $("#hallId").change(function () {
     var hallid = $('#hallId').val();
     $.get("/Screening/GetHours?date=" + date + "&hallid=" + hallid,
         function (data) {
-            $("#intervals").html(data);
+            
+            var result = "";
+            for (let i = 0; i < data.length; i++) {
+                result =result+ data[i].Key + "-" + data[i].Value + "<br/>";
+            }
+            $("#intervals").html(result);
 
         });
 });
@@ -27,6 +37,11 @@ $("#date").change(function () {
     var hallid = $('#hallId').val();
     $.get("/Screening/GetHours?date=" + date + "&hallid=" + hallid,
         function (data) {
-            $("#intervals").html(data);
+           
+            var result = "";
+            for (let i = 0; i < data.length; i++) {
+                result = result+data[i].Key + "-" + data[i].Value + "<br/>";
+            }
+            $("#intervals").html(result);
         });
 });

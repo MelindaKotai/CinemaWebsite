@@ -133,13 +133,31 @@
 
                 var model = @Html.Raw(Json.Serialize(Model));
                 var id = model.id;
-
+                var response = "";
                 $.ajax({
                     type: "GET",
                     url: "/Movie/GetHours?date=" + date + "&id=" + id,
                     dataType:"html",
                     success: function (data) {
-                        $("#hours").html(data);
+                        if (data.length==0) {
+                            respose = "<div class='alert alert-danger mt-2 ml-2 mb-2 mr-2'>Nu există ore disponibile </div> ";
+                            $("#hours").html(response);
+                            return;
+                        }
+                        data = JSON.parse(data);
+                        for (let i = 0; i < data.length;i++ ) {
+
+                            response = response + "<a style='text-decoration:none;color:white;' href='/Screening/ChooseTickets/" + data[i].screeningId + "'><div  class='bg-danger p-2 hour-link'>" + data[i].hour.substring(11, 16);
+                               if (data[i].is3D != false)
+                              {
+                                 response = response + "<span> 3D</span></div></a>";
+                              }
+                               else
+                                  response = response + "</div></a>";
+                             }
+                        response = response +
+                            "<p>Alegeți o oră și faceți o rezervare!</p>";
+                        $("#hours").html(response);
                     },
                     error: function () {
                         $("#hours").html("O eroare a intervenit la returnarea orelor de ecranizare. Vă rugăm să mai încercați odată sau să ne contactați.");

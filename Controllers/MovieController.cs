@@ -206,12 +206,13 @@ namespace Licenta.Controllers
      
         [Route("/Movie/GetHours")]
         //returneaza orele la care ruleaza un film intr-o anumita zi
-        public string GetHours(DateTime? date,int id)
+        public ActionResult<List<ScreeningInfo>> GetHours(DateTime? date,int id)
         {
             if (date != null)
                 if ( date <= DateTime.Now.AddDays(-1) && date > DateTime.Now.AddDays(6))
-                    return " ";
-           
+                    return BadRequest();
+
+
             var ScreeningHours = _context.Screenings.Where(x => x.movieId == id).Where(x => x.date == date).OrderBy(x => x.s_hour).ToList();
             List<ScreeningInfo> screenings = new List<ScreeningInfo>();
             foreach (var screeningHour in ScreeningHours)
@@ -230,31 +231,7 @@ namespace Licenta.Controllers
                     screenings.Add(screening);
                 } 
             }
-
-            if (screenings.Count > 0)
-            {
-                var response = "<p> Ore disponbile:</p> ";
-
-                foreach (var screening in screenings)
-                {
-                    response = response + "<a style='text-decoration:none;color:white;' href='/Screening/ChooseTickets/id=" + screening.screeningId + "'><div  class='bg-danger p-2 hour-link'>" + screening.hour.ToString("HH:mm") ;
-                    if (screening.is3D != false)
-                    {
-                        response = response + "<span> 3D</span></div></a>";
-                    }
-                    else
-                        response = response + "</div></a>";
-               
-                }
-                response = response +
-             "<p>Alegeți o oră și faceți o rezervare!</p>";
-                return response;
-            }
-            else
-            {
-                var response = "<div class='alert alert-danger mt-2 ml-2 mb-2 mr-2'>Nu există ore disponibile </div> ";
-                return response;
-            }
+                return Ok(screenings);      
 
         }
 
@@ -398,6 +375,7 @@ namespace Licenta.Controllers
                 movie.date_added = DateTime.Now;
                 _context.Movies.Add(movie);
                 await _context.SaveChangesAsync();
+                TempData["SuccesMessage"] = "Filmul a fost adaugat cu succes!";
                 return RedirectToAction("List");
 
             }
